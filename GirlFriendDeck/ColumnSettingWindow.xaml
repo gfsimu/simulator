@@ -1,0 +1,55 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="GirlFriendDeck.ColumnSettingWindow"
+        Title="カラム設定" Height="360" Width="700" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" Loaded="Window_Loaded_1" Background="Transparent" Closed="Window_Closed_1">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border Background="#CC101010" BorderThickness="1" BorderBrush="#EE000000" Grid.ColumnSpan="4" Grid.RowSpan="4" />
+        <Label x:Name="LblWindowTitle" Grid.ColumnSpan="4" Foreground="#FFD0D0D0" Content="カラム設定" Background="#88000000"/>
+        
+        <Button x:Name="BtnOK" Grid.Row="3" Grid.ColumnSpan="4" Content="OK" HorizontalAlignment="Left" Width="80" Margin="10,6" Click="BtnOK_Click" Style="{StaticResource RedButton}" />
+        <Button x:Name="BtnCancel" Grid.Row="3" Grid.ColumnSpan="4" Content="キャンセル" HorizontalAlignment="Right" Width="80" Margin="10,6" Click="BtnCancel_Click" Style="{StaticResource BlueButton}" />
+
+        <Label Content="共通" Foreground="{StaticResource DefaultForeground}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Padding="0"/>
+        <Label Content="攻援" Foreground="{StaticResource AtkForeground}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Padding="0"/>
+        <Label Content="守援" Foreground="{StaticResource DefForeground}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Padding="0"/>
+        <Label Content="イベント" Foreground="{StaticResource EventForeground}" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Padding="0"/>
+
+        <DataGrid x:Name="DgColumnAll" Margin="6,2" Grid.Row="2" MouseLeftButtonUp="Dg_MouseLeftButtonUp"  CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
+                <DataGridTextColumn Width="100" Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DgColumnAtk" Margin="6,2" Grid.Row="2" Grid.Column="1" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
+                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DgColumnDef" Margin="6,2" Grid.Row="2" Grid.Column="2" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
+                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DgColumnEvent" Margin="6,2" Grid.Row="2" Grid.Column="3" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
+                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

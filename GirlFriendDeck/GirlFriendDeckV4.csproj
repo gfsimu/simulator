@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C141FEF8-5E0C-4F14-9D6D-B6F475B5EB8B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GirlFriendDeck</RootNamespace>
+    <AssemblyName>GirlFriendDeckXP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_V4;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_V4;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GFIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ColumnSettingWindow.xaml.cs">
+      <DependentUpon>ColumnSettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DsCardsOld.Designer.cs">
+      <DependentUpon>DsCardsOld.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DsSystemSetting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsSystemSetting.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GirlFriendCommon.cs" />
+    <Compile Include="UserCardPanel.xaml.cs">
+      <DependentUpon>UserCardPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShowCardPanel.xaml.cs">
+      <DependentUpon>ShowCardPanel.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ColumnSettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DsCards.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsCards.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsDeckCard.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDeckCard.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsDeckInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDeckInfo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsDispCard.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDispCard.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsGirls.cs">
+      <DependentUpon>DsGirls.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DsGirls.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsGirls.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsSelectCard.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsSelectCard.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsSetting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsSetting.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsUserDeck.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsUserDeck.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCardPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowCardPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="DsCards.xsc">
+      <DependentUpon>DsCards.xsd</DependentUpon>
+    </None>
+    <None Include="DsCards.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsCards.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsCards.xss">
+      <DependentUpon>DsCards.xsd</DependentUpon>
+    </None>
+    <None Include="DsDeckCard.xsc">
+      <DependentUpon>DsDeckCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsDeckCard.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDeckCard.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsDeckCard.xss">
+      <DependentUpon>DsDeckCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsDeckInfo.xsc">
+      <DependentUpon>DsDeckInfo.xsd</DependentUpon>
+    </None>
+    <None Include="DsDeckInfo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDeckInfo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsDeckInfo.xss">
+      <DependentUpon>DsDeckInfo.xsd</DependentUpon>
+    </None>
+    <None Include="DsDispCard.xsc">
+      <DependentUpon>DsDispCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsDispCard.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDispCard.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsDispCard.xss">
+      <DependentUpon>DsDispCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsGirls.xsc">
+      <DependentUpon>DsGirls.xsd</DependentUpon>
+    </None>
+    <None Include="DsGirls.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsGirls.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsGirls.xss">
+      <DependentUpon>DsGirls.xsd</DependentUpon>
+    </None>
+    <None Include="DsSelectCard.xsc">
+      <DependentUpon>DsSelectCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsSelectCard.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsSelectCard.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsSelectCard.xss">
+      <DependentUpon>DsSelectCard.xsd</DependentUpon>
+    </None>
+    <None Include="DsSetting.xsc">
+      <DependentUpon>DsSetting.xsd</DependentUpon>
+    </None>
+    <None Include="DsSetting.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsSetting.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsSetting.xss">
+      <DependentUpon>DsSetting.xsd</DependentUpon>
+    </None>
+    <None Include="DsSystemSetting.xsc">
+      <DependentUpon>DsSystemSetting.xsd</DependentUpon>
+    </None>
+    <None Include="DsSystemSetting.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsSystemSetting.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DsSystemSetting.xss">
+      <DependentUpon>DsSystemSetting.xsd</DependentUpon>
+    </None>
+    <None Include="DsUserDeck.xsc">
+      <DependentUpon>DsUserDeck.xsd</DependentUpon>
+    </None>
+    <None Include="DsUserDeck.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsUserDeck.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsUserDeck.xss">
+      <DependentUpon>DsUserDeck.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="DsCardsOld.xsc">
+      <DependentUpon>DsCardsOld.xsd</DependentUpon>
+    </None>
+    <None Include="DsCardsOld.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsCardsOld.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DsCardsOld.xss">
+      <DependentUpon>DsCardsOld.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GFIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NoImage1.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsSystemSetting" targetNamespace="http://tempuri.org/DsSystemSetting.xsd" xmlns:mstns="http://tempuri.org/DsSystemSetting.xsd" xmlns="http://tempuri.org/DsSystemSetting.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsSystemSetting" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsSystemSetting" msprop:Generator_UserDSName="DsSystemSetting">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Bonus" msprop:Generator_TableClassName="BonusDataTable" msprop:Generator_TableVarName="tableBonus" msprop:Generator_TablePropName="Bonus" msprop:Generator_RowDeletingName="BonusRowDeleting" msprop:Generator_RowChangingName="BonusRowChanging" msprop:Generator_RowEvHandlerName="BonusRowChangeEventHandler" msprop:Generator_RowDeletedName="BonusRowDeleted" msprop:Generator_UserTableName="Bonus" msprop:Generator_RowChangedName="BonusRowChanged" msprop:Generator_RowEvArgName="BonusRowChangeEvent" msprop:Generator_RowClassName="BonusRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="同属性" msprop:Generator_ColumnVarNameInTable="column同属性" msprop:Generator_ColumnPropNameInRow="同属性" msprop:Generator_ColumnPropNameInTable="同属性Column" msprop:Generator_UserColumnName="同属性" type="xs:int" minOccurs="0" />
+              <xs:element name="部室" msprop:Generator_ColumnVarNameInTable="column部室" msprop:Generator_ColumnPropNameInRow="部室" msprop:Generator_ColumnPropNameInTable="部室Column" msprop:Generator_UserColumnName="部室" type="xs:int" minOccurs="0" />
+              <xs:element name="備品" msprop:Generator_ColumnVarNameInTable="column備品" msprop:Generator_ColumnPropNameInRow="備品" msprop:Generator_ColumnPropNameInTable="備品Column" msprop:Generator_UserColumnName="備品" type="xs:int" minOccurs="0" />
+              <xs:element name="部長" msprop:Generator_ColumnVarNameInTable="column部長" msprop:Generator_ColumnPropNameInRow="部長" msprop:Generator_ColumnPropNameInTable="部長Column" msprop:Generator_UserColumnName="部長" type="xs:int" minOccurs="0" />
+              <xs:element name="副部長" msprop:Generator_ColumnVarNameInTable="column副部長" msprop:Generator_ColumnPropNameInRow="副部長" msprop:Generator_ColumnPropNameInTable="副部長Column" msprop:Generator_UserColumnName="副部長" type="xs:int" minOccurs="0" />
+              <xs:element name="攻援隊長" msprop:Generator_ColumnVarNameInTable="column攻援隊長" msprop:Generator_ColumnPropNameInRow="攻援隊長" msprop:Generator_ColumnPropNameInTable="攻援隊長Column" msprop:Generator_UserColumnName="攻援隊長" type="xs:int" minOccurs="0" />
+              <xs:element name="守援隊長" msprop:Generator_ColumnVarNameInTable="column守援隊長" msprop:Generator_ColumnPropNameInRow="守援隊長" msprop:Generator_ColumnPropNameInTable="守援隊長Column" msprop:Generator_UserColumnName="守援隊長" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="声援" msprop:Generator_TableClassName="声援DataTable" msprop:Generator_TableVarName="table声援" msprop:Generator_TablePropName="声援" msprop:Generator_RowDeletingName="声援RowDeleting" msprop:Generator_RowChangingName="声援RowChanging" msprop:Generator_RowEvHandlerName="声援RowChangeEventHandler" msprop:Generator_RowDeletedName="声援RowDeleted" msprop:Generator_UserTableName="声援" msprop:Generator_RowChangedName="声援RowChanged" msprop:Generator_RowEvArgName="声援RowChangeEvent" msprop:Generator_RowClassName="声援Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="攻援" msprop:Generator_ColumnVarNameInTable="column攻援" msprop:Generator_ColumnPropNameInRow="攻援" msprop:Generator_ColumnPropNameInTable="攻援Column" msprop:Generator_UserColumnName="攻援" type="xs:boolean" minOccurs="0" />
+              <xs:element name="守援" msprop:Generator_ColumnVarNameInTable="column守援" msprop:Generator_ColumnPropNameInRow="守援" msprop:Generator_ColumnPropNameInTable="守援Column" msprop:Generator_UserColumnName="守援" type="xs:boolean" minOccurs="0" />
+              <xs:element name="自身" msprop:Generator_ColumnVarNameInTable="column自身" msprop:Generator_ColumnPropNameInRow="自身" msprop:Generator_ColumnPropNameInTable="自身Column" msprop:Generator_UserColumnName="自身" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DOWN" msprop:Generator_ColumnVarNameInTable="columnDOWN" msprop:Generator_ColumnPropNameInRow="DOWN" msprop:Generator_ColumnPropNameInTable="DOWNColumn" msprop:Generator_UserColumnName="DOWN" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Power" msprop:Generator_ColumnVarNameInTable="columnPower" msprop:Generator_ColumnPropNameInRow="Power" msprop:Generator_ColumnPropNameInTable="PowerColumn" msprop:Generator_UserColumnName="Power" type="xs:int" minOccurs="0" />
+              <xs:element name="全属Power" msprop:Generator_ColumnVarNameInTable="column全属Power" msprop:Generator_ColumnPropNameInRow="全属Power" msprop:Generator_ColumnPropNameInTable="全属PowerColumn" msprop:Generator_UserColumnName="全属Power" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="センバツ" msprop:Generator_TableClassName="センバツDataTable" msprop:Generator_TableVarName="tableセンバツ" msprop:Generator_TablePropName="センバツ" msprop:Generator_RowDeletingName="センバツRowDeleting" msprop:Generator_RowChangingName="センバツRowChanging" msprop:Generator_RowEvHandlerName="センバツRowChangeEventHandler" msprop:Generator_RowDeletedName="センバツRowDeleted" msprop:Generator_UserTableName="センバツ" msprop:Generator_RowChangedName="センバツRowChanged" msprop:Generator_RowEvArgName="センバツRowChangeEvent" msprop:Generator_RowClassName="センバツRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Lv1" msprop:Generator_ColumnVarNameInTable="columnLv1" msprop:Generator_ColumnPropNameInRow="Lv1" msprop:Generator_ColumnPropNameInTable="Lv1Column" msprop:Generator_UserColumnName="Lv1" type="xs:int" minOccurs="0" />
+              <xs:element name="Lv2" msprop:Generator_ColumnVarNameInTable="columnLv2" msprop:Generator_ColumnPropNameInRow="Lv2" msprop:Generator_ColumnPropNameInTable="Lv2Column" msprop:Generator_UserColumnName="Lv2" type="xs:int" minOccurs="0" />
+              <xs:element name="Lv3" msprop:Generator_ColumnVarNameInTable="columnLv3" msprop:Generator_ColumnPropNameInRow="Lv3" msprop:Generator_ColumnPropNameInTable="Lv3Column" msprop:Generator_UserColumnName="Lv3" type="xs:int" minOccurs="0" />
+              <xs:element name="Lv4" msprop:Generator_ColumnVarNameInTable="columnLv4" msprop:Generator_ColumnPropNameInRow="Lv4" msprop:Generator_ColumnPropNameInTable="Lv4Column" msprop:Generator_UserColumnName="Lv4" type="xs:int" minOccurs="0" />
+              <xs:element name="Lv5" msprop:Generator_ColumnVarNameInTable="columnLv5" msprop:Generator_ColumnPropNameInRow="Lv5" msprop:Generator_ColumnPropNameInTable="Lv5Column" msprop:Generator_UserColumnName="Lv5" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

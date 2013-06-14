@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsYellInfo" targetNamespace="http://tempuri.org/DsYellInfo.xsd" xmlns:mstns="http://tempuri.org/DsYellInfo.xsd" xmlns="http://tempuri.org/DsYellInfo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsYellInfo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsYellInfo" msprop:Generator_UserDSName="DsYellInfo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BaseExp" msprop:Generator_TableClassName="BaseExpDataTable" msprop:Generator_TableVarName="tableBaseExp" msprop:Generator_TablePropName="BaseExp" msprop:Generator_RowDeletingName="BaseExpRowDeleting" msprop:Generator_RowChangingName="BaseExpRowChanging" msprop:Generator_RowEvHandlerName="BaseExpRowChangeEventHandler" msprop:Generator_RowDeletedName="BaseExpRowDeleted" msprop:Generator_UserTableName="BaseExp" msprop:Generator_RowChangedName="BaseExpRowChanged" msprop:Generator_RowEvArgName="BaseExpRowChangeEvent" msprop:Generator_RowClassName="BaseExpRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="進展" msprop:Generator_ColumnVarNameInTable="column進展" msprop:Generator_ColumnPropNameInRow="進展" msprop:Generator_ColumnPropNameInTable="進展Column" msprop:Generator_UserColumnName="進展" type="xs:int" minOccurs="0" />
+              <xs:element name="経験値" msprop:Generator_ColumnVarNameInTable="column経験値" msprop:Generator_ColumnPropNameInRow="経験値" msprop:Generator_ColumnPropNameInTable="経験値Column" msprop:Generator_UserColumnName="経験値" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LvExp" msprop:Generator_TableClassName="LvExpDataTable" msprop:Generator_TableVarName="tableLvExp" msprop:Generator_TablePropName="LvExp" msprop:Generator_RowDeletingName="LvExpRowDeleting" msprop:Generator_RowChangingName="LvExpRowChanging" msprop:Generator_RowEvHandlerName="LvExpRowChangeEventHandler" msprop:Generator_RowDeletedName="LvExpRowDeleted" msprop:Generator_UserTableName="LvExp" msprop:Generator_RowChangedName="LvExpRowChanged" msprop:Generator_RowEvArgName="LvExpRowChangeEvent" msprop:Generator_RowClassName="LvExpRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Lv" msprop:Generator_ColumnVarNameInTable="columnLv" msprop:Generator_ColumnPropNameInRow="Lv" msprop:Generator_ColumnPropNameInTable="LvColumn" msprop:Generator_UserColumnName="Lv" type="xs:int" minOccurs="0" />
+              <xs:element name="Exp" msprop:Generator_ColumnVarNameInTable="columnExp" msprop:Generator_ColumnPropNameInRow="Exp" msprop:Generator_ColumnPropNameInTable="ExpColumn" msprop:Generator_UserColumnName="Exp" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

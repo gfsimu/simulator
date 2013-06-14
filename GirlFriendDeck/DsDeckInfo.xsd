@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsDeckInfo" targetNamespace="http://tempuri.org/DsDeckInfo.xsd" xmlns:mstns="http://tempuri.org/DsDeckInfo.xsd" xmlns="http://tempuri.org/DsDeckInfo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsDeckInfo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsDeckInfo" msprop:Generator_UserDSName="DsDeckInfo">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+<<<<<<< HEAD
+        <xs:element name="DeckInfo" msprop:Generator_TableClassName="DeckInfoDataTable" msprop:Generator_TableVarName="tableDeckInfo" msprop:Generator_TablePropName="DeckInfo" msprop:Generator_RowDeletingName="DeckInfoRowDeleting" msprop:Generator_RowChangingName="DeckInfoRowChanging" msprop:Generator_RowEvHandlerName="DeckInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="DeckInfoRowDeleted" msprop:Generator_UserTableName="DeckInfo" msprop:Generator_RowChangedName="DeckInfoRowChanged" msprop:Generator_RowEvArgName="DeckInfoRowChangeEvent" msprop:Generator_RowClassName="DeckInfoRow">
+=======
+        <xs:element name="DeckInfo" msprop:Generator_TableClassName="DeckInfoDataTable" msprop:Generator_TableVarName="tableDeckInfo" msprop:Generator_RowChangedName="DeckInfoRowChanged" msprop:Generator_TablePropName="DeckInfo" msprop:Generator_RowDeletingName="DeckInfoRowDeleting" msprop:Generator_RowChangingName="DeckInfoRowChanging" msprop:Generator_RowEvHandlerName="DeckInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="DeckInfoRowDeleted" msprop:Generator_RowClassName="DeckInfoRow" msprop:Generator_UserTableName="DeckInfo" msprop:Generator_RowEvArgName="DeckInfoRowChangeEvent">
+>>>>>>> ebd62ab... no message
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Number" msprop:Generator_ColumnVarNameInTable="columnNumber" msprop:Generator_ColumnPropNameInRow="Number" msprop:Generator_ColumnPropNameInTable="NumberColumn" msprop:Generator_UserColumnName="Number" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:string" minOccurs="0" />
+              <xs:element name="Lock" msprop:Generator_ColumnVarNameInTable="columnLock" msprop:Generator_ColumnPropNameInRow="Lock" msprop:Generator_ColumnPropNameInTable="LockColumn" msprop:Generator_UserColumnName="Lock" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Cost" msprop:Generator_ColumnVarNameInTable="columnCost" msprop:Generator_ColumnPropNameInRow="Cost" msprop:Generator_ColumnPropNameInTable="CostColumn" msprop:Generator_UserColumnName="Cost" type="xs:int" minOccurs="0" />
+<<<<<<< HEAD
+              <xs:element name="IsCostLimited" msprop:Generator_ColumnVarNameInTable="columnIsCostLimited" msprop:Generator_ColumnPropNameInRow="IsCostLimited" msprop:Generator_ColumnPropNameInTable="IsCostLimitedColumn" msprop:Generator_UserColumnName="IsCostLimited" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LimitedCost" msprop:Generator_ColumnVarNameInTable="columnLimitedCost" msprop:Generator_ColumnPropNameInRow="LimitedCost" msprop:Generator_ColumnPropNameInTable="LimitedCostColumn" msprop:Generator_UserColumnName="LimitedCost" type="xs:int" minOccurs="0" />
+=======
+>>>>>>> ebd62ab... no message
+              <xs:element name="Power" msprop:Generator_ColumnVarNameInTable="columnPower" msprop:Generator_ColumnPropNameInRow="Power" msprop:Generator_ColumnPropNameInTable="PowerColumn" msprop:Generator_UserColumnName="Power" type="xs:int" minOccurs="0" />
+              <xs:element name="BasePower" msprop:Generator_ColumnVarNameInTable="columnBasePower" msprop:Generator_ColumnPropNameInRow="BasePower" msprop:Generator_ColumnPropNameInTable="BasePowerColumn" msprop:Generator_UserColumnName="BasePower" type="xs:int" minOccurs="0" />
+              <xs:element name="MainCount" msprop:Generator_ColumnVarNameInTable="columnMainCount" msprop:Generator_ColumnPropNameInRow="MainCount" msprop:Generator_ColumnPropNameInTable="MainCountColumn" msprop:Generator_UserColumnName="MainCount" type="xs:int" minOccurs="0" />
+              <xs:element name="SubCount" msprop:Generator_ColumnVarNameInTable="columnSubCount" msprop:Generator_ColumnPropNameInRow="SubCount" msprop:Generator_ColumnPropNameInTable="SubCountColumn" msprop:Generator_UserColumnName="SubCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

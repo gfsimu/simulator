@@ -1,0 +1,50 @@
+﻿<Window x:Class="GirlFriendCommon.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DialogWindow" MinHeight="120" MinWidth="240" AllowsTransparency="True" WindowStyle="None" SizeToContent="WidthAndHeight" Background="Transparent" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <SolidColorBrush x:Key="InfomationTitleBar" Color="#CC0F0F8D"/>
+        <SolidColorBrush x:Key="InfomationMessage" Color="#661E1ED8"/>
+
+        <SolidColorBrush x:Key="WarningTitleBar" Color="#CC766C0E"/>
+        <SolidColorBrush x:Key="WarningMessage" Color="#66D8C71E"/>
+
+        <SolidColorBrush x:Key="ConfirmTitleBar" Color="#CC766C0E"/>
+        <SolidColorBrush x:Key="ConfirmMessage" Color="#66D8C71E"/>
+
+
+        <SolidColorBrush x:Key="ErrorTitleBar" Color="#C07C0202"/>
+        <SolidColorBrush x:Key="ErrorMessage" Color="#66DE0B0B"/>
+
+    </Window.Resources>
+
+    <Grid  MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="38"/>
+        </Grid.RowDefinitions>
+        <Border Background="#C0303030" Grid.RowSpan="2" Grid.Row="1" />
+        
+        <!--ヘッダーー-->
+        <Border Background="#C0303030" VerticalAlignment="Bottom" Height="10"/>
+        <Border x:Name="RctTitleBar" Background="#90101010" Padding="0,0,40,0" MinWidth="140" HorizontalAlignment="Left">
+            <Label x:Name="LblTitle" Content="タイトル" Padding="1" VerticalAlignment="Center" Margin="6,1"/>
+        </Border>
+
+        <Border x:Name="BdrMessage" Background="#44000000"  Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock x:Name="LblMessage" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,5" Foreground="{DynamicResource DefaultForeground}" >
+            </TextBlock>
+        </Border>
+
+        <!--フッター-->
+        <Grid Grid.Row="2" Background="#80202020">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnOK" Content="OK" Grid.Column="0" Width="90" Height="28" HorizontalAlignment="Left" Click="BtnOK_Click" Margin="6,1" />
+            <Button x:Name="BtnCancel" Content="キャンセル" Grid.Column="1" Width="90" Height="28" HorizontalAlignment="Right" Click="BtnCancel_Click"  Margin="6,1"/>
+        </Grid>
+    </Grid>
+</Window>

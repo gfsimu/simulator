@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsUserDeck" targetNamespace="http://tempuri.org/DsUserDeck.xsd" xmlns:mstns="http://tempuri.org/DsUserDeck.xsd" xmlns="http://tempuri.org/DsUserDeck.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsUserDeck" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsUserDeck" msprop:Generator_UserDSName="DsUserDeck">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MainDeck" msprop:Generator_TableClassName="MainDeckDataTable" msprop:Generator_TableVarName="tableMainDeck" msprop:Generator_RowChangedName="MainDeckRowChanged" msprop:Generator_TablePropName="MainDeck" msprop:Generator_RowDeletingName="MainDeckRowDeleting" msprop:Generator_RowChangingName="MainDeckRowChanging" msprop:Generator_RowEvHandlerName="MainDeckRowChangeEventHandler" msprop:Generator_RowDeletedName="MainDeckRowDeleted" msprop:Generator_RowClassName="MainDeckRow" msprop:Generator_UserTableName="MainDeck" msprop:Generator_RowEvArgName="MainDeckRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="属性" msprop:Generator_ColumnVarNameInTable="column属性" msprop:Generator_ColumnPropNameInRow="属性" msprop:Generator_ColumnPropNameInTable="属性Column" msprop:Generator_UserColumnName="属性" type="xs:string" minOccurs="0" />
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
+              <xs:element name="スキル" msprop:Generator_ColumnVarNameInTable="columnスキル" msprop:Generator_ColumnPropNameInRow="スキル" msprop:Generator_ColumnPropNameInTable="スキルColumn" msprop:Generator_UserColumnName="スキル" type="xs:string" minOccurs="0" />
+              <xs:element name="攻援" msprop:Generator_ColumnVarNameInTable="column攻援" msprop:Generator_ColumnPropNameInRow="攻援" msprop:Generator_ColumnPropNameInTable="攻援Column" msprop:Generator_UserColumnName="攻援" type="xs:int" minOccurs="0" />
+              <xs:element name="守援" msprop:Generator_ColumnVarNameInTable="column守援" msprop:Generator_ColumnPropNameInRow="守援" msprop:Generator_ColumnPropNameInTable="守援Column" msprop:Generator_UserColumnName="守援" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SubDeck" msprop:Generator_TableClassName="SubDeckDataTable" msprop:Generator_TableVarName="tableSubDeck" msprop:Generator_RowChangedName="SubDeckRowChanged" msprop:Generator_TablePropName="SubDeck" msprop:Generator_RowDeletingName="SubDeckRowDeleting" msprop:Generator_RowChangingName="SubDeckRowChanging" msprop:Generator_RowEvHandlerName="SubDeckRowChangeEventHandler" msprop:Generator_RowDeletedName="SubDeckRowDeleted" msprop:Generator_RowClassName="SubDeckRow" msprop:Generator_UserTableName="SubDeck" msprop:Generator_RowEvArgName="SubDeckRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="属性" msprop:Generator_ColumnVarNameInTable="column属性" msprop:Generator_ColumnPropNameInRow="属性" msprop:Generator_ColumnPropNameInTable="属性Column" msprop:Generator_UserColumnName="属性" type="xs:string" minOccurs="0" />
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
+              <xs:element name="スキル" msprop:Generator_ColumnVarNameInTable="columnスキル" msprop:Generator_ColumnPropNameInRow="スキル" msprop:Generator_ColumnPropNameInTable="スキルColumn" msprop:Generator_UserColumnName="スキル" type="xs:string" minOccurs="0" />
+              <xs:element name="攻援" msprop:Generator_ColumnVarNameInTable="column攻援" msprop:Generator_ColumnPropNameInRow="攻援" msprop:Generator_ColumnPropNameInTable="攻援Column" msprop:Generator_UserColumnName="攻援" type="xs:int" minOccurs="0" />
+              <xs:element name="守援" msprop:Generator_ColumnVarNameInTable="column守援" msprop:Generator_ColumnPropNameInRow="守援" msprop:Generator_ColumnPropNameInTable="守援Column" msprop:Generator_UserColumnName="守援" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="デッキ情報" msprop:Generator_TableClassName="デッキ情報DataTable" msprop:Generator_TableVarName="tableデッキ情報" msprop:Generator_RowChangedName="デッキ情報RowChanged" msprop:Generator_TablePropName="デッキ情報" msprop:Generator_RowDeletingName="デッキ情報RowDeleting" msprop:Generator_RowChangingName="デッキ情報RowChanging" msprop:Generator_RowEvHandlerName="デッキ情報RowChangeEventHandler" msprop:Generator_RowDeletedName="デッキ情報RowDeleted" msprop:Generator_RowClassName="デッキ情報Row" msprop:Generator_UserTableName="デッキ情報" msprop:Generator_RowEvArgName="デッキ情報RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="デッキタイプ" msprop:Generator_ColumnVarNameInTable="columnデッキタイプ" msprop:Generator_ColumnPropNameInRow="デッキタイプ" msprop:Generator_ColumnPropNameInTable="デッキタイプColumn" msprop:Generator_UserColumnName="デッキタイプ" type="xs:string" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
+              <xs:element name="総発揮値" msprop:Generator_ColumnVarNameInTable="column総発揮値" msprop:Generator_ColumnPropNameInRow="総発揮値" msprop:Generator_ColumnPropNameInTable="総発揮値Column" msprop:Generator_UserColumnName="総発揮値" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

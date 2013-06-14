@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="GirlFriendDeck.ShowCardPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="640" Width="360">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="CoolBackground" Color="#44007eea" />
+        <SolidColorBrush x:Key="PopBackground" Color="#44FF8432" />
+        <SolidColorBrush x:Key="SweetBackground" Color="#44FF5384" />
+    </UserControl.Resources>
+    <UserControl.LayoutTransform>
+        <TransformGroup>
+            <ScaleTransform ScaleX="0.5" ScaleY="0.5" x:Name="SclPanel"/>
+        </TransformGroup>
+    </UserControl.LayoutTransform>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Width="320" Height="400" x:Name="ImgCard" Margin="5,5,5,0" RenderTransformOrigin="0.5,1"  >
+        </Image>
+        <Image Grid.Row="1" Width="320" Height="400" x:Name="ImgCardMirror" Margin="5,0,5,5" RenderTransformOrigin="0.5,0" VerticalAlignment="Top"  >
+            <Image.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#00000000"/>
+                    <GradientStop Color="#CC000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+            <Image.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="-0.6"/>
+                    <RotateTransform Angle="0"/>
+                </TransformGroup>
+            </Image.LayoutTransform>
+        </Image>
+
+        <Rectangle Fill="#66000000" Grid.Row="1" Margin="20,12"  VerticalAlignment="Top" Height="30" />
+        <Label x:Name="NameMirror" Grid.Row="1" Margin="10" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF000000">
+            <Label.Effect>
+                <BlurEffect Radius="3" KernelType="Box" />
+            </Label.Effect>
+        </Label>
+        <Label x:Name="Name" Grid.Row="1" Margin="10" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        
+    </Grid>
+</UserControl>

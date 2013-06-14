@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsSelectCard" targetNamespace="http://tempuri.org/DsSelectCard.xsd" xmlns:mstns="http://tempuri.org/DsSelectCard.xsd" xmlns="http://tempuri.org/DsSelectCard.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsSelectCard" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsSelectCard" msprop:Generator_UserDSName="DsSelectCard">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Card" msprop:Generator_TableClassName="CardDataTable" msprop:Generator_TableVarName="tableCard" msprop:Generator_RowChangedName="CardRowChanged" msprop:Generator_TablePropName="Card" msprop:Generator_RowDeletingName="CardRowDeleting" msprop:Generator_RowChangingName="CardRowChanging" msprop:Generator_RowEvHandlerName="CardRowChangeEventHandler" msprop:Generator_RowDeletedName="CardRowDeleted" msprop:Generator_RowClassName="CardRow" msprop:Generator_UserTableName="Card" msprop:Generator_RowEvArgName="CardRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="姓名" msprop:Generator_ColumnVarNameInTable="column姓名" msprop:Generator_ColumnPropNameInRow="姓名" msprop:Generator_ColumnPropNameInTable="姓名Column" msprop:Generator_UserColumnName="姓名" type="xs:string" minOccurs="0" />
+              <xs:element name="なまえ" msprop:Generator_ColumnVarNameInTable="columnなまえ" msprop:Generator_ColumnPropNameInRow="なまえ" msprop:Generator_ColumnPropNameInTable="なまえColumn" msprop:Generator_UserColumnName="なまえ" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="属性" msprop:Generator_ColumnVarNameInTable="column属性" msprop:Generator_ColumnPropNameInRow="属性" msprop:Generator_ColumnPropNameInTable="属性Column" msprop:Generator_UserColumnName="属性" type="xs:string" minOccurs="0" />
+              <xs:element name="画像" msprop:Generator_ColumnVarNameInTable="column画像" msprop:Generator_ColumnPropNameInRow="画像" msprop:Generator_ColumnPropNameInTable="画像Column" msprop:Generator_UserColumnName="画像" type="xs:anyType" minOccurs="0" />
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="Lv" msprop:Generator_ColumnVarNameInTable="columnLv" msprop:Generator_ColumnPropNameInRow="Lv" msprop:Generator_ColumnPropNameInTable="LvColumn" msprop:Generator_UserColumnName="Lv" type="xs:int" minOccurs="0" />
+<<<<<<< HEAD
+              <xs:element name="成長" msprop:Generator_ColumnVarNameInTable="column成長" msprop:Generator_ColumnPropNameInRow="成長" msprop:Generator_ColumnPropNameInTable="成長Column" msprop:Generator_UserColumnName="成長" type="xs:int" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="進展" msprop:Generator_ColumnVarNameInTable="column進展" msprop:Generator_ColumnPropNameInRow="進展" msprop:Generator_ColumnPropNameInTable="進展Column" msprop:Generator_UserColumnName="進展" type="xs:int" minOccurs="0" />
+              <xs:element name="好感度" msprop:Generator_ColumnVarNameInTable="column好感度" msprop:Generator_ColumnPropNameInRow="好感度" msprop:Generator_ColumnPropNameInTable="好感度Column" msprop:Generator_UserColumnName="好感度" type="xs:int" minOccurs="0" />
+=======
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="進展" msprop:Generator_ColumnVarNameInTable="column進展" msprop:Generator_ColumnPropNameInRow="進展" msprop:Generator_ColumnPropNameInTable="進展Column" msprop:Generator_UserColumnName="進展" type="xs:int" minOccurs="0" />
+>>>>>>> ebd62ab... no message
+              <xs:element name="スキル" msprop:Generator_ColumnVarNameInTable="columnスキル" msprop:Generator_ColumnPropNameInRow="スキル" msprop:Generator_ColumnPropNameInTable="スキルColumn" msprop:Generator_UserColumnName="スキル" type="xs:string" minOccurs="0" />
+              <xs:element name="スキル発動" msprop:Generator_ColumnVarNameInTable="columnスキル発動" msprop:Generator_ColumnPropNameInRow="スキル発動" msprop:Generator_ColumnPropNameInTable="スキル発動Column" msprop:Generator_UserColumnName="スキル発動" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="攻スキル" msprop:Generator_ColumnVarNameInTable="column攻スキル" msprop:Generator_ColumnPropNameInRow="攻スキル" msprop:Generator_ColumnPropNameInTable="攻スキルColumn" msprop:Generator_UserColumnName="攻スキル" type="xs:int" minOccurs="0" />
+              <xs:element name="守スキル" msprop:Generator_ColumnVarNameInTable="column守スキル" msprop:Generator_ColumnPropNameInRow="守スキル" msprop:Generator_ColumnPropNameInTable="守スキルColumn" msprop:Generator_UserColumnName="守スキル" type="xs:int" minOccurs="0" />
+              <xs:element name="ボーナス" msprop:Generator_ColumnVarNameInTable="columnボーナス" msprop:Generator_ColumnPropNameInRow="ボーナス" msprop:Generator_ColumnPropNameInTable="ボーナスColumn" msprop:Generator_UserColumnName="ボーナス" type="xs:int" minOccurs="0" />
+              <xs:element name="スペシャル" msprop:Generator_ColumnVarNameInTable="columnスペシャル" msprop:Generator_ColumnPropNameInRow="スペシャル" msprop:Generator_ColumnPropNameInTable="スペシャルColumn" msprop:Generator_UserColumnName="スペシャル" type="xs:double" minOccurs="0" />
+              <xs:element name="応援値" msprop:Generator_ColumnVarNameInTable="column応援値" msprop:Generator_ColumnPropNameInRow="応援値" msprop:Generator_ColumnPropNameInTable="応援値Column" msprop:Generator_UserColumnName="応援値" type="xs:int" default="0" minOccurs="0" />
+<<<<<<< HEAD
+              <xs:element name="コスパ" msprop:Generator_ColumnVarNameInTable="columnコスパ" msprop:Generator_ColumnPropNameInRow="コスパ" msprop:Generator_ColumnPropNameInTable="コスパColumn" msprop:Generator_UserColumnName="コスパ" type="xs:int" minOccurs="0" />
+=======
+>>>>>>> ebd62ab... no message
+              <xs:element name="センバツ値" msprop:Generator_ColumnVarNameInTable="columnセンバツ値" msprop:Generator_ColumnPropNameInRow="センバツ値" msprop:Generator_ColumnPropNameInTable="センバツ値Column" msprop:Generator_UserColumnName="センバツ値" type="xs:int" minOccurs="0" />
+              <xs:element name="発揮値" msprop:Generator_ColumnVarNameInTable="column発揮値" msprop:Generator_ColumnPropNameInRow="発揮値" msprop:Generator_ColumnPropNameInTable="発揮値Column" msprop:Generator_UserColumnName="発揮値" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="攻選抜ボーナス1" msprop:Generator_ColumnVarNameInTable="column攻選抜ボーナス1" msprop:Generator_ColumnPropNameInRow="攻選抜ボーナス1" msprop:Generator_ColumnPropNameInTable="攻選抜ボーナス1Column" msprop:Generator_UserColumnName="攻選抜ボーナス1" type="xs:string" minOccurs="0" />
+              <xs:element name="攻選抜ボーナス2" msprop:Generator_ColumnVarNameInTable="column攻選抜ボーナス2" msprop:Generator_ColumnPropNameInRow="攻選抜ボーナス2" msprop:Generator_ColumnPropNameInTable="攻選抜ボーナス2Column" msprop:Generator_UserColumnName="攻選抜ボーナス2" type="xs:string" minOccurs="0" />
+              <xs:element name="攻選抜ボーナス3" msprop:Generator_ColumnVarNameInTable="column攻選抜ボーナス3" msprop:Generator_ColumnPropNameInRow="攻選抜ボーナス3" msprop:Generator_ColumnPropNameInTable="攻選抜ボーナス3Column" msprop:Generator_UserColumnName="攻選抜ボーナス3" type="xs:string" minOccurs="0" />
+              <xs:element name="守選抜ボーナス1" msprop:Generator_ColumnVarNameInTable="column守選抜ボーナス1" msprop:Generator_ColumnPropNameInRow="守選抜ボーナス1" msprop:Generator_ColumnPropNameInTable="守選抜ボーナス1Column" msprop:Generator_UserColumnName="守選抜ボーナス1" type="xs:string" minOccurs="0" />
+              <xs:element name="守選抜ボーナス2" msprop:Generator_ColumnVarNameInTable="column守選抜ボーナス2" msprop:Generator_ColumnPropNameInRow="守選抜ボーナス2" msprop:Generator_ColumnPropNameInTable="守選抜ボーナス2Column" msprop:Generator_UserColumnName="守選抜ボーナス2" type="xs:string" minOccurs="0" />
+              <xs:element name="守選抜ボーナス3" msprop:Generator_ColumnVarNameInTable="column守選抜ボーナス3" msprop:Generator_ColumnPropNameInRow="守選抜ボーナス3" msprop:Generator_ColumnPropNameInTable="守選抜ボーナス3Column" msprop:Generator_UserColumnName="守選抜ボーナス3" type="xs:string" minOccurs="0" />
+              <xs:element name="部活" msprop:Generator_ColumnVarNameInTable="column部活" msprop:Generator_ColumnPropNameInRow="部活" msprop:Generator_ColumnPropNameInTable="部活Column" msprop:Generator_UserColumnName="部活" type="xs:string" minOccurs="0" />
+              <xs:element name="ダミー" msprop:Generator_ColumnVarNameInTable="columnダミー" msprop:Generator_ColumnPropNameInRow="ダミー" msprop:Generator_ColumnPropNameInTable="ダミーColumn" msprop:Generator_UserColumnName="ダミー" type="xs:boolean" minOccurs="0" />
+              <xs:element name="フリー1" msprop:Generator_ColumnVarNameInTable="columnフリー1" msprop:Generator_ColumnPropNameInRow="フリー1" msprop:Generator_ColumnPropNameInTable="フリー1Column" msprop:Generator_UserColumnName="フリー1" type="xs:string" minOccurs="0" />
+              <xs:element name="フリー2" msprop:Generator_ColumnVarNameInTable="columnフリー2" msprop:Generator_ColumnPropNameInRow="フリー2" msprop:Generator_ColumnPropNameInTable="フリー2Column" msprop:Generator_UserColumnName="フリー2" type="xs:string" minOccurs="0" />
+              <xs:element name="フリー3" msprop:Generator_ColumnVarNameInTable="columnフリー3" msprop:Generator_ColumnPropNameInRow="フリー3" msprop:Generator_ColumnPropNameInTable="フリー3Column" msprop:Generator_UserColumnName="フリー3" type="xs:string" minOccurs="0" />
+              <xs:element name="選抜選択" msprop:Generator_ColumnVarNameInTable="column選抜選択" msprop:Generator_ColumnPropNameInRow="選抜選択" msprop:Generator_ColumnPropNameInTable="選抜選択Column" msprop:Generator_UserColumnName="選抜選択" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

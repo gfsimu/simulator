@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsYellTarget" targetNamespace="http://tempuri.org/DsYellTarget.xsd" xmlns:mstns="http://tempuri.org/DsYellTarget.xsd" xmlns="http://tempuri.org/DsYellTarget.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsYellTarget" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsYellTarget" msprop:Generator_UserDSName="DsYellTarget">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Target" msprop:Generator_TableClassName="TargetDataTable" msprop:Generator_TableVarName="tableTarget" msprop:Generator_TablePropName="Target" msprop:Generator_RowDeletingName="TargetRowDeleting" msprop:Generator_RowChangingName="TargetRowChanging" msprop:Generator_RowEvHandlerName="TargetRowChangeEventHandler" msprop:Generator_RowDeletedName="TargetRowDeleted" msprop:Generator_UserTableName="Target" msprop:Generator_RowChangedName="TargetRowChanged" msprop:Generator_RowEvArgName="TargetRowChangeEvent" msprop:Generator_RowClassName="TargetRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="属性" msprop:Generator_ColumnVarNameInTable="column属性" msprop:Generator_ColumnPropNameInRow="属性" msprop:Generator_ColumnPropNameInTable="属性Column" msprop:Generator_UserColumnName="属性" type="xs:string" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="進展" msprop:Generator_ColumnVarNameInTable="column進展" msprop:Generator_ColumnPropNameInRow="進展" msprop:Generator_ColumnPropNameInTable="進展Column" msprop:Generator_UserColumnName="進展" type="xs:int" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="経験値" msprop:Generator_ColumnVarNameInTable="column経験値" msprop:Generator_ColumnPropNameInRow="経験値" msprop:Generator_ColumnPropNameInTable="経験値Column" msprop:Generator_UserColumnName="経験値" type="xs:int" minOccurs="0" />
+              <xs:element name="枚数" msprop:Generator_ColumnVarNameInTable="column枚数" msprop:Generator_ColumnPropNameInRow="枚数" msprop:Generator_ColumnPropNameInTable="枚数Column" msprop:Generator_UserColumnName="枚数" type="xs:int" minOccurs="0" />
+              <xs:element name="大成功" msprop:Generator_ColumnVarNameInTable="column大成功" msprop:Generator_ColumnPropNameInRow="大成功" msprop:Generator_ColumnPropNameInTable="大成功Column" msprop:Generator_UserColumnName="大成功" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

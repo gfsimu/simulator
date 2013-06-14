@@ -1,0 +1,900 @@
+﻿<Window x:Class="GirlFriendYell.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:GirlFriendYell"
+        Foreground="{DynamicResource DefaultForeground}"
+<<<<<<< HEAD
+        Title="ガールフレンド(仮) YellSimulater(仮) Ver.20130609_01" Height="540" Width="800" Loaded="Window_Loaded_1" Icon="GFIconYell.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="YellBaseBarBackground" Color="#66101423" />
+        <SolidColorBrush x:Key="YellBaseBarStatus" Color="#772B56A2" />
+        <SolidColorBrush x:Key="YellBaseBarSlate" Color="#51101010" />
+=======
+        Title="ガールフレンド(仮) YellSimulater(仮) Ver.20130526_01" Height="540" Width="800" Loaded="Window_Loaded_1" Icon="GFIconYell.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="YellBaseBarBackground" Color="#66101423" />
+        <SolidColorBrush x:Key="YellBaseBarStatus" Color="#662B56A2" />
+        <SolidColorBrush x:Key="YellBaseBarSlate" Color="#21000000" />
+>>>>>>> ebd62ab... no message
+    </Window.Resources>
+    <Grid  Background="{StaticResource WindowBackground}">
+        <TabControl Background="{StaticResource DefaultBackground}">
+            <TabItem Header="エール" x:Name="TbYell">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="190"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="440"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--yell対象-->
+                    <Grid Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="9" Grid.RowSpan="6" Background="#33000000" BorderBrush="#AA000066" BorderThickness="1"/>
+<<<<<<< HEAD
+                        <Label Content="エール対象" FontSize="10" Background="#FF1E00A4" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="1" Width="60"/>
+=======
+                        <Label Content="エール対象" FontSize="10" Background="#FF0007A4" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="1" Width="60"/>
+>>>>>>> ebd62ab... no message
+
+                        <Border Grid.ColumnSpan="9" Grid.Row="1" Background="{StaticResource YellBaseBarBackground}" Margin="0,5" />
+                        <Border Grid.ColumnSpan="9" Grid.Row="2" Background="{StaticResource YellBaseBarBackground}" Margin="0,5" />
+                        <Border Grid.ColumnSpan="9" Grid.Row="3" Background="{StaticResource YellBaseBarBackground}" Margin="0,5" />
+                        <Border Grid.ColumnSpan="9" Grid.Row="4" Background="{StaticResource YellBaseBarBackground}" Margin="0,5" />
+                        <Border Grid.ColumnSpan="9" Grid.Row="5" Background="{StaticResource YellBaseBarBackground}" Margin="0,5" />
+
+                        <Polygon Fill="{StaticResource YellBaseBarSlate}" Grid.Row="2" Grid.Column="4" Width="24" Margin="0,5" Points="24,0 0,24 24,24 24,0" />
+                        <Rectangle Fill="{StaticResource YellBaseBarSlate}" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="4" Margin="0,5" />
+                        <Polygon Fill="{StaticResource YellBaseBarSlate}" Grid.Row="3" Grid.Column="4" Width="24" Margin="0,5" Points="24,0 0,24 24,24 24,0" />
+                        <Rectangle Fill="{StaticResource YellBaseBarSlate}" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="4" Margin="0,5" />
+                        <Polygon Fill="{StaticResource YellBaseBarSlate}" Grid.Row="4" Grid.Column="4" Width="24" Margin="0,5" Points="24,0 0,24 24,24 24,0" />
+                        <Rectangle Fill="{StaticResource YellBaseBarSlate}" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4" Margin="0,5" />
+                        <Polygon Fill="{StaticResource YellBaseBarSlate}" Grid.Row="5" Grid.Column="4" Width="24" Margin="0,5" Points="24,0 0,24 24,24 24,0" />
+                        <Rectangle Fill="{StaticResource YellBaseBarSlate}" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="4" Margin="0,5" />
+
+
+                        <Grid Grid.ColumnSpan="8" Grid.Row="0" Margin="10,2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition  />
+                                <ColumnDefinition  />
+                                <ColumnDefinition  />
+                                <ColumnDefinition  />
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+<<<<<<< HEAD
+                            <Button Grid.Column="4" Content="目標"  x:Name="BtnBaseTarget" Click="BtnBaseTarget_Click" Margin="4,0" />
+                            <Button Grid.Column="5" Content="クリア"  x:Name="BtnBaseClear" Click="BtnBaseClear_Click" Margin="4,0" />
+                        </Grid>
+                        <Popup x:Name="PopBaseTarget" OpacityMask="Black" PopupAnimation="Fade" AllowsTransparency="True" PlacementTarget="{Binding ElementName=BtnBaseTarget}" Placement="Top" >
+                            <Grid Background="#CC202020" Width="400" Height="300">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                
+                                <Grid Margin="10,10,10,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Label Content="初期値" Grid.Column="1" Background="#AAE29527" Padding="5,3" />
+                                    <Label Content="現在値" Grid.Column="2" Background="#AA268CC7" Padding="5,3"/>
+                                    <Label Content="目標値" Grid.Column="3" Background="#AA35C726" Padding="5,3"/>
+
+                                    <Border Background="#AAB0C720" Grid.Column="0" Grid.Row="1" Height="6" VerticalAlignment="Bottom" Margin="0,4"/>
+                                    <Border Background="#AAB0C720" Grid.Column="0" Grid.Row="2" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
+                                    <Border Background="#AAB0C720" Grid.Column="0" Grid.Row="3" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
+
+                                    <Border Background="#CC414142" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Height="6" VerticalAlignment="Bottom" Margin="0,4"/>
+                                    <Border Background="#CC414142" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
+                                    <Border Background="#CC414142" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
+                                    
+                                    <Label Content="Lv" Grid.Column="0" Grid.Row="1" Padding="4,2" />
+                                    <Label Content="成長" Grid.Column="0" Grid.Row="2" Padding="4,2" />
+                                    <Label Content="経験値" Grid.Column="0" Grid.Row="3" Padding="4,2" />
+
+                                    <Label x:Name="LblPopBaseTargetBaseLv" Content="100" Grid.Column="1" Grid.Row="1" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+                                    <Label x:Name="LblPopBaseTargetBaseProgress" Content="100" Grid.Column="1" Grid.Row="2" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+                                    <Label x:Name="LblPopBaseTargetBaseExp" Content="123456" Grid.Column="1" Grid.Row="3" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+
+                                    <Label x:Name="LblPopBaseTargetCurrentLv" Content="100" Grid.Column="2" Grid.Row="1" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+                                    <Label x:Name="LblPopBaseTargetCurrentProgress" Content="100" Grid.Column="2" Grid.Row="2" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+                                    <Label x:Name="LblPopBaseTargetCurrentExp" Content="123456" Grid.Column="2" Grid.Row="3" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+
+                                    <TextBox x:Name="TxtPopBaseTargetTargetLv" Grid.Column="3" Grid.Row="1" Width="40" Height="20" HorizontalAlignment="Right" InputMethod.IsInputMethodSuspended="True" LostFocus="TxtPopBaseTargetTargetLv_LostFocus" />
+
+                                    <Label x:Name="LblPopBaseTargetTargetExp" Content="123456" Grid.Column="3" Grid.Row="3" Padding="4,2" Width="70" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+
+                                </Grid>
+
+
+                                <Grid Grid.Row="1" Margin="10,5,10,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Column="0"  Grid.Row="1" Width="180">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <ToggleButton x:Name="TBtnPopBaseTargetBase" Content="初期" Foreground="#FFE28706" IsChecked="True" Margin="8,0" Click="TBtnPopBaseTargetBase_Click" />
+                                        <ToggleButton x:Name="TBtnPopBaseTargetCurrent"  Content="現在" Grid.Column="1" Foreground="#FF0044D4" Margin="8,0" Click="TBtnPopBaseTargetCurrent_Click"  />
+                                    </Grid>
+
+                                    <Border Background="#AA9220C7" Grid.Column="1" Grid.Row="1" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
+                                    <Border Background="#CC414142" Grid.Column="2" Grid.Row="1" Height="6" VerticalAlignment="Bottom" Margin="0,4"/>
+
+                                    <Label Content="必要経験値" Grid.Column="1" Grid.Row="1" />
+                                    <Label x:Name="LblPopBaseTargetNeedExp" Content="123456" Grid.Column="2" Grid.Row="1"  Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Right" />
+
+                                    <DataGrid x:Name="DgTarget" Grid.Row="2" Grid.ColumnSpan="4" CanUserAddRows="False" SelectionMode="Single" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding 属性}" Header="属性" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding コスト}" Header="コスト" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" />
+                                            <DataGridTextColumn Binding="{Binding レア}" Header="レア" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding 進展}" Header="進展" CellStyle="{StaticResource RankCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding 名前}" Header="名前" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding 経験値}" Header="経験値" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding 枚数}" Header="枚数" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding 大成功}" Header="大成功" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                        </DataGrid.Columns>
+
+                                    </DataGrid>
+
+                                </Grid>
+
+
+=======
+                            <Button Grid.Column="4" Content="目安"  x:Name="BtnBaseTarget" Click="BtnBaseTarget_Click" Margin="4,0" />
+                            <Button Grid.Column="5" Content="クリア"  x:Name="BtnBaseClear" Click="BtnBaseClear_Click" Margin="4,0" />
+                        </Grid>
+                        <Popup x:Name="PopBaseTarget" OpacityMask="Black" PopupAnimation="Fade" AllowsTransparency="True" PlacementTarget="{Binding ElementName=BtnBaseTarget}" >
+                            <Grid Background="#55202020">
+                                
+>>>>>>> ebd62ab... no message
+                            </Grid>
+                        </Popup>
+
+                        <Grid Grid.ColumnSpan="8" Grid.Row="1" HorizontalAlignment="Right" Margin="10,0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="名前" Grid.Column="0" VerticalAlignment="Center" Padding="4,2"/>
+                            <Label Content="属性" Grid.Column="2" VerticalAlignment="Center" Padding="4,2"/>
+                            <Label Content="レア" Grid.Column="4" VerticalAlignment="Center" Padding="4,2"/>
+
+                            <Label x:Name="LblBaseName" Grid.Column="1" Grid.Row="2" Width="180" VerticalAlignment="Center" Height="20" Padding="4,2" Background="#66252525"/>
+                            <ComboBox x:Name="CmbBaseAttr" Grid.Column="3" Grid.Row="1" Width="70" Style="{DynamicResource ComboBoxAttrStyle}"  ItemContainerStyle="{StaticResource ComboBoxItemAttrStyle}" SelectionChanged="CmbBaseAttr_SelectionChanged" />
+                            <ComboBox x:Name="CmbBaseRare" Grid.Column="5" Grid.Row="2" Width="60" SelectionChanged="CmbBaseRare_SelectionChanged" Margin="4,2" />
+                        </Grid>
+
+                        <Border Grid.Column="0" Grid.Row="2" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#992C2C2C">
+                            <Image x:Name="ImgBase" Width="80" Height="100" Stretch="UniformToFill" />
+                        </Border>
+
+                        <Label Content="Lv" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Padding="4,2"/>
+                        <Label Content="成長" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Padding="4,2"/>
+                        <Label Content="声援Lv" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Padding="4,2"/>
+                        <Label Content="ガル" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Padding="4,2"/>
+
+                        <TextBox x:Name="TxtBaseLv" Grid.Column="2" Grid.Row="2"  Margin="4,2" Height="22" TextChanged="TxtBaseLv_TextChanged"  InputMethod.IsInputMethodSuspended="True"/>
+                        <TextBox x:Name="TxtBaseExp" Grid.Column="2" Grid.Row="3"  Margin="4,2" Height="22" TextChanged="TxtBaseExp_TextChanged" InputMethod.IsInputMethodSuspended="True"/>
+                        <TextBox x:Name="TxtBaseSkillLv" Grid.Column="2" Grid.Row="4" Height="22" TextChanged="TxtBaseSkillLv_TextChanged"  Margin="4,2" InputMethod.IsInputMethodSuspended="True"/>
+
+                        <Rectangle Fill="{StaticResource IcoRightArrorw}"  Grid.Column="3" Grid.Row="2" Grid.RowSpan="4" VerticalAlignment="Center" Width="20" Height="20"/>
+
+                        <Border Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="2" Width="62" Height="8" Margin="0,4" VerticalAlignment="Bottom" BorderBrush="#FF474747" BorderThickness="1" Background="#681DA253" />
+                        <Border Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="3" Width="62" Height="8" Margin="0,4" VerticalAlignment="Bottom" BorderBrush="#FF474747" BorderThickness="1" Background="#68A27E1D" />
+                        <Border Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="4" Width="62" Height="8" Margin="0,4" VerticalAlignment="Bottom" BorderBrush="#FF474747" BorderThickness="1" Background="#68A21D90" />
+                        <Rectangle x:Name="RctBarLv" Margin="5,5" Height="6" Width="50" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#CC0D2B1C" Offset="0"/>
+                                    <GradientStop Color="#CC00B058" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="RctBarExp" Margin="5,5" Height="6" Width="50" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#CC2B240D" Offset="0"/>
+                                    <GradientStop Color="#CCB07000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Rectangle x:Name="RctBarSkill" Margin="5,5" Height="6" Width="50" Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#CC2B0D1F" Offset="0"/>
+                                    <GradientStop Color="#CCB00098" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+
+                        <Label x:Name="LblBaseLvAfter" Grid.Column="5" Grid.Row="2" Content="0" Width="40"  Padding="4,0" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="LblBaseExpAfter" Grid.Column="5" Grid.Row="3" Content="0" Width="40"  Padding="4,0" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="LblBaseSkillLvAfter" Grid.Column="5" Grid.Row="4" Content="1" Width="40" Padding="4,0" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Left" HorizontalContentAlignment="Right"/>
+                        <Label x:Name="LblBaseGallAfter" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="5" Content="100,000" Margin="0,0,20,0"  Padding="4,0" VerticalAlignment="Center" FontSize="16" HorizontalContentAlignment="Right"/>
+
+                        <Label x:Name="LblBaseLvMax" Grid.Column="6" Grid.Row="2" Content="/70" Width="30"  Padding="2,0" VerticalAlignment="Center" FontSize="10" HorizontalAlignment="Left" />
+                        <Label x:Name="LblBaseExpMax" Grid.Column="6" Grid.Row="3" Content="/100" Width="30"  Padding="2,0" VerticalAlignment="Center" FontSize="10" HorizontalAlignment="Left" />
+                        <Label x:Name="LblBaseSkillLvMax" Grid.Column="6" Grid.Row="4" Content="/10" Width="30" Padding="2,0" VerticalAlignment="Center" FontSize="10" HorizontalAlignment="Left"/>
+
+
+                        <Rectangle HorizontalAlignment="Right" Margin="0,11,0,4" Height="10" Width="50" Grid.Column="7" Grid.Row="2" Fill="{StaticResource YellBaseBarStatus}" />
+                        <Rectangle HorizontalAlignment="Right" Margin="0,11,0,4" Height="10" Width="50" Grid.Column="7" Grid.Row="3" Fill="{StaticResource YellBaseBarStatus}" />
+                        <Rectangle HorizontalAlignment="Right" Margin="0,11,0,4" Height="10" Width="50" Grid.Column="7" Grid.Row="4" Fill="{StaticResource YellBaseBarStatus}" />
+
+                        <Label x:Name="LblBaseLvStatus" HorizontalAlignment="Right" Margin="0,8,20,4" Content="STAY" Grid.Column="7" Grid.Row="2" FontSize="8" />
+                        <Label x:Name="LblBaseExpStatus" HorizontalAlignment="Right" Margin="0,8,20,4" Content="STAY" Grid.Column="7" Grid.Row="3" FontSize="8" />
+                        <Label x:Name="LblBaseSkillLvStatus" HorizontalAlignment="Right" Margin="0,8,20,4" Content="STAY" Grid.Column="7" Grid.Row="4" FontSize="8" />
+
+                        <Rectangle x:Name="RctBaseLv" Width="16" Height="16" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="2" Fill="{StaticResource IcoStay}" VerticalAlignment="Center" Margin="6,4"/>
+                        <Rectangle x:Name="RctBaseExp" Width="16" Height="16" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="3" Fill="{StaticResource IcoStay}" VerticalAlignment="Center" Margin="6,4"/>
+                        <Rectangle x:Name="RctBaseSkillLv" Width="16" Height="16" HorizontalAlignment="Right" Grid.Column="7" Grid.Row="4" Fill="{StaticResource IcoStay}" VerticalAlignment="Center" Margin="6,4"/>
+                    </Grid>
+
+                    <!--yell一覧-->
+                    <Grid Grid.Row="1" Margin="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="34"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.ColumnSpan="6" Grid.RowSpan="6" Background="#33000000" BorderBrush="#AA000066" BorderThickness="1"/>
+<<<<<<< HEAD
+                        <Label Content="セット" FontSize="10" Background="#FF1E00A4" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="1" Width="60"/>
+=======
+                        <Label Content="セット" FontSize="10" Background="#FF0007A4" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="1" Width="60"/>
+>>>>>>> ebd62ab... no message
+
+                        <Grid Margin="80,4,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+<<<<<<< HEAD
+                            <Button x:Name="BtnAddSet" Content="追加" Grid.Column="0" Margin="4,2" Click="BtnAddSet_Click" ToolTip="セットを追加します"/>
+                            <Button x:Name="BtnRemoveSet" Content="削除" Grid.Column="1" Margin="4,2" Click="BtnRemoveSet_Click" ToolTip="セットを削除します"/>
+                            <Button x:Name="BtnClearSet" Content="全クリア" Grid.Column="2" Margin="4,2" Click="BtnClearSet_Click" Style="{DynamicResource RedButton}" ToolTip="セットの内容をすべてクリアします"/>
+=======
+                            <Button x:Name="BtnAddSet" Content="追加" Grid.Column="0" Margin="4,2" Click="BtnAddSet_Click"/>
+                            <Button x:Name="BtnRemoveSet" Content="削除" Grid.Column="1" Margin="4,2" Click="BtnRemoveSet_Click"/>
+                            <Button x:Name="BtnClearSet" Content="クリア" Grid.Column="2" Margin="4,2" Click="BtnClearSet_Click"/>
+>>>>>>> ebd62ab... no message
+                        </Grid>
+
+                        <TabControl x:Name="TabYellMember" Grid.Row="1"  Background="{StaticResource DefaultBackground}" TabStripPlacement="Left" SelectionChanged="TabYellMember_SelectionChanged">
+                            <TabItem Header="No.1(0)" Width="70" Padding="2,0" HorizontalAlignment="Left">
+                                <local:YellSet />
+                            </TabItem>
+
+                        </TabControl>
+
+                    </Grid>
+
+                    <!---->
+                    <Grid Grid.Column="1" Grid.Row="1">
+                    	<Grid.RowDefinitions>
+                    		<RowDefinition/>
+                    		<RowDefinition/>
+                    		<RowDefinition/>
+                    	</Grid.RowDefinitions>
+<<<<<<< HEAD
+                              <Button x:Name="BtnSubAdd" Margin="4,3" VerticalAlignment="Center" Height="46" Grid.Row="1" ToolTip="追加" Click="BtnSubAdd_Click" Style="{DynamicResource GreenButton}" >
+                                <Rectangle Fill="{StaticResource IcoAdd}" Width="14" Height="14" />
+                            </Button>
+                            <Button x:Name="BtnSubRemove" Margin="4,3" VerticalAlignment="Center" Height="46" Grid.Row="2" ToolTip="外す" Click="BtnSubRemove_Click" Style="{DynamicResource RedButton}">
+=======
+                              <Button x:Name="BtnSubAdd" Margin="4,3" VerticalAlignment="Center" Height="26" Grid.Row="1" ToolTip="追加" Click="BtnSubAdd_Click" Style="{DynamicResource GreenButton}" >
+                                <Rectangle Fill="{StaticResource IcoAdd}" Width="14" Height="14" />
+                            </Button>
+                            <Button x:Name="BtnSubRemove" Margin="4,3" VerticalAlignment="Center" Height="26" Grid.Row="2" ToolTip="外す" Click="BtnSubRemove_Click" Style="{DynamicResource RedButton}">
+>>>>>>> ebd62ab... no message
+                                <Rectangle Fill="{StaticResource IcoRemove}" Width="14" Height="14" />
+                            </Button>
+                    </Grid>
+                    
+                    <Grid Grid.Column="2" Grid.RowSpan="2">
+                        <TabControl  Background="{StaticResource DefaultBackground}">
+                            <TabItem x:Name="TbFreeInput" Header="フリー入力 ">
+                                <Grid>
+                                	<Grid.RowDefinitions>
+                                		<RowDefinition Height="30"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="40"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition  Height="*"/>
+                                		<RowDefinition Height="28"/>
+                                	</Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="属性" Grid.Row="1" VerticalAlignment="Center"/>
+                                    <Label Content="コスト" Grid.Row="2" VerticalAlignment="Center"/>
+                                    <Label Content="レア" Grid.Row="3" VerticalAlignment="Center"/>
+                                    <Label Content="進展" Grid.Row="4" VerticalAlignment="Center"/>
+                                    <Label Content="名前" Grid.Row="5" VerticalAlignment="Center"/>
+                                    <Label Content="声援" Grid.Row="6" VerticalAlignment="Center"/>
+                                    
+                                    <Button x:Name="BtnSearchFreeGirlName" Grid.Column="2" Grid.Row="5" Margin="2" Width="26" Height="26" HorizontalAlignment="Right" Click="BtnSearchFreeGirlName_Click" >
+                                        <Button.Content>
+                                            <Rectangle Fill="{StaticResource IcoSearch}" Width="11" Height="11"/>
+                                        </Button.Content>
+                                    </Button>
+                                    <Popup x:Name="PopSearchFreeGirlName" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False" PlacementTarget="{Binding ElementName=BtnSearchFreeGirlName}" Placement="Top" >
+                                        <Grid Background="#CC202020">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBox x:Name="TxtPopSearchFreeGirlName" Width="200" VerticalAlignment="Bottom" Margin="4" Style="{StaticResource SearchTextBox}" TextChanged="TxtPopSearchFreeGirlName_TextChanged" />
+                                            <ListBox x:Name="LstFreeGirlsName" Grid.Row="1" Width="200" Height="300" SelectionChanged="LstFreeGirlsName_SelectionChanged" ItemContainerStyle="{StaticResource ListBoxItemNameStyle}" Background="#AA333333"/>
+                                        </Grid>
+                                    </Popup>
+                                    
+                                    <ComboBox x:Name="CmbFreeAttr" Grid.Column="1" Grid.Row="1" Style="{DynamicResource ComboBoxAttrStyle}"  ItemContainerStyle="{StaticResource ComboBoxItemAttrStyle}" Margin="4,2" SelectionChanged="CmbFreeAttr_SelectionChanged"/>
+                                    <TextBox x:Name="TxtFreeCost" Grid.Column="1" Grid.Row="2" Margin="4,2" Height="24" Width="40" HorizontalAlignment="Left" TextChanged="TxtFreeCost_TextChanged" InputMethod.IsInputMethodSuspended="True"/>
+                                    <ComboBox x:Name="CmbFreeRare" Grid.Column="1" Grid.Row="3" Margin="4,2" SelectionChanged="CmbFreeRare_SelectionChanged"/>
+                                    <ComboBox x:Name="CmbFreeRank" Grid.Column="1" Grid.Row="4" Margin="4,2"  ItemContainerStyle="{StaticResource ComboBoxItemRankStyle}" SelectionChanged="CmbFreeRank_SelectionChanged"/>
+                                    <TextBox x:Name="TxtFreeName" Grid.Column="1" Grid.Row="5" Margin="4,2"  Height="24"  InputMethod.PreferredImeState="On"/>
+                                    <CheckBox x:Name="ChkFreeHasSkill" Content="声援あり" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Click="ChkFreeHasSkill_Click"/>
+                                    
+<<<<<<< HEAD
+                                    <Border Grid.Column="0" Grid.Row="8" Background="#6630D1C2" Margin="0" Height="8" VerticalAlignment="Bottom" />
+                                    <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Background="{StaticResource YellBaseBarBackground}" Margin="0" Height="8" VerticalAlignment="Bottom" />
+                                    <Border Grid.Column="0" Grid.Row="9" Background="#6630D1C2" Margin="0" Height="8" VerticalAlignment="Bottom" />
+                                    <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9" Background="{StaticResource YellBaseBarBackground}" Margin="0" Height="8" VerticalAlignment="Bottom" />
+=======
+                                  
+                                    <Border Grid.ColumnSpan="3" Grid.Row="8" Background="{StaticResource YellBaseBarBackground}" Margin="0" Height="8" VerticalAlignment="Bottom" />
+                                    <Border Grid.ColumnSpan="3" Grid.Row="9" Background="{StaticResource YellBaseBarBackground}" Margin="0" Height="8" VerticalAlignment="Bottom" />
+>>>>>>> ebd62ab... no message
+                                    <Label Content="声援Up" Grid.Row="8" VerticalAlignment="Bottom" Padding="4,0" Margin="0,6,0,0" FontSize="11"/>
+                                    <Label Content="EXP" Grid.Row="9" VerticalAlignment="Bottom" Padding="4,0" Margin="0,6,0,0" FontSize="11"/>
+
+                                    <Label x:Name="LblFreeSkillUpPer" Content="6%" Grid.Column="1" HorizontalContentAlignment="Right" Grid.Row="8" VerticalAlignment="Bottom" Padding="4,0" Margin="0,6,0,0" FontSize="16"/>
+                                    <Label x:Name="LblFreeExp" Content="1258" Grid.Column="1" HorizontalContentAlignment="Right" Grid.Row="9" VerticalAlignment="Bottom" Padding="4,0" Margin="0,6,0,0" FontSize="16"/>
+
+                                    <Button x:Name="BtnAddFreeList" Content="フリー追加" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="14" Width="80" HorizontalAlignment="Left"  Click="BtnAddFreeList_Click"/>
+                                    <Button x:Name="BtnClearFree" Content="クリア" Grid.Column="1"  Grid.ColumnSpan="3" Grid.Row="14" Width="80" Style="{DynamicResource RedButton}" HorizontalAlignment="Right" Click="BtnClearFree_Click"/>
+                                </Grid>
+                            </TabItem>
+                            <TabItem x:Name="TbFreeList" Header="フリー一覧">
+                                <Grid>
+                                	<Grid.RowDefinitions>
+                                		<RowDefinition Height="Auto"/>
+                                		<RowDefinition Height="Auto"/>
+                               		    <RowDefinition/>
+                                	</Grid.RowDefinitions>
+    
+                    <Grid Height="130">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+<<<<<<< HEAD
+                        <Button x:Name="BtnSearchFreeClearAll" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="80" Margin="6" VerticalAlignment="Top" Content="条件クリア" Height="26" Click="BtnSearchFreeClearAll_Click"  />
+=======
+                        <Button x:Name="BtnSearchFreeClearAll" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="80" Margin="6" VerticalAlignment="Top" Content="全クリア" Height="26" Click="BtnSearchFreeClearAll_Click"  />
+>>>>>>> ebd62ab... no message
+
+                        <TextBox x:Name="TxtSearchFreeName" Width="140" Height="24" Grid.ColumnSpan="5" Grid.Row="0" Margin="4,6" Style="{StaticResource SearchTransTextBox}" TextChanged="TxtSearchFree_TextChanged" HorizontalAlignment="Left"  />
+
+                        <Border Grid.ColumnSpan="6" Grid.Row="2" Height="2" Background="#AA101010" />
+
+                        <Label Content="属性" Grid.Row="3"/>
+                        <ComboBox x:Name="CmbSearchFreeAttr" Grid.Row="3" Grid.Column="1" ItemContainerStyle="{StaticResource ComboBoxItemAttrStyle}" SelectionChanged="CmbSearchFree_SelectionChanged" Style="{DynamicResource ComboBoxAttrStyle}"/>
+
+                        <Label Content="レア" Grid.Column="2" Grid.Row="3"/>
+                        <ComboBox x:Name="CmbSearchFreeRare" Grid.Row="3" Grid.Column="3" SelectionChanged="CmbSearchFree_SelectionChanged"  />
+
+
+                        <Label Content="コスト" Grid.Row="4"/>
+                        <TextBox x:Name="TxtSearchFreeCostUp" Width="40" Grid.Row="4" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left" TextChanged="TxtSearchFree_TextChanged"  InputMethod.IsInputMethodSuspended="True" />
+                        <Label Content="以上" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TxtSearchFreeCostDown" Width="40" Grid.Row="5" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left" TextChanged="TxtSearchFree_TextChanged"  InputMethod.IsInputMethodSuspended="True" />
+                        <Label Content="以下" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                        <Label Content="声援" Grid.Column="2" Grid.Row="4"/>
+                        <CheckBox x:Name="ChkSearchFreeSkill" Content="あり" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Margin="4,2" Click="ChkSearchFree_Click" />
+
+
+                        <Border Grid.ColumnSpan="6" Grid.Row="6" Height="2" Background="#AA101010" />
+
+
+                    </Grid>
+                    <!--操作エリア-->
+                    <Grid Grid.Row="1" Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition  Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="BtnDeleteFreeList" Grid.Column="3" Content="削除" Width="80" Style="{DynamicResource RedButton}" Click="BtnDeleteFreeList_Click" />
+                    </Grid>
+                    <!--一覧表-->
+                    <DataGrid x:Name="DgFreeList" Grid.Row="2" Grid.ColumnSpan="2" CanUserAddRows="False" SelectionMode="Single" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding 属性}" Header="属性" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding コスト}" Header="コスト" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding レア}" Header="レア" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 進展}" Header="進展" CellStyle="{StaticResource RankCell}" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 名前}" Header="名前" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 声援}" Header="声援" CellStyle="{StaticResource HasSkillCell}" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 経験値}" Header="経験値" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 声援Up}" Header="声援Up" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+
+    </Grid>
+    </TabItem>
+    <TabItem Header="所持カード"  >
+        <Grid Background="{StaticResource DefaultBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="240"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TxtSearchOwnCard" Width="200" VerticalAlignment="Bottom" Margin="10,4" TextChanged="TxtSearchOwnCard_TextChanged" Style="{StaticResource SearchTextBox}" />
+
+                <Button x:Name="BtnSearchOwnCard" Grid.Column="1" Margin="10,4" Width="26" Height="26" VerticalAlignment="Bottom" Click="BtnSearchOwnCard_Click"  >
+                    <Button.Content>
+                        <Rectangle Fill="{StaticResource IcoSearch}" Width="11" Height="11"/>
+                    </Button.Content>
+                </Button>
+                <Popup x:Name="PopSearchOwnCard" AllowsTransparency="True"  PopupAnimation="Fade" Placement="Top"  PlacementTarget="{Binding ElementName=BtnSearchOwnCard}" VerticalOffset="-4"  >
+                    <Grid Background="#CC202020" Height="300" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="BtnPopSearchOwnCardClearAll" Grid.Column="0" HorizontalAlignment="Left" Width="80" Margin="6" VerticalAlignment="Top" Content="全クリア" Height="26" Click="BtnPopSearchOwnCardClearAll_Click"  />
+
+                        <TextBox x:Name="TxtPopSearchOwnCardName" Width="200" Grid.ColumnSpan="2" Grid.Row="1" Margin="4,6" Style="{StaticResource SearchTransTextBox}" TextChanged="TxtPopSearchOwnCard_TextChanged"  />
+
+                        <Border Grid.ColumnSpan="2" Grid.Row="2" Height="2" Background="#AA101010" />
+
+                        <Label Content="属性" Grid.Row="3"/>
+                        <ComboBox x:Name="CmbPopSearchOwnCardAttr" Grid.Row="3" Grid.Column="1"  ItemContainerStyle="{StaticResource ComboBoxItemAttrStyle}" SelectionChanged="CmbPopSearchOwnCardAttr_SelectionChanged" Style="{DynamicResource ComboBoxAttrStyle}"/>
+
+                        <Label Content="コスト" Grid.Row="4"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardCostUp" Width="40" Grid.Row="4" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left" TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True" />
+                        <Label Content="以上" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardCostDown" Width="40" Grid.Row="5" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left" TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True" />
+                        <Label Content="以下" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                        <Border Grid.ColumnSpan="2" Grid.Row="6" Height="2" Background="#AA101010" />
+
+                        <Label Content="攻援" Grid.Row="7"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardAtkUp" Width="70" Grid.Row="7" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left"  TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True"/>
+                        <Label Content="以上" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardAtkDown" Width="70" Grid.Row="8" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left"  TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True"/>
+                        <Label Content="以下" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                        <Border Grid.ColumnSpan="2" Grid.Row="9" Height="2" Background="#AA101010" />
+
+                        <Label Content="守援" Grid.Row="10"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardDefUp" Width="70" Grid.Row="10" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left"  TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True"/>
+                        <Label Content="以上" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TxtPopSearchOwnCardDefDown" Width="70" Grid.Row="11" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left"  TextChanged="TxtPopSearchOwnCard_TextChanged"  InputMethod.IsInputMethodSuspended="True"/>
+                        <Label Content="以下" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                        <Grid  Grid.Column="2" Grid.RowSpan="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </Grid>
+                </Popup>
+<<<<<<< HEAD
+                <Button x:Name="BtnOwnCardSelect" Width="60" HorizontalAlignment="Left" Grid.Column="2" Margin="10,4" Content="エール" Click="BtnOwnCardSelect_Click" Style="{DynamicResource GreenButton}" ToolTip="エール対象に設定します" />
+=======
+                <Button x:Name="BtnOwnCardSelect" Width="60" HorizontalAlignment="Left" Grid.Column="2" Margin="10,4" Content="エール" Click="BtnOwnCardSelect_Click" Style="{DynamicResource GreenButton}" ToolTip="エールを送ります" />
+>>>>>>> ebd62ab... no message
+
+                <Button x:Name="BtnOwnCardReDispOrder" Width="60" HorizontalAlignment="Right" Grid.Column="2" Margin="10,4" Content="表示順" Click="BtnOwnCardReDispOrder_Click" />
+
+                <Button x:Name="BtnOwnCardLoad" Width="100" Grid.Column="4" Margin="4" Content="インポート" Click="BtnOwnCardLoad_Click" ToolTip="デッキシミュレーターの所持コードを読み込みます"/>
+                <Button x:Name="BtnOwnCardSave" Width="100" Grid.Column="5" Margin="4" Content="エクスポート" Visibility="Collapsed" />
+
+            </Grid>
+            <DataGrid x:Name="DgCards" Grid.Row="1" Margin="10,10,10,10" IsReadOnly="True" SelectionChanged="DgCards_SelectionChanged" SelectionMode="Single"  Foreground="#FF232222" FrozenColumnCount="2" Sorting="DataGrid_Sorting">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" CellStyle="{StaticResource AttrCell}" Visibility="Collapsed"/>
+                    <DataGridTextColumn Header="名前" Binding="{Binding Path=名前}" CellStyle="{StaticResource AttrCell}" SortMemberPath="姓名"/>
+                    <DataGridTextColumn Header="属性" Binding="{Binding Path=属性}" CellStyle="{StaticResource AttrCell}"/>
+                    <DataGridTemplateColumn Header="画像"  CellStyle="{StaticResource ImageCell}"/>
+                    <DataGridTextColumn Header="レア" Binding="{Binding Path=レア}" CellStyle="{StaticResource CenterCell}"/>
+                    <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}"/>
+<<<<<<< HEAD
+                    <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}"/>
+=======
+>>>>>>> ebd62ab... no message
+                    <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}"/>
+                    <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}"/>
+                    <DataGridTextColumn Header="成長" Binding="{Binding Path=成長}" CellStyle="{StaticResource NumberCell}"/>
+                    <DataGridTextColumn Header="経験値" Binding="{Binding Path=経験値}" CellStyle="{StaticResource NumberCell}"/>
+                    <DataGridTextColumn Header="攻援" Binding="{Binding Path=攻援}" CellStyle="{StaticResource AtkCell}"/>
+                    <DataGridTextColumn Header="守援" Binding="{Binding Path=守援}" CellStyle="{StaticResource DefCell}"/>
+                    <DataGridTextColumn Header="スキル" Binding="{Binding Path=スキル}"/>
+                    <DataGridTextColumn Header="攻スキル" Binding="{Binding Path=攻スキル}" CellStyle="{StaticResource AtkSkillCell}"/>
+                    <DataGridTextColumn Header="守スキル" Binding="{Binding Path=守スキル}" CellStyle="{StaticResource DefSkillCell}"/>
+                    <DataGridTextColumn Header="表示順" Binding="{Binding Path=表示順}" CellStyle="{StaticResource NumberCell}" />
+                    <DataGridTextColumn  Header="フリー1" Binding="{Binding Path=フリー1}" Visibility="Collapsed"/>
+                    <DataGridTextColumn  Header="フリー2" Binding="{Binding Path=フリー2}" Visibility="Collapsed"/>
+                    <DataGridTextColumn  Header="フリー3" Binding="{Binding Path=フリー3}" Visibility="Collapsed"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1" Grid.Row="1" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="カード情報" Margin="10,10,0,10" Grid.ColumnSpan="4" MinWidth="100">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="CmbCardGirlName" Grid.Column="1" Margin="2,2,32,2" ItemContainerStyle="{StaticResource ComboBoxItemNameStyle}" IsSynchronizedWithCurrentItem="True"/>
+                        <Button x:Name="BtnSearchGirlName" Grid.Column="1" Margin="2" Width="26" HorizontalAlignment="Right" Click="BtnSearchGirlName_Click" >
+                            <Button.Content>
+                                <Rectangle Fill="{StaticResource IcoSearch}" Width="11" Height="11"/>
+                            </Button.Content>
+                        </Button>
+                        <TextBox x:Name="TxtCardGirlType" Grid.Column="1" Height="23" Margin="2" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" InputMethod.PreferredImeState="On"/>
+                        <ComboBox x:Name="CmbCardGirlRare" Grid.Column="1" Margin="2,2,60,2" Grid.Row="2">
+                            <ComboBoxItem Content="LG"/>
+                            <ComboBoxItem Content="SSR"/>
+                            <ComboBoxItem Content="SR"/>
+                            <ComboBoxItem Content="HR"/>
+                            <ComboBoxItem Content="R"/>
+                            <ComboBoxItem Content="HN"/>
+                            <ComboBoxItem Content="N"/>
+                        </ComboBox>
+                        <ComboBox x:Name="CmbCardGirlRank" Grid.Column="1" Margin="2" HorizontalAlignment="Right" Width="40" Grid.Row="2" ItemContainerStyle="{StaticResource ComboBoxItemRankStyle}">
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                        </ComboBox>
+                        <TextBox x:Name="TxtCardGirlLv" Grid.Column="1" Height="23" Margin="2" Grid.Row="3" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+                        <TextBox x:Name="TxtCardGirlProgress" Grid.Column="1" Height="23" Margin="2" Grid.Row="3" TextWrapping="Wrap" Width="60" HorizontalAlignment="Right" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+                        <TextBox x:Name="TxtCardGirlCost" Grid.Column="1" Height="23" Margin="2" Grid.Row="4" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+<<<<<<< HEAD
+                        <ComboBox x:Name="CmbCardGirlFavor" Grid.Column="1" Margin="2" Grid.Row="4" Width="60" ItemContainerStyle="{StaticResource ComboBoxItemFavorStyle}"  HorizontalAlignment="Right"/>
+=======
+>>>>>>> ebd62ab... no message
+                        <TextBox x:Name="TxtCardGirlAtk" Grid.Column="1" Height="23" Margin="2" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"  InputMethod.IsInputMethodSuspended="True"/>
+                        <TextBox x:Name="TxtCardGirlDef" Grid.Column="1" Height="23" Margin="2" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center"  InputMethod.IsInputMethodSuspended="True"/>
+                        <ComboBox x:Name="CmbCardGirlSkill" Grid.Column="1" Margin="2" Grid.Row="7" ItemContainerStyle="{StaticResource ComboBoxItemSkillStyle}" />
+                        <TextBox x:Name="TxtCardGirlSkillLv" Grid.Column="1" Height="23" Margin="2" Grid.Row="8" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+                        <CheckBox x:Name="ChkCardGirlAllSkill" Grid.Column="1" Margin="2,2,4,2" Grid.Row="8" Content="全属性対象" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <Button x:Name="BtnCardGirlImage" Grid.Column="1" Content="参照" Margin="2" Grid.Row="9" Width="40" HorizontalAlignment="Left" Click="BtnCardGirlImage_Click"  />
+                        <TextBlock x:Name="TxtCardGirlImageName" Grid.Column="1" Height="23" Margin="42,2,2,2" Grid.Row="9" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                        <Button x:Name="BtnCardGirlEtc" Grid.Column="1" Content="設定" Margin="2" Grid.Row="10" Click="BtnCardGirlEtc_Click" />
+
+                        <Label Content="名前" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2"/>
+                        <Label Content="種別" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="1"/>
+                        <Label Content="レア/進展" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="2"/>
+                        <Label Content="Lv/成長" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="3"/>
+<<<<<<< HEAD
+                        <Label Content="コスト/好感度" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="4"/>
+=======
+                        <Label Content="コスト" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="4"/>
+>>>>>>> ebd62ab... no message
+                        <Label Content="攻援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="5"/>
+                        <Label Content="守援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="6"/>
+                        <Label Content="声援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="7"/>
+                        <Label Content="声援Lv" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="8"/>
+                        <Label Content="画像" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="9"/>
+                        <Label Content="その他" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="10"/>
+                        <Popup x:Name="PopCardGirlEdit" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="True"  Placement="Top" PlacementTarget="{Binding ElementName=BtnCardGirlEtc}" HorizontalOffset="-80">
+                            <Border Width="220"   Background="#DD202020" >
+                                <Grid Margin="8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="80"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="ボーナス" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="1"/>
+                                    <Label Content="スペシャル" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="2"/>
+                                    <Label Content="フリー１" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="3"/>
+                                    <Label Content="フリー２" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="4"/>
+                                    <Label Content="フリー３" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="5"/>
+                                    <Label Content="表示順" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="6"/>
+
+                                    <CheckBox x:Name="ChkCardGirlDummy" Grid.Column="1" Margin="2,2,2,2" Grid.Row="0" Content="ダミー" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <CheckBox x:Name="ChkCardGirlBonus" Grid.Column="1" Margin="2" Grid.Row="1" HorizontalAlignment="Left" Width="20" VerticalAlignment="Center" Visibility="Visible" />
+                                    <TextBox x:Name="TxtCardGirlBonus" Grid.Column="1" Height="23" Margin="30,2,2,2" Grid.Row="1" TextWrapping="Wrap"  IsEnabled="{Binding Path=IsChecked,ElementName=ChkCardGirlBonus}" Visibility="Visible" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+                                    <TextBox x:Name="TxtCardGirlSpecial" Grid.Column="1" Height="23" Margin="2" Grid.Row="2" TextWrapping="Wrap"  Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+                                    <TextBox x:Name="TxtCardGirlFree1" Grid.Column="1" Height="23" Margin="2" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="TxtCardGirlFree2" Grid.Column="1" Height="23" Margin="2" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="TxtCardGirlFree3" Grid.Column="1" Height="23" Margin="2" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                    <TextBox x:Name="TxtCardGirlDispOrder" Grid.Column="1" Height="23" Margin="2" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
+
+                                </Grid>
+                            </Border>
+                        </Popup>
+                        <Popup x:Name="PopSearchGirlName" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False" >
+                            <Grid Background="#CC202020">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBox x:Name="TxtPopSearchGirlName" Width="200" VerticalAlignment="Bottom" Margin="4" Style="{StaticResource SearchTextBox}" TextChanged="TxtPopSearchGirlName_TextChanged" />
+                                <ListBox x:Name="LstGirlsName" Grid.Row="1" Width="200" Height="300" SelectionChanged="LstGirlsName_SelectionChanged" ItemContainerStyle="{StaticResource ListBoxItemNameStyle}" Background="#AA333333"/>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </GroupBox>
+                <Button x:Name="BtnCardDel" Content="削除" Margin="5,0,5,4" MaxWidth="75" Grid.Row="1" Click="BtnCardDel_Click" Style="{StaticResource RedButton}" />
+                <Button x:Name="BtnCardUpd" Content="更新" Margin="5,0,4,4" MaxWidth="75" Grid.Row="1" Grid.Column="1" Click="BtnCardUpd_Click"/>
+                <Button x:Name="BtnCardAdd" Content="追加" Margin="5,0,4,4" MaxWidth="75" Grid.Row="1" Grid.Column="2" Click="BtnCardAdd_Click"/>
+                <Button x:Name="BtnCardClear" Content="クリア" Margin="5,0,5,4" MaxWidth="75" Grid.Row="1" Grid.Column="3" Click="BtnCardClear_Click" />
+            </Grid>
+        </Grid>
+
+    </TabItem>
+    <TabItem Header="早見表">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Column="1" Height="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+<<<<<<< HEAD
+                    <ColumnDefinition Width="80" />
+=======
+>>>>>>> ebd62ab... no message
+                </Grid.ColumnDefinitions>
+
+                <ToggleButton x:Name="TBtnListExp" IsChecked="True" Content="経験値" Grid.Column="0" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExp_Click" />
+                <ToggleButton x:Name="TBtnListExpSame"  Content="同属性"  Grid.Column="1" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExpSame_Click"/>
+                <ToggleButton x:Name="TBtnListExpSuccess"  Content="大成功"  Grid.Column="2" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExpSuccess_Click"/>
+                <ToggleButton x:Name="TBtnListSkillUp"  Content="声援Up率"  Grid.Column="3" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUp_Click"/>
+<<<<<<< HEAD
+                <ToggleButton x:Name="TBtnListSkillUpNum"  Content="声援Up数"  Grid.Column="4" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUpNum_Click"/>
+=======
+>>>>>>> ebd62ab... no message
+            </Grid>
+
+            
+            <Grid Grid.Row="1" Grid.Column="1" x:Name="GrdListExp" Visibility="Visible">
+                <DataGrid x:Name="DgExpList" CanUserAddRows="False" SelectionMode="Single"  FrozenColumnCount="1" ColumnHeaderHeight="30" ColumnHeaderStyle="{DynamicResource CenterColumnHeader}" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding コスト}" Header="コスト" CellStyle="{StaticResource HeaderCenterCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding N}" Header="N&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50" />
+                        <DataGridTextColumn Binding="{Binding NP}" Header="N&#xa;☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HNPP}" Header="NH&#xa;☆☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HN}" Header="HN&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HNP}" Header="HN&#xa;☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding RPP}" Header="R&#xa;☆☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding R}" Header="R&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding RP}" Header="R&#xa;☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HRPP}" Header="HR&#xa;☆☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HR}" Header="HR&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HRP}" Header="HR&#xa;☆☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SRPP}" Header="SR&#xa;☆☆☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SR}" Header="SR&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SRP}" Header="SR&#xa;☆☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SSRPP}" Header="SSR&#xa;☆☆☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SSR}" Header="SSR&#xa;☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SSRP}" Header="SSR&#xa;☆☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding LGPP}" Header="LG&#xa;☆☆☆" CellStyle="{StaticResource UnconfirmCell}" IsReadOnly="True" Width="50"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </Grid>
+
+
+            <Grid Grid.Row="1" Grid.Column="1" x:Name="GrdListSkillUpPer" Visibility="Collapsed">
+                <DataGrid x:Name="DgSkillUpPerList" CanUserAddRows="False" SelectionMode="Single"  RowStyle="{StaticResource RareRow}" Width="430" HorizontalAlignment="Left">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding レア}" Header="レア" CellStyle="{StaticResource HeaderCenterCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding 声援Lv}" Header="声援Lv" CellStyle="{StaticResource HeaderNumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HN}" Header="HN" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding R}" Header="R" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding HR}" Header="HR" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SR}" Header="SR" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding SSR}" Header="SSR" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding LG}" Header="LG" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </TabItem>
+    <TabItem Header="設定">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="基礎経験値" Margin="10,5" Padding="0"/>
+            <DataGrid x:Name="DgYellInfoBaseExp" Grid.Row="1" Margin="10,0,10,10"  IsReadOnly="True" SelectionMode="Single"  Foreground="#FF232222" RowStyle="{StaticResource UnconfirmRow}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="レア" Binding="{Binding Path=レア}" CellStyle="{StaticResource CenterCell}"/>
+                    <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}"/>
+                    <DataGridTextColumn Header="経験値" Binding="{Binding Path=経験値}" CellStyle="{StaticResource NumberCell}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="LvUp経験値" Margin="10,5" Padding="0" Grid.Column="1"/>
+            <DataGrid x:Name="DgYellInfoLvExp" Grid.Row="1" Grid.Column="1" Margin="10,0,10,10"  IsReadOnly="True" SelectionMode="Single"  Foreground="#FF232222" RowStyle="{StaticResource UnconfirmRow}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}"/>
+                    <DataGridTextColumn Header="必要経験値" Binding="{Binding Path=Exp}" CellStyle="{StaticResource NumberCell}"/>
+                    <DataGridTextColumn Header="累計経験値" Binding="{Binding Path=TotalExp}" CellStyle="{StaticResource NumberCell}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </TabItem>
+    </TabControl>
+    </Grid>
+</Window>

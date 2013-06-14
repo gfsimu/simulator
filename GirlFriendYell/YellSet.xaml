@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="GirlFriendYell.YellSet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+<<<<<<< HEAD
+             d:DesignHeight="300" d:DesignWidth="350">
+=======
+             d:DesignHeight="300" d:DesignWidth="300">
+>>>>>>> ebd62ab... no message
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+    <!--エール結果-->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+<<<<<<< HEAD
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#880066DD" Height="6" VerticalAlignment="Bottom" />
+            <Border Background="#88606060" Grid.Column="1" Grid.ColumnSpan="3" Height="6" VerticalAlignment="Bottom" Margin="0" />
+
+            <Label Content="Lv/成長" Padding="1" FontSize="11" />
+
+            <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0">
+=======
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Lv/成長" Padding="1" FontSize="11" />
+            <Label Content="声援Lv" Grid.Row="1" Padding="1" FontSize="11" />
+            <Label Content="ガル" Grid.Row="2" Padding="1" FontSize="11" />
+
+            <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0">
+>>>>>>> ebd62ab... no message
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+<<<<<<< HEAD
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="LblLvBefore" Grid.Column="0" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label Content="⇒" Grid.Column="1"  FontSize="11" Padding="1" Margin="4,0"/>
+                <Label x:Name="LblLvAfter" Grid.Column="2" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label Grid.Column="3" Content=" / " HorizontalAlignment="Left" FontSize="11" Padding="0,1" />
+                <Label x:Name="LblLvAfterMax" Grid.Column="4" Content="60" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+
+                <Label Grid.Column="5" Content="[" HorizontalAlignment="Left" FontSize="11" Padding="0,1" />
+                <Label x:Name="LblLvAfterLvUP" Grid.Column="6" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" Foreground="#FFFF436E" />
+                <Label Grid.Column="7" Content="]" HorizontalAlignment="Left" FontSize="11" Padding="0,1" />
+
+
+                <Border Background="#CCff8831" Grid.Column="8" CornerRadius="4" HorizontalAlignment="Left" Margin="4,0" >
+                    <Label x:Name="LblLvAfterProgress" Grid.Column="8" Content="(99%)" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                </Border>
+            </Grid>
+
+            <Border Background="#880066DD" Grid.Column="0" Grid.Row="1" Height="6" VerticalAlignment="Bottom" />
+            <Border Background="#88606060" Grid.Column="1" Grid.Row="1" Height="6" VerticalAlignment="Bottom" Margin="0,0,10,0"  />
+
+            <Label Grid.Column="0" Grid.Row="1" Content="残経験値" HorizontalAlignment="Left" FontSize="11" Padding="1,1" Margin="0" />
+            <Label x:Name="LblRemainExpAfter" Grid.Column="1" Grid.Row="1" Width="45" Content="10000" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="11" Padding="3,1" />
+            <Border Grid.Column="1" Grid.Row="1" Width="52" Height="8" Margin="48,4,0,4" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="#FF474747" BorderThickness="1" Background="#68191E8D" />
+            <Rectangle x:Name="RctRemainExpBar" Margin="49,5,0,5" Height="6" Width="50" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#CC012971" Offset="0"/>
+                        <GradientStop Color="#CC5CDAD7" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Border Background="#880066DD" Grid.Column="2" Grid.Row="1" Height="6" VerticalAlignment="Bottom" />
+            <Border Background="#88606060" Grid.Column="3" Grid.Row="1" Height="6" VerticalAlignment="Bottom" />
+
+            <Label Grid.Column="2" Grid.Row="1" Content="NextLv" Padding="1" FontSize="11" />
+            <Label x:Name="LblNeedExpAfter" Grid.Column="3" Grid.Row="1" Content="0" Width="50" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="11" Padding="3,1" />
+
+            <Border Background="#880066DD" Grid.Row="2" Height="6" VerticalAlignment="Bottom" />
+            <Border Background="#88606060" Grid.Row="2" Grid.Column="1" Height="6" VerticalAlignment="Bottom" Margin="0,0,10,0" />
+
+            <Label Content="声援Lv" Grid.Row="2" Padding="1" FontSize="11" />
+
+            <Grid Grid.Column="1" Grid.Row="2">
+=======
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="110" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="LblLvBefore" Grid.Column="0" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label Content="→" Grid.Column="1"  FontSize="11" Padding="1" Margin="4,0"/>
+                <Label x:Name="LblLvAfter" Grid.Column="2" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label x:Name="LblNeedExpAfter" Grid.Column="3" Content="" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label x:Name="LblTotalExpAfter" Grid.Column="5" Content="" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="1">
+>>>>>>> ebd62ab... no message
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="BdrSkillUp" Background="{StaticResource YellSkillBackground}" Grid.Column="3" CornerRadius="4" />
+                
+                <Label x:Name="LblSkillLvBefore" Grid.Column="0" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+<<<<<<< HEAD
+                <Label Content="⇒" Grid.Column="1"  FontSize="11" Padding="1" Margin="4,0"/>
+=======
+                <Label Content="→" Grid.Column="1"  FontSize="11" Padding="1" Margin="4,0"/>
+>>>>>>> ebd62ab... no message
+                <Label x:Name="LblSkillLvAfter" Grid.Column="2" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1" />
+                <Label x:Name="LblSkillUpRateAfter" Grid.Column="3" Content="1" HorizontalAlignment="Left" FontSize="11" Padding="3,1"  />
+            </Grid>
+
+<<<<<<< HEAD
+            <Border Background="#880066DD" Grid.Column="2" Grid.Row="2" Height="6" VerticalAlignment="Bottom" />
+            <Border Background="#88606060" Grid.Column="3" Grid.Row="2" Height="6" VerticalAlignment="Bottom" />
+
+            <Label Content="ガル" Grid.Column="2" Grid.Row="2" Padding="1" FontSize="11" />
+            <Label x:Name="LblGallAfter" Grid.Column="3" Grid.Row="2" Content="0" Width="50" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="11" Padding="3,1" />
+
+            <CheckBox x:Name="ChkSuccess" Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" Content="大成功" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="4" Click="ChkSuccess_Click"/>
+            <Button x:Name="BtnClear" Content="クリア" Grid.Column="4" Grid.RowSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80" Height="26" Margin="4,0" Click="BtnClear_Click"/>
+=======
+            <Label x:Name="LblGallAfter" Grid.Column="1" Grid.Row="2" Content="0" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="11" Padding="3,1" />
+
+
+            <CheckBox x:Name="ChkSuccess" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Content="大成功" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="4" Click="ChkSuccess_Click"/>
+            
+            <Button x:Name="BtnClear" Content="クリア" Grid.ColumnSpan="5" Grid.RowSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80" Height="26" Margin="4,0" Click="BtnClear_Click"/>
+>>>>>>> ebd62ab... no message
+        </Grid>
+    <!--エールリスト-->
+        <DataGrid x:Name="DgYellMember" Grid.Row="1" CanUserAddRows="False" SelectionMode="Single" MouseLeftButtonUp="DgYellMember_MouseLeftButtonUp">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Binding="{Binding 対象}" Header="対象"  CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding 属性}" Header="属性" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding コスト}" Header="コスト" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding レア}" Header="レア" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding 進展}" Header="進展" CellStyle="{StaticResource RankCell}" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding 名前}" Header="名前" IsReadOnly="True" Width="60"/>
+                <DataGridTextColumn Binding="{Binding 声援}" Header="声援" CellStyle="{StaticResource HasSkillCell}" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding 経験値}" Header="経験値" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding 声援UP}" Header="声援UP" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>
