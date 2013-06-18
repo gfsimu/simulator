@@ -129,13 +129,9 @@ namespace GirlFriendYell
             targetInfoAfter.Lv = lv;
             targetInfoAfter.Exp = exp;
             targetInfoAfter.Progress = progress;
-<<<<<<< HEAD
             if (progress == 100) progress = 0;
             targetInfoAfter.TotalExp = YellUtility.GetTotalExp(targetInfoAfter.Lv, progress);
 
-=======
-            targetInfoAfter.TotalExp = totalExp;
->>>>>>> ebd62ab... no message
 
             //各位の経験値更新
             foreach (DsYellMember.MemberRow row in dsYellMember.Member)
@@ -207,7 +203,6 @@ namespace GirlFriendYell
             //エール前Lv
             LblLvBefore.Content = targetInfo.Lv.ToString() + " (" + targetInfo.Progress.ToString() + "%)";
             //エール後Lv
-<<<<<<< HEAD
             if (targetInfoAfter.Lv > targetInfo.Lv)
             {
                 LblLvAfter.Foreground = FindResource("EmphasisForeground") as Brush;
@@ -233,33 +228,21 @@ namespace GirlFriendYell
             //エール後成長率
             LblLvAfterProgress.Content = "(" + targetInfoAfter.Progress.ToString() + "%)";
 
-=======
-            LblLvAfter.Content = targetInfoAfter.Lv.ToString() + " (" + targetInfoAfter.Progress.ToString() + "%)";
->>>>>>> ebd62ab... no message
             //必要経験値
             int nextExp = YellUtility.GetNextExp(targetInfoAfter.Rare,targetInfoAfter.Lv);
             if (nextExp > 0)
             {
-<<<<<<< HEAD
                 LblNeedExpAfter.Content = (nextExp - targetInfoAfter.Exp).ToString();
-=======
-                LblNeedExpAfter.Content = "Next. " + (nextExp - targetInfoAfter.Exp).ToString();
->>>>>>> ebd62ab... no message
             }
             else
             {
                 LblNeedExpAfter.Content = string.Empty;
             }
-<<<<<<< HEAD
             int needExp = YellUtility.GetTotalExp(YellUtility.GetMaxLv(targetInfo.Rare), 0);
 
             LblRemainExpAfter.Content = needExp- targetInfoAfter.TotalExp;
 
             RctRemainExpBar.Width = 50 *targetInfoAfter.TotalExp/ needExp  ;
-=======
-
-            LblTotalExpAfter.Content = "総経験値：" + targetInfoAfter.TotalExp.ToString();
->>>>>>> ebd62ab... no message
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="yes"?>
+﻿<?xml version="1.0" standalone="yes"?>
 <DsGirls xmlns="http://tempuri.org/DsGirls.xsd">
   <Girls>
     <ID>1</ID>
@@ -2142,13 +2142,13 @@
   <Girls>
     <ID>99</ID>
     <名前>葉月柚子</名前>
-    <なまえ>はづき ゆずこ</なまえ>
+    <なまえ>はずき ゆずこ</なまえ>
     <Name>YUZUKO HAZUKI</Name>
     <属性>Pop</属性>
-    <攻援1>-</攻援1>
+    <攻援1>スポーティーザッパー</攻援1>
     <攻援2>-</攻援2>
     <攻援3>-</攻援3>
-    <守援1>-</守援1>
+    <守援1>ザ・コレクターズパワー</守援1>
     <守援2>-</守援2>
     <守援3>-</守援3>
     <学年>1年</学年>

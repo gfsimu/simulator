@@ -5,12 +5,8 @@
         xmlns:local="clr-namespace:GirlFriendDeck"
         xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" x:Name="WinMain"
         x:Class="GirlFriendDeck.MainWindow"
-<<<<<<< HEAD
-        Title="ガールフレンド(仮)　DeckSimulator(仮) Ver.20130603_01"
-=======
-        Title="ガールフレンド(仮)　DeckSimulator(仮) Ver.20130508_01"
->>>>>>> ebd62ab... no message
-        Height="520" Width="750"
+        Title="ガールフレンド(仮)　DeckSimulator(仮) Ver.20130617_02"
+        Height="560" Width="800"
         TextOptions.TextFormattingMode="Display"
         Loaded="Window_Loaded_1"
         Foreground="{DynamicResource DefaultForeground}"
@@ -22,14 +18,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>-->
     </Window.Resources>
-<<<<<<< HEAD
     <Grid Background="{StaticResource WindowBackground}" >
-=======
-    <Grid Background="{StaticResource WindowBackground}">
->>>>>>> ebd62ab... no message
         <TabControl Margin="0,6,0,0"  Background="{StaticResource DefaultBackground}">
             <TabItem Header="デッキ">
-                <Grid Background="{StaticResource DefaultBackground}">
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -39,6 +31,9 @@
                         <RowDefinition Height="42"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <Border Grid.RowSpan="2" Grid.ColumnSpan="2" Background="{StaticResource DefaultDarkBackground}"/>
+                    <Border Grid.Row="2" Background="{StaticResource DefaultBackground}"/>
+
                     <Grid Grid.Column="1" Grid.Row="2" Margin="0,1,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" MaxHeight="200"/>
@@ -84,7 +79,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <Button x:Name="BtnPopSearchDeckClearAll" Grid.Column="0" HorizontalAlignment="Left" Width="80" Margin="6" VerticalAlignment="Top" Content="全クリア" Height="26" Click="BtnPopSearchDeckClearAll_Click"  />
+                                    <Button x:Name="BtnPopSearchDeckClearAll" Grid.Column="0" HorizontalAlignment="Left" Width="80" Margin="6" VerticalAlignment="Top" Content="条件クリア" Height="26" Click="BtnPopSearchDeckClearAll_Click"  />
 
                                     <TextBox x:Name="TxtPopSearchDeckName" Width="200" Grid.ColumnSpan="2" Grid.Row="1" Margin="4,6" Style="{StaticResource SearchTransTextBox}" TextChanged="TxtPopSearchDeck_TextChanged"  />
 
@@ -136,15 +131,10 @@
                                 <DataGridTemplateColumn Header="画像"  CellStyle="{StaticResource ImageCell}"/>
                                 <DataGridTextColumn Header="レア" Binding="{Binding Path=レア}" CellStyle="{StaticResource CenterCell}"/>
                                 <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
-<<<<<<< HEAD
                                 <DataGridTextColumn Header="成長" Binding="{Binding Path=成長}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}"/>
                                 <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}" Visibility="Collapsed"/>
-=======
-                                <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}"/>
-                                <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"/>
->>>>>>> ebd62ab... no message
                                 <DataGridTextColumn Header="攻援" Binding="{Binding Path=攻援}" CellStyle="{StaticResource AtkCell}"/>
                                 <DataGridTextColumn Header="攻ボーナス" Binding="{Binding Path=攻ボーナス}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
                                 <DataGridTextColumn Header="攻コスパ" Binding="{Binding Path=攻コスパ}" CellStyle="{StaticResource NumberCell}"/>
@@ -222,21 +212,15 @@
                                 <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"  IsReadOnly="True" />
                                 <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"  IsReadOnly="True" />
-<<<<<<< HEAD
                                 <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}" Visibility="Collapsed"/>
-=======
->>>>>>> ebd62ab... no message
                                 <DataGridTextColumn Header="スキル" Binding="{Binding Path=スキル}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="攻スキル" Binding="{Binding Path=攻スキル}" CellStyle="{StaticResource AtkSkillCell}"  Visibility="Collapsed"  IsReadOnly="True" />
                                 <DataGridTextColumn Header="守スキル" Binding="{Binding Path=守スキル}" CellStyle="{StaticResource DefSkillCell}" Visibility="Collapsed"   IsReadOnly="True" />
-                                <DataGridCheckBoxColumn  Header="発動" Binding="{Binding Path=スキル発動}"  IsReadOnly="True"  CellStyle="{StaticResource CenterCell}"/>
+                                <DataGridCheckBoxColumn  Header="発動" Binding="{Binding Path=スキル発動}"  IsReadOnly="True" CellStyle="{StaticResource CenterCell}" ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
                                 <DataGridTextColumn Header="ボーナス" Binding="{Binding Path=ボーナス}"  IsReadOnly="True" Visibility="Collapsed" CellStyle="{StaticResource BonusCell}" />
                                 <DataGridTextColumn Header="スペシャル" Binding="{Binding Path=スペシャル}"  IsReadOnly="True" CellStyle="{StaticResource SpecialCell}" />
                                 <DataGridTextColumn Header="応援値" Binding="{Binding Path=応援値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
-<<<<<<< HEAD
                                 <DataGridTextColumn Header="コスパ" Binding="{Binding Path=コスパ}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Visibility="Collapsed"/>
-=======
->>>>>>> ebd62ab... no message
                                 <DataGridTextColumn Header="センバツ値" Binding="{Binding Path=センバツ値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="発揮値" Binding="{Binding Path=発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="攻選抜ボーナス1" Binding="{Binding Path=攻選抜ボーナス1}" Visibility="Collapsed"   IsReadOnly="True" />
@@ -271,22 +255,17 @@
                                 <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"  IsReadOnly="True" />
                                 <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"  IsReadOnly="True" />
-<<<<<<< HEAD
                                 <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}" Visibility="Collapsed"/>
-=======
->>>>>>> ebd62ab... no message
                                 <DataGridTextColumn Header="スキル" Binding="{Binding Path=スキル}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="攻スキル" Binding="{Binding Path=攻スキル}" CellStyle="{StaticResource AtkSkillCell}"  Visibility="Collapsed"  IsReadOnly="True" />
                                 <DataGridTextColumn Header="守スキル" Binding="{Binding Path=守スキル}" CellStyle="{StaticResource DefSkillCell}" Visibility="Collapsed"   IsReadOnly="True" />
                                 <DataGridTextColumn Header="ボーナス" Binding="{Binding Path=ボーナス}"  IsReadOnly="True" Visibility="Collapsed" CellStyle="{StaticResource BonusCell}" />
                                 <DataGridTextColumn Header="スペシャル" Binding="{Binding Path=スペシャル}"  IsReadOnly="True" CellStyle="{StaticResource SpecialCell}" />
                                 <DataGridTextColumn Header="応援値" Binding="{Binding Path=応援値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
-<<<<<<< HEAD
                                 <DataGridTextColumn Header="コスパ" Binding="{Binding Path=コスパ}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Visibility="Collapsed"/>
-=======
->>>>>>> ebd62ab... no message
                                 <DataGridTextColumn Header="センバツ値" Binding="{Binding Path=センバツ値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="発揮値" Binding="{Binding Path=発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="除外総発揮値" Binding="{Binding Path=除外総発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="攻選抜ボーナス1" Binding="{Binding Path=攻選抜ボーナス1}" Visibility="Collapsed"   IsReadOnly="True" />
                                 <DataGridTextColumn Header="攻選抜ボーナス2" Binding="{Binding Path=攻選抜ボーナス2}" Visibility="Collapsed"   IsReadOnly="True" />
                                 <DataGridTextColumn Header="攻選抜ボーナス3" Binding="{Binding Path=攻選抜ボーナス3}" Visibility="Collapsed"   IsReadOnly="True" />
@@ -417,32 +396,23 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
-<<<<<<< HEAD
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Border Background="#FF1D1D1D" Width="2" HorizontalAlignment="Left"  />
-                            <TextBox x:Name="TxtDeckName" VerticalAlignment="Center" Grid.Column="0" Width="90" LostFocus="TxtDeckName_LostFocus" Margin="10,0,6,0"  />
-                            <CheckBox Grid.Column="1" Margin="4" x:Name="ChkDeckCostLimited" Content="コスト" VerticalAlignment="Center" FontSize="10" Checked="ChkDeckCostLimited_Checked" Unchecked="ChkDeckCostLimited_Unchecked" Click="ChkDeckCostLimited_Click"/>
-                            <TextBox x:Name="TxtDeckLimitedCost" VerticalAlignment="Center" Grid.Column="2" Width="36" LostFocus="TxtDeckLimitedCost_LostFocus" Margin="0,0,6,0" Text="20" IsEnabled="False" />
+                            <TextBox x:Name="TxtDeckName" VerticalAlignment="Center" Grid.Column="0" Width="90" LostFocus="TxtDeckName_LostFocus" Margin="0,0,6,0"  />
+                            <CheckBox Grid.Column="1" Margin="4,4,2,4" x:Name="ChkDeckCostLimited" Content="コスト" VerticalAlignment="Center" FontSize="10" Checked="ChkDeckCostLimited_Checked" Unchecked="ChkDeckCostLimited_Unchecked" Click="ChkDeckCostLimited_Click"/>
+                            <TextBox x:Name="TxtDeckLimitedCost" VerticalAlignment="Center" Grid.Column="2" Width="36" LostFocus="TxtDeckLimitedCost_LostFocus" Margin="0,0,4,0" Text="20" IsEnabled="False" />
 
-                            <ComboBox Grid.Column="3" Margin="4" x:Name="CmbDeck" Width="110" SelectionChanged="CmbDeck_SelectionChanged" ItemContainerStyle="{StaticResource ComboBoxItemDeckStyle}" />
+                            <ComboBox Grid.Column="3" Margin="4" x:Name="CmbDeck" Width="100" SelectionChanged="CmbDeck_SelectionChanged" ItemContainerStyle="{StaticResource ComboBoxItemDeckStyle}" />
                             <CheckBox Grid.Column="4" Margin="4" x:Name="ChkDeckLock"  ToolTip="デッキ編集をロックします"  VerticalAlignment="Center" Click="ChkDeckLock_Click" Checked="ChkDeckLock_Checked" Unchecked="ChkDeckLock_Unchecked">
-                                <Rectangle Fill="{StaticResource IcoUnLock}" Width="20" Height="20" x:Name="ChkLockIco"/>
+                                <Rectangle Fill="{StaticResource IcoUnLock}" Width="18" Height="18" x:Name="ChkLockIco"/>
                             </CheckBox>
-                            <Button Grid.Column="5" x:Name="BtnDeckAdd" Content="追加" Margin="4" Width="50" Click="BtnDeckAdd_Click" />
-                            <Button Grid.Column="6" x:Name="BtnDeckDel" Content="削除" Margin="4"  Width="50" Click="BtnDeckDel_Click" />
-=======
-                            </Grid.ColumnDefinitions>
-                            <Border Background="#FF1D1D1D" Width="2" HorizontalAlignment="Left"  />
-                            <TextBox x:Name="TxtDeckName" VerticalAlignment="Center" Grid.Column="0" Width="100" LostFocus="TxtDeckName_LostFocus" Margin="10,0,6,0"  />
-                            <ComboBox Grid.Column="1" Margin="4" x:Name="CmbDeck" Width="120" SelectionChanged="CmbDeck_SelectionChanged" ItemContainerStyle="{StaticResource ComboBoxItemDeckStyle}" />
-                            <CheckBox Grid.Column="2" Margin="4" x:Name="ChkDeckLock"  ToolTip="デッキ編集をロックします"  VerticalAlignment="Center" Click="ChkDeckLock_Click" Checked="ChkDeckLock_Checked" Unchecked="ChkDeckLock_Unchecked">
-                                <Rectangle Fill="{StaticResource IcoUnLock}" Width="20" Height="20" x:Name="ChkLockIco"/>
-                            </CheckBox>
-                            <Button Grid.Column="3" x:Name="BtnDeckAdd" Content="追加" Margin="4" Width="50" Click="BtnDeckAdd_Click" />
-                            <Button Grid.Column="4" x:Name="BtnDeckDel" Content="削除" Margin="4"  Width="50" Click="BtnDeckDel_Click" />
->>>>>>> ebd62ab... no message
+                            <ComboBox Grid.Column="5" Margin="0,4,4,4" x:Name="CmbDeckDisplay" Width="40" SelectionChanged="CmbDeckDisplay_SelectionChanged"  />
+
+                            <Button Grid.Column="6" x:Name="BtnDeckAdd" Content="追加" Margin="4" Width="50" Click="BtnDeckAdd_Click" />
+                            <Button Grid.Column="7" x:Name="BtnDeckDel" Content="削除" Margin="4"  Width="50" Click="BtnDeckDel_Click" Style="{DynamicResource RedButton}" />
                         </Grid>
                     </Grid>
 
@@ -457,7 +427,7 @@
 
                         <Grid Grid.Column="0"  Width="170">
                             <Label Content="総発揮値:" Grid.Column="1" Margin="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="2,2" />
-                            <Rectangle Margin="00,22,6,2" Fill="#DD111122" Grid.Column="1" Height="2" VerticalAlignment="Top" />
+                            <Rectangle Margin="00,22,6,2" Fill="#DD535364" Grid.Column="1" Height="2" VerticalAlignment="Top" />
                             <Label x:Name="LblTotalShadow" Grid.Column="1" Margin="60,0,6,2" Content="{Binding Path=Content, ElementName=LblTotal}" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="18"  Padding="2,0" Foreground="#FF000000" >
                                 <Label.Effect>
                                     <BlurEffect Radius="4" />
@@ -499,7 +469,7 @@
                                 </Label.Effect>
                             </Label>
                             <Label x:Name="LblMaxCost" Grid.Column="2" Margin="6,7,10,2" Content="/200" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="12"  Padding="2,0" Foreground="#FFFFFFFF"/>
-                            <Rectangle Margin="0,22,6,2" Fill="#DD111122" Grid.Column="2" Height="2" VerticalAlignment="Top" />
+                            <Rectangle Margin="0,22,6,2" Fill="#DD535364" Grid.Column="2" Height="2" VerticalAlignment="Top" />
                             <Label Content="残コスト:" Grid.Column="2" Margin="2,2,2,-2" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Padding="2,2" FontSize="10"/>
                             <Label x:Name="LblRemainCost" Grid.Column="2" Margin="60,2,10,-2" Content="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="14"  Padding="4,0" />
                         </Grid>
@@ -508,7 +478,7 @@
                             <Label Content="選抜:" Grid.Column="3" Margin="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left"  Padding="2,2" />
                             <Label x:Name="LblSelectionBonus" Grid.Column="3" Margin="50,7,2,2" Content="23+23+23+23+23" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="12" Width="120" Padding="2,0" HorizontalContentAlignment="Right" />
                             <Label x:Name="LblTotalSelectionBonus" Grid.Column="3" Margin="2,0,6,2" Content="115" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="18" Padding="2,0" HorizontalContentAlignment="Right" />
-                            <Rectangle Margin="0,22,6,2" Fill="#DD111122" Grid.Column="3" Height="2" VerticalAlignment="Top" />
+                            <Rectangle Margin="0,22,6,2" Fill="#DD535364" Grid.Column="3" Height="2" VerticalAlignment="Top" />
                             <Grid Grid.Column="3" VerticalAlignment="Bottom" Margin="4,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -711,13 +681,15 @@
                                             <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"  IsReadOnly="True" />
                                             <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"  IsReadOnly="True" />
+                                            <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}" Visibility="Collapsed"/>
                                             <DataGridTextColumn Header="スキル" Binding="{Binding Path=スキル}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="攻スキル" Binding="{Binding Path=攻スキル}" CellStyle="{StaticResource AtkSkillCell}"  Visibility="Collapsed"  IsReadOnly="True" />
                                             <DataGridTextColumn Header="守スキル" Binding="{Binding Path=守スキル}" CellStyle="{StaticResource DefSkillCell}" Visibility="Collapsed"   IsReadOnly="True" />
-                                            <DataGridCheckBoxColumn  Header="発動" Binding="{Binding Path=スキル発動}"  IsReadOnly="True"  CellStyle="{StaticResource CenterCell}"/>
+                                            <DataGridCheckBoxColumn  Header="発動" Binding="{Binding Path=スキル発動}"  IsReadOnly="True"  CellStyle="{StaticResource CenterCell}"  ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
                                             <DataGridTextColumn Header="ボーナス" Binding="{Binding Path=ボーナス}"  IsReadOnly="True" Visibility="Collapsed" CellStyle="{StaticResource BonusCell}" />
                                             <DataGridTextColumn Header="スペシャル" Binding="{Binding Path=スペシャル}"  IsReadOnly="True" CellStyle="{StaticResource SpecialCell}" />
                                             <DataGridTextColumn Header="応援値" Binding="{Binding Path=応援値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Header="コスパ" Binding="{Binding Path=コスパ}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Visibility="Collapsed"/>
                                             <DataGridTextColumn Header="センバツ値" Binding="{Binding Path=センバツ値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="発揮値" Binding="{Binding Path=発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="攻選抜ボーナス1" Binding="{Binding Path=攻選抜ボーナス1}" Visibility="Collapsed"   IsReadOnly="True" />
@@ -745,14 +717,17 @@
                                             <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"  IsReadOnly="True" />
                                             <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}" Visibility="Collapsed"  IsReadOnly="True" />
+                                            <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}" Visibility="Collapsed"/>
                                             <DataGridTextColumn Header="スキル" Binding="{Binding Path=スキル}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="攻スキル" Binding="{Binding Path=攻スキル}" CellStyle="{StaticResource AtkSkillCell}"  Visibility="Collapsed"  IsReadOnly="True" />
                                             <DataGridTextColumn Header="守スキル" Binding="{Binding Path=守スキル}" CellStyle="{StaticResource DefSkillCell}" Visibility="Collapsed"   IsReadOnly="True" />
                                             <DataGridTextColumn Header="ボーナス" Binding="{Binding Path=ボーナス}"  IsReadOnly="True" Visibility="Collapsed" CellStyle="{StaticResource BonusCell}" />
                                             <DataGridTextColumn Header="スペシャル" Binding="{Binding Path=スペシャル}"  IsReadOnly="True" CellStyle="{StaticResource SpecialCell}" />
                                             <DataGridTextColumn Header="応援値" Binding="{Binding Path=応援値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Header="コスパ" Binding="{Binding Path=コスパ}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Visibility="Collapsed"/>
                                             <DataGridTextColumn Header="センバツ値" Binding="{Binding Path=センバツ値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="発揮値" Binding="{Binding Path=発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                                            <DataGridTextColumn Header="除外総発揮値" Binding="{Binding Path=除外総発揮値}" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Header="攻選抜ボーナス1" Binding="{Binding Path=攻選抜ボーナス1}" Visibility="Collapsed"   IsReadOnly="True" />
                                             <DataGridTextColumn Header="攻選抜ボーナス2" Binding="{Binding Path=攻選抜ボーナス2}" Visibility="Collapsed"   IsReadOnly="True" />
                                             <DataGridTextColumn Header="攻選抜ボーナス3" Binding="{Binding Path=攻選抜ボーナス3}" Visibility="Collapsed"   IsReadOnly="True" />
@@ -826,7 +801,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Button x:Name="BtnPopSearchOwnCardClearAll" Grid.Column="0" HorizontalAlignment="Left" Width="80" Margin="6" VerticalAlignment="Top" Content="全クリア" Height="26" Click="BtnPopSearchOwnCardClearAll_Click"  />
+                                <Button x:Name="BtnPopSearchOwnCardClearAll" Grid.Column="0" HorizontalAlignment="Left" Width="80" Margin="6" VerticalAlignment="Top" Content="条件クリア" Height="26" Click="BtnPopSearchOwnCardClearAll_Click"  />
 
                                 <TextBox x:Name="TxtPopSearchOwnCardName" Width="200" Grid.ColumnSpan="2" Grid.Row="1" Margin="4,6" Style="{StaticResource SearchTransTextBox}" TextChanged="TxtPopSearchOwnCard_TextChanged"  />
 
@@ -891,15 +866,10 @@
                             <DataGridTemplateColumn Header="画像"  CellStyle="{StaticResource ImageCell}"/>
                             <DataGridTextColumn Header="レア" Binding="{Binding Path=レア}" CellStyle="{StaticResource CenterCell}"/>
                             <DataGridTextColumn Header="Lv" Binding="{Binding Path=Lv}" CellStyle="{StaticResource NumberCell}"/>
-<<<<<<< HEAD
                             <DataGridTextColumn Header="成長" Binding="{Binding Path=成長}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
                             <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}"/>
                             <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}"/>
                             <DataGridTextColumn Header="好感度" Binding="{Binding Path=好感度}" CellStyle="{StaticResource FavorCell}"/>
-=======
-                            <DataGridTextColumn Header="コスト" Binding="{Binding Path=コスト}" CellStyle="{StaticResource CenterCell}"/>
-                            <DataGridTextColumn Header="進展" Binding="{Binding Path=進展}" CellStyle="{StaticResource RankCell}"/>
->>>>>>> ebd62ab... no message
                             <DataGridTextColumn Header="攻援" Binding="{Binding Path=攻援}" CellStyle="{StaticResource AtkCell}"/>
                             <DataGridTextColumn Header="攻ボーナス" Binding="{Binding Path=攻ボーナス}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
                             <DataGridTextColumn Header="攻コスパ" Binding="{Binding Path=攻コスパ}" CellStyle="{StaticResource NumberCell}" Visibility="Collapsed"/>
@@ -1002,23 +972,15 @@
                                     <ComboBoxItem Content="HN"/>
                                     <ComboBoxItem Content="N"/>
                                 </ComboBox>
-<<<<<<< HEAD
                                 <ComboBox x:Name="CmbCardGirlRank" Grid.Column="1" Margin="2" HorizontalAlignment="Right" Width="40" Grid.Row="2" ItemContainerStyle="{StaticResource ComboBoxItemRankStyle}">
-=======
-                                <ComboBox x:Name="CmbCardGirlProgress" Grid.Column="1" Margin="2" HorizontalAlignment="Right" Width="40" Grid.Row="2" ItemContainerStyle="{StaticResource ComboBoxItemRankStyle}">
->>>>>>> ebd62ab... no message
                                     <ComboBoxItem Content="1"/>
                                     <ComboBoxItem Content="2"/>
                                     <ComboBoxItem Content="3"/>
                                 </ComboBox>
                                 <TextBox x:Name="TxtCardGirlLv" Grid.Column="1" Height="23" Margin="2" Grid.Row="3" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
-<<<<<<< HEAD
                                 <TextBox x:Name="TxtCardGirlProgress" Grid.Column="1" Height="23" Margin="2" Grid.Row="3" TextWrapping="Wrap" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
                                 <TextBox x:Name="TxtCardGirlCost" Grid.Column="1" Height="23" Margin="2" Grid.Row="4" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
                                 <ComboBox x:Name="CmbCardGirlFavor" Grid.Column="1" Margin="2" Grid.Row="4" Width="60" ItemContainerStyle="{StaticResource ComboBoxItemFavorStyle}"  HorizontalAlignment="Right"/>
-=======
-                                <TextBox x:Name="TxtCardGirlCost" Grid.Column="1" Height="23" Margin="2" Grid.Row="4" TextWrapping="Wrap" Width="40" HorizontalAlignment="Left" VerticalAlignment="Center" InputMethod.IsInputMethodSuspended="True"/>
->>>>>>> ebd62ab... no message
                                 <TextBox x:Name="TxtCardGirlAtk" Grid.Column="1" Height="23" Margin="2" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"  InputMethod.IsInputMethodSuspended="True"/>
                                 <TextBox x:Name="TxtCardGirlDef" Grid.Column="1" Height="23" Margin="2" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center"  InputMethod.IsInputMethodSuspended="True"/>
                                 <ComboBox x:Name="CmbCardGirlSkill" Grid.Column="1" Margin="2" Grid.Row="7" ItemContainerStyle="{StaticResource ComboBoxItemSkillStyle}" />
@@ -1031,13 +993,8 @@
                                 <Label Content="名前" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2"/>
                                 <Label Content="種別" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="1"/>
                                 <Label Content="レア/進展" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="2"/>
-<<<<<<< HEAD
                                 <Label Content="Lv/成長" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="3"/>
                                 <Label Content="コスト/好感度" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="4"/>
-=======
-                                <Label Content="Lv" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="3"/>
-                                <Label Content="コスト" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="4"/>
->>>>>>> ebd62ab... no message
                                 <Label Content="攻援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="5"/>
                                 <Label Content="守援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="6"/>
                                 <Label Content="声援" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Padding="2" Grid.Row="7"/>

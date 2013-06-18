@@ -75,18 +75,14 @@ namespace GirlFriendDeck
         private Dictionary<CalcType, int> editCalcNumber = new Dictionary<CalcType, int>() { { CalcType.攻援, 1 }, { CalcType.守援, 1 }, { CalcType.イベント, 1 } };
         private static Dictionary<CalcType, string> calcName = new Dictionary<CalcType, string>() { { CalcType.攻援, "Atk" }, { CalcType.守援, "Def" }, { CalcType.イベント, "Event" } };
 
-<<<<<<< HEAD
         /// <summary>
         /// 現在の使用コスト
         /// </summary>
-=======
->>>>>>> ebd62ab... no message
         private int currentCost;
         private int currentPower;
         private int currentBasePower;
         private int subMax;
 
-<<<<<<< HEAD
         /// <summary>
         /// 最大カード数
         /// </summary>
@@ -95,9 +91,6 @@ namespace GirlFriendDeck
         /// 最大コスト
         /// </summary>
         private int costMax;
-=======
-        private int cardMax;
->>>>>>> ebd62ab... no message
         //
         private string currentEditID = string.Empty;
 
@@ -653,24 +646,16 @@ namespace GirlFriendDeck
             CmbUserAttr.ItemsSource = attrList;
             CmbUserAttr.SelectedIndex = 0;
 
-<<<<<<< HEAD
             CmbCardGirlFavor.SelectedValuePath = "Key";
             CmbCardGirlFavor.DisplayMemberPath = "Value";
             CmbCardGirlFavor.ItemsSource = new Dictionary<int, string> { { 1, "1" }, { 2, "2" }, { 3, "3" }, { 4, "4" }, { 5, "5" } };
 
-
-=======
-            isEvent = true;
->>>>>>> ebd62ab... no message
             //DataGrid情報の初期化
             InitDataGridSet();
 
             #region ユーザー設定復元
-<<<<<<< HEAD
             costMax = dsSetting.User[0].AtkCost;
 
-=======
->>>>>>> ebd62ab... no message
             TxtUserLv.Text = dsSetting.User[0].Lv.ToString();
             SetSubMax(dsSetting.User[0].Lv.ToString());
             CmbUserAttr.SelectedValue = dsSetting.User[0].Attribute;
@@ -687,16 +672,11 @@ namespace GirlFriendDeck
 
             ChkEtcEditColumn.IsChecked = dsSetting.Etc[0].EditColumn;
             LblShowGirlPath.Text = dsSetting.Etc[0].ShowGirlPath;
-<<<<<<< HEAD
 
             #endregion
 
             isEvent = true;
 
-=======
-            #endregion
-
->>>>>>> ebd62ab... no message
             #region ボーナス読み込み
             if (File.Exists(Utility.GetFilePath("system_settings.xml")))
             {
@@ -960,7 +940,6 @@ namespace GirlFriendDeck
             if (File.Exists(Utility.GetFilePath("deckinfo.xml")))
             {
                 deckInfo.ReadXml(Utility.GetFilePath("deckinfo.xml"));
-<<<<<<< HEAD
                 //互換性対応
                 if (deckInfo.DeckInfo.Count > 0 && deckInfo.DeckInfo[0].IsIsCostLimitedNull())
                 {
@@ -970,8 +949,21 @@ namespace GirlFriendDeck
                         row.LimitedCost = 100;
                     }
                 }
-=======
->>>>>>> ebd62ab... no message
+                //表示順
+                if (deckInfo.DeckInfo.Count > 0 && deckInfo.DeckInfo[0].IsDisplayIndexNull())
+                {
+                    Dictionary<string,int> displayIndex = new Dictionary<string,int>();
+                    foreach (DsDeckInfo.DeckInfoRow row in deckInfo.DeckInfo)
+                    {
+                        if(!displayIndex.ContainsKey(row.Type))
+                        {
+                            displayIndex.Add(row.Type,1);
+                        }
+
+                        row.DisplayIndex = displayIndex[row.Type];
+                        displayIndex[row.Type] = displayIndex[row.Type] + 1;
+                    }
+                }
             }
             else
             {
@@ -984,11 +976,9 @@ namespace GirlFriendDeck
                         row.Name = type + "デッキ" + i.ToString();
                         row.Type = type;
                         row.Lock = false;
-<<<<<<< HEAD
                         row.IsCostLimited = false;
                         row.LimitedCost = 100;
-=======
->>>>>>> ebd62ab... no message
+                        row.DisplayIndex = i;
                         row.Power = 0;
                         row.MainCount = 0;
                         row.BasePower = 0;
@@ -1002,16 +992,30 @@ namespace GirlFriendDeck
             }
             #endregion
 
+            //各表示順の先頭を設定する
+            foreach (CalcType type in Enum.GetValues(typeof(CalcType)))
+            {
+                DsDeckInfo.DeckInfoRow row = deckInfo.DeckInfo.FirstOrDefault(r => r.Type == type.ToString() && r.DisplayIndex == 1);
+                if(row != null)
+                {
+                    editCalcNumber[type] = row.Number;
+                }
+            }
+
+            //表示順コンボボックス作成
+            CreateDeckDisplayIndex(CalcType.攻援);
+
             CmbDeck.DisplayMemberPath = "Name";
             CmbDeck.SelectedValuePath = "Number";
-            CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == "攻援").AsDataView();
+            CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == "攻援").OrderBy(r => r.DisplayIndex).AsDataView();
             CmbDeck.SelectedIndex = 0;
 
             #region 自動保存変換
             ConvertAutoDeckToUserDeck();
             #endregion
 
-            LoadDeckNumber(CalcType.攻援, 1);
+            int number = (int)CmbDeck.SelectedValue;
+            LoadDeckNumber(CalcType.攻援, number);
             LblMainInfo.Content = dsMainSelect.Card.Count.ToString();
             SetSubInfo(dsSubSelect.Card.Count);
 
@@ -1260,7 +1264,6 @@ namespace GirlFriendDeck
                 dsSetting.WriteXml(Utility.GetFilePath("settings.xml"));
             }
         }
-<<<<<<< HEAD
 
 
         private void ReadCards()
@@ -1282,8 +1285,6 @@ namespace GirlFriendDeck
                 }
             }
         }
-=======
->>>>>>> ebd62ab... no message
         #endregion
 
         #region データ互換対応
@@ -1352,7 +1353,6 @@ namespace GirlFriendDeck
                     }
                 }
             }
-<<<<<<< HEAD
             //経験値、好感度
             if (dsCards.Cards.Count > 0 && dsCards.Cards[0].Is好感度Null())
             {
@@ -1392,8 +1392,6 @@ namespace GirlFriendDeck
             }
 
 
-=======
->>>>>>> ebd62ab... no message
             if (isChange)
             {
                 dsCards.AcceptChanges();
@@ -1818,13 +1816,9 @@ namespace GirlFriendDeck
                                 row.種別 = cells[csvColumn["種別"]].Trim('\"');
                                 row.レア = cells[csvColumn["レア"]].Trim('\"');
                                 row.Lv = Convert.ToInt32(cells[csvColumn["Lv"]].Trim('\"'));
-<<<<<<< HEAD
                                 row.成長 = Convert.ToInt32(cells[csvColumn["成長"]].Trim('\"'));
                                 row.進展 = Convert.ToInt32(cells[csvColumn["進展"]].Trim('\"'));
                                 row.好感度 = Convert.ToInt32(cells[csvColumn["好感度"]].Trim('\"'));
-=======
-                                row.進展 = Convert.ToInt32(cells[csvColumn["進展"]].Trim('\"'));
->>>>>>> ebd62ab... no message
                                 row.コスト = Convert.ToInt32(cells[csvColumn["コスト"]].Trim('\"'));
                                 row.攻援 = Convert.ToInt32(cells[csvColumn["攻援"]].Trim('\"'));
                                 row.守援 = Convert.ToInt32(cells[csvColumn["守援"]].Trim('\"'));
@@ -1944,11 +1938,7 @@ namespace GirlFriendDeck
                 {
                     using (StreamWriter sw = new StreamWriter(fs, Encoding.GetEncoding("Shift_JIS")))
                     {
-<<<<<<< HEAD
                         List<string> columns = new List<string>() { "ID", "名前", "種別", "レア", "進展", "好感度", "コスト", "Lv", "成長", "攻援", "守援", "スキル", "全属性スキル", "スキルLv", "スペシャル", "ボーナス有無", "ボーナス", "ダミー", "表示順", "フリー1", "フリー2", "フリー3", "画像" };
-=======
-                        List<string> columns = new List<string>() { "ID", "名前", "種別", "レア", "進展", "コスト", "Lv", "攻援", "守援", "スキル", "全属性スキル", "スキルLv", "スペシャル", "ボーナス有無", "ボーナス", "ダミー","表示順", "フリー1", "フリー2", "フリー3", "画像" };
->>>>>>> ebd62ab... no message
                         StringBuilder sbc = new StringBuilder();
                         columns.ForEach(c =>
                         {
@@ -1988,17 +1978,11 @@ namespace GirlFriendDeck
             CmbCardGirlName.SelectedValue = row.名前;
             CmbCardGirlRare.Text = row.レア;
             TxtCardGirlType.Text = row.種別;
-<<<<<<< HEAD
             CmbCardGirlRank.Text = row.進展.ToString();
             CmbCardGirlFavor.SelectedValue = row.好感度;
             TxtCardGirlCost.Text = row.コスト.ToString();
             TxtCardGirlLv.Text = row.Lv.ToString();
             TxtCardGirlProgress.Text = row.成長.ToString();
-=======
-            CmbCardGirlProgress.Text = row.進展.ToString();
-            TxtCardGirlCost.Text = row.コスト.ToString();
-            TxtCardGirlLv.Text = row.Lv.ToString();
->>>>>>> ebd62ab... no message
             TxtCardGirlAtk.Text = row.攻援.ToString();
             TxtCardGirlDef.Text = row.守援.ToString();
             CmbCardGirlSkill.SelectedValue = row.スキル;
@@ -2024,14 +2008,11 @@ namespace GirlFriendDeck
             BtnCardUpd.IsEnabled = true;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 所持カード追加
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnCardAdd_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -2041,22 +2022,15 @@ namespace GirlFriendDeck
                 cardRow.名前 = CmbCardGirlName.SelectedValue.ToString();
                 cardRow.コスト = string.IsNullOrEmpty(TxtCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtCardGirlCost.Text);
                 cardRow.Lv = string.IsNullOrEmpty(TxtCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlLv.Text);
-<<<<<<< HEAD
                 cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
-=======
->>>>>>> ebd62ab... no message
                 cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
                 cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
                 cardRow.レア = CmbCardGirlRare.Text;
                 cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
                 cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
                 cardRow.種別 = TxtCardGirlType.Text;
-<<<<<<< HEAD
                 cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
                 cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-=======
-                cardRow.進展 = Convert.ToInt32(CmbCardGirlProgress.Text);
->>>>>>> ebd62ab... no message
                 cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
                 cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
                 cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
@@ -2187,22 +2161,15 @@ namespace GirlFriendDeck
                     DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == currentEditID);
                     cardRow.コスト = string.IsNullOrEmpty(TxtCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtCardGirlCost.Text);
                     cardRow.Lv = string.IsNullOrEmpty(TxtCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlLv.Text);
-<<<<<<< HEAD
                     cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
-=======
->>>>>>> ebd62ab... no message
                     cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
                     cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
                     cardRow.レア = CmbCardGirlRare.Text;
                     cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
                     cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
                     cardRow.種別 = TxtCardGirlType.Text;
-<<<<<<< HEAD
                     cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
                     cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-=======
-                    cardRow.進展 = Convert.ToInt32(CmbCardGirlProgress.Text);
->>>>>>> ebd62ab... no message
                     cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
                     cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
                     cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
@@ -2354,15 +2321,10 @@ namespace GirlFriendDeck
             {
                 deckCardRow.名前 = GetDispName(cardRow);
                 deckCardRow.Lv = cardRow.Lv;
-<<<<<<< HEAD
                 deckCardRow.成長 = cardRow.成長;
                 deckCardRow.コスト = cardRow.コスト;
                 deckCardRow.進展 = cardRow.進展;
                 deckCardRow.好感度 = cardRow.好感度;
-=======
-                deckCardRow.コスト = cardRow.コスト;
-                deckCardRow.進展 = cardRow.進展;
->>>>>>> ebd62ab... no message
                 deckCardRow.レア = cardRow.レア;
                 deckCardRow.攻援 = cardRow.攻援;
                 deckCardRow.攻コスパ = cardRow.攻援 / cardRow.コスト;
@@ -2388,7 +2350,6 @@ namespace GirlFriendDeck
             {
                 mainSelectRow.名前 = GetDispName(cardRow);
                 mainSelectRow.Lv = cardRow.Lv;
-<<<<<<< HEAD
                 mainSelectRow.成長 = cardRow.成長;
                 mainSelectRow.進展 = cardRow.進展;
                 mainSelectRow.好感度 = cardRow.好感度;
@@ -2396,12 +2357,6 @@ namespace GirlFriendDeck
                 mainSelectRow.レア = cardRow.レア;
                 mainSelectRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
                 mainSelectRow.コスパ = (int)(mainSelectRow.応援値 / cardRow.コスト);
-=======
-                mainSelectRow.進展 = cardRow.進展;
-                mainSelectRow.コスト = cardRow.コスト;
-                mainSelectRow.レア = cardRow.レア;
-                mainSelectRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
->>>>>>> ebd62ab... no message
                 mainSelectRow.スペシャル = cardRow.スペシャル;
                 mainSelectRow.スキル = GetSkillName(cardRow);
                 mainSelectRow.ボーナス = cardRow.ボーナス有無 ? cardRow.ボーナス : 0;
@@ -2416,7 +2371,6 @@ namespace GirlFriendDeck
             {
                 subSelectRow.名前 = GetDispName(cardRow);
                 subSelectRow.Lv = cardRow.Lv;
-<<<<<<< HEAD
                 subSelectRow.成長 = cardRow.成長;
                 subSelectRow.進展 = cardRow.進展;
                 subSelectRow.好感度 = cardRow.好感度;
@@ -2424,12 +2378,6 @@ namespace GirlFriendDeck
                 subSelectRow.レア = cardRow.レア;
                 subSelectRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
                 subSelectRow.コスパ = (int)(subSelectRow.応援値 / cardRow.コスト);
-=======
-                subSelectRow.進展 = cardRow.進展;
-                subSelectRow.コスト = cardRow.コスト;
-                subSelectRow.レア = cardRow.レア;
-                subSelectRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
->>>>>>> ebd62ab... no message
                 subSelectRow.スペシャル = cardRow.スペシャル;
                 subSelectRow.スキル = GetSkillName(cardRow);
                 subSelectRow.ボーナス = cardRow.ボーナス有無 ? cardRow.ボーナス : 0;
@@ -2508,12 +2456,8 @@ namespace GirlFriendDeck
             //CmbCardGirlName.SelectedValue = string.Empty;
             CmbCardGirlRare.Text = string.Empty;
             TxtCardGirlType.Text = string.Empty;
-<<<<<<< HEAD
             CmbCardGirlRank.Text = string.Empty;
             CmbCardGirlFavor.SelectedValue = 1;
-=======
-            CmbCardGirlProgress.Text = string.Empty;
->>>>>>> ebd62ab... no message
             TxtCardGirlCost.Text = string.Empty;
             TxtCardGirlLv.Text = string.Empty;
             TxtCardGirlAtk.Text = string.Empty;
@@ -2657,14 +2601,13 @@ namespace GirlFriendDeck
         #endregion
 
         #region デッキタブ
-<<<<<<< HEAD
+
+        #region センバツ操作
         /// <summary>
         /// 主センバツクリア
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnClearMain_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2685,14 +2628,11 @@ namespace GirlFriendDeck
             ReCalcAll();
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 副センバツクリア
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnClearSub_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2714,14 +2654,11 @@ namespace GirlFriendDeck
 
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 主センバツ、上に移動
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnMainUp_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2763,14 +2700,11 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 主センバツ、下に移動
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnMainDown_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2813,6 +2747,11 @@ namespace GirlFriendDeck
 
         }
 
+        /// <summary>
+        /// 主センバツ追加
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnMainAdd_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2851,6 +2790,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 副センバツ追加
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSubAdd_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2886,6 +2830,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 副センバツ上に移動
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSubUp_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2925,6 +2874,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 副センバツ下に移動
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSubDown_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -2964,152 +2918,11 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
-        /// <summary>
-        /// デッキカード選択
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
-        private void DgDeckCards_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DgDeckCards.SelectedItem != null)
-            {
-                DgDeckSub.SelectedItem = null;
-                DgDeckMain.SelectedItem = null;
-                LstBonus.SelectedItem = null;
-
-                DsDeckCard.DeckCardRow selectCardRow = (DgDeckCards.SelectedItem as DataRowView).Row as DsDeckCard.DeckCardRow;
-<<<<<<< HEAD
-=======
-
->>>>>>> ebd62ab... no message
-                SelectBonusList(selectCardRow.ID);
-            }
-            else
-            {
-<<<<<<< HEAD
-                //選抜ボーナスの選択をクリアする
-=======
->>>>>>> ebd62ab... no message
-                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
-                if (selectionBonusInfo != null)
-                {
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        bonus.IsBonusSelected = false;
-                    }
-                }
-            }
-        }
-
-<<<<<<< HEAD
-        /// <summary>
-        /// 主センバツ一覧選択変更イベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
-        private void DgDeckMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DgDeckMain.SelectedItem != null)
-            {
-                DgDeckSub.SelectedItem = null;
-                DgDeckCards.SelectedItem = null;
-                LstBonus.SelectedItem = null;
-
-                DsSelectCard.CardRow selectCardRow = (DgDeckMain.SelectedItem as DataRowView).Row as DsSelectCard.CardRow;
-
-                SelectBonusList(selectCardRow.ID);
-            }
-            else
-            {
-                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
-                if (selectionBonusInfo != null)
-                {
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        bonus.IsBonusSelected = false;
-                    }
-                }
-            }
-        }
-
-<<<<<<< HEAD
-        /// <summary>
-        /// 副センバツ一覧選択変更イベント
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
-        private void DgDeckSub_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DgDeckSub.SelectedItem != null)
-            {
-                DgDeckMain.SelectedItem = null;
-                DgDeckCards.SelectedItem = null;
-                LstBonus.SelectedItem = null;
-
-                DsSelectCard.CardRow selectCardRow = (DgDeckSub.SelectedItem as DataRowView).Row as DsSelectCard.CardRow;
-
-                SelectBonusList(selectCardRow.ID);
-            }
-            else
-            {
-                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
-                if (selectionBonusInfo != null)
-                {
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        bonus.IsBonusSelected = false;
-                    }
-                }
-            }
-        }
-
-<<<<<<< HEAD
-        /// <summary>
-        /// 選抜ボーナスを選択し、選択表示にする
-        /// </summary>
-        /// <param name="id"></param>
-        private void SelectBonusList(string id)
-        {
-            List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
-            if (selectionBonusInfo != null)
-            {
-                if (IsAttack())
-                {
-                    //攻援、イベント時は攻選抜ボーナス
-                    DsCards.CardsRow cardRow = cardsList[id];
-                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        bonus.IsBonusSelected = girlsBonusList.AtkBonus.Contains(bonus.Name);
-                    }
-                }
-                else
-                {
-                    //守援時は守選抜ボーナス
-                    DsCards.CardsRow cardRow = cardsList[id];
-                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        bonus.IsBonusSelected = girlsBonusList.DefBonus.Contains(bonus.Name);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// 主センバツから取り除く
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnMainRemove_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -3149,14 +2962,11 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 副センバツから取り除く
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnSubRemove_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -3196,14 +3006,136 @@ namespace GirlFriendDeck
 
         }
 
-<<<<<<< HEAD
+
+        #endregion
+
+        /// <summary>
+        /// デッキカード選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgDeckCards_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DgDeckCards.SelectedItem != null)
+            {
+                DgDeckSub.SelectedItem = null;
+                DgDeckMain.SelectedItem = null;
+                LstBonus.SelectedItem = null;
+
+                DsDeckCard.DeckCardRow selectCardRow = (DgDeckCards.SelectedItem as DataRowView).Row as DsDeckCard.DeckCardRow;
+                SelectBonusList(selectCardRow.ID);
+            }
+            else
+            {
+                //選抜ボーナスの選択をクリアする
+                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
+                if (selectionBonusInfo != null)
+                {
+                    foreach (var bonus in selectionBonusInfo)
+                    {
+                        bonus.IsBonusSelected = false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 主センバツ一覧選択変更イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgDeckMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DgDeckMain.SelectedItem != null)
+            {
+                DgDeckSub.SelectedItem = null;
+                DgDeckCards.SelectedItem = null;
+                LstBonus.SelectedItem = null;
+
+                DsSelectCard.CardRow selectCardRow = (DgDeckMain.SelectedItem as DataRowView).Row as DsSelectCard.CardRow;
+
+                SelectBonusList(selectCardRow.ID);
+            }
+            else
+            {
+                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
+                if (selectionBonusInfo != null)
+                {
+                    foreach (var bonus in selectionBonusInfo)
+                    {
+                        bonus.IsBonusSelected = false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 副センバツ一覧選択変更イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgDeckSub_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DgDeckSub.SelectedItem != null)
+            {
+                DgDeckMain.SelectedItem = null;
+                DgDeckCards.SelectedItem = null;
+                LstBonus.SelectedItem = null;
+
+                DsSelectCard.CardRow selectCardRow = (DgDeckSub.SelectedItem as DataRowView).Row as DsSelectCard.CardRow;
+
+                SelectBonusList(selectCardRow.ID);
+            }
+            else
+            {
+                List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
+                if (selectionBonusInfo != null)
+                {
+                    foreach (var bonus in selectionBonusInfo)
+                    {
+                        bonus.IsBonusSelected = false;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 選抜ボーナスを選択し、選択表示にする
+        /// </summary>
+        /// <param name="id"></param>
+        private void SelectBonusList(string id)
+        {
+            List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
+            if (selectionBonusInfo != null)
+            {
+                if (IsAttack())
+                {
+                    //攻援、イベント時は攻選抜ボーナス
+                    DsCards.CardsRow cardRow = cardsList[id];
+                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
+                    foreach (var bonus in selectionBonusInfo)
+                    {
+                        bonus.IsBonusSelected = girlsBonusList.AtkBonus.Contains(bonus.Name);
+                    }
+                }
+                else
+                {
+                    //守援時は守選抜ボーナス
+                    DsCards.CardsRow cardRow = cardsList[id];
+                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
+                    foreach (var bonus in selectionBonusInfo)
+                    {
+                        bonus.IsBonusSelected = girlsBonusList.DefBonus.Contains(bonus.Name);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 「攻援」切替
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void TBtnAtk_Checked(object sender, RoutedEventArgs e)
         {
             if (this.IsLoaded)
@@ -3219,7 +3151,9 @@ namespace GirlFriendDeck
                 }
 
                 calcType = CalcType.攻援;
-                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).AsDataView();
+                //Deck表示順再作成
+                CreateDeckDisplayIndex(calcType);
+                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).OrderBy(r => r.DisplayIndex).AsDataView();
                 CmbDeck.SelectedValue = editCalcNumber[calcType];
 
                 SetDataGridColumnButton(DgDeckMain, calcType);
@@ -3244,22 +3178,15 @@ namespace GirlFriendDeck
                 }
                 ReCalcAll();
 
-<<<<<<< HEAD
-=======
-                LblMaxCost.Content = "/" + TxtUserAttkCost.Text;
->>>>>>> ebd62ab... no message
                 BdrStatus.Background = FindResource("AtkBackground") as LinearGradientBrush;
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 「守援」切替
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void TBtnDef_Checked(object sender, RoutedEventArgs e)
         {
             if (this.IsLoaded)
@@ -3276,7 +3203,9 @@ namespace GirlFriendDeck
                 }
 
                 calcType = CalcType.守援;
-                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).AsDataView();
+                //Deck表示順再作成
+                CreateDeckDisplayIndex(calcType);
+                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).OrderBy(r => r.DisplayIndex).AsDataView();
                 CmbDeck.SelectedValue = editCalcNumber[calcType];
                 LblTotal.Foreground = FindResource("DefForeground") as Brush;
 
@@ -3300,10 +3229,6 @@ namespace GirlFriendDeck
 
                 ReCalcAll();
 
-<<<<<<< HEAD
-=======
-                LblMaxCost.Content = "/" + TxtUserDefCost.Text;
->>>>>>> ebd62ab... no message
                 BdrStatus.Background = FindResource("DefBackground") as LinearGradientBrush;
 
             }
@@ -3325,7 +3250,9 @@ namespace GirlFriendDeck
                 }
 
                 calcType = CalcType.イベント;
-                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).AsDataView();
+                //Deck表示順再作成
+                CreateDeckDisplayIndex(calcType);
+                CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).OrderBy(r => r.DisplayIndex).AsDataView();
                 CmbDeck.SelectedValue = editCalcNumber[calcType];
                 LblTotal.Foreground = FindResource("EventForeground") as Brush;
 
@@ -3349,10 +3276,6 @@ namespace GirlFriendDeck
                 }
                 ReCalcAll();
 
-<<<<<<< HEAD
-=======
-                LblMaxCost.Content = "/" + TxtUserAttkCost.Text;
->>>>>>> ebd62ab... no message
                 BdrStatus.Background = FindResource("EventBackground") as LinearGradientBrush;
             }
         }
@@ -3465,6 +3388,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// DataGridクリック（チェックボックスクリック）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgDeckMain_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //クリックされたセルを取得
@@ -3489,7 +3417,6 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 最大コスト取得
         /// </summary>
@@ -3507,14 +3434,86 @@ namespace GirlFriendDeck
             return 20;
         }
 
+        #region デッキ追加
+        private void AddSelect(string id, DsSelectCard dsSelect)
+        {
+            DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == id);
+            if (cardRow != null)
+            {
+                DsSelectCard.CardRow addRow = dsSelect.Card.NewCardRow();
+
+                SetSelectCardRow(id, addRow, cardRow);
+
+                dsSelect.Card.AddCardRow(addRow);
+
+                //デッキカードから取り除く
+                DsDeckCard.DeckCardRow deckCardRow = dsDeckCard.DeckCard.FirstOrDefault(r => r.ID == id);
+                if (deckCardRow != null)
+                {
+                    dsDeckCard.DeckCard.RemoveDeckCardRow(deckCardRow);
+                }
+            }
+        }
+
+        private void AddCmpSelect(string id, DsSelectCard dsCmp)
+        {
+            DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == id);
+            if (cardRow != null)
+            {
+                DsSelectCard.CardRow addRow = dsCmp.Card.NewCardRow();
+
+                SetSelectCardRow(id, addRow, cardRow);
+
+                dsCmp.Card.AddCardRow(addRow);
+            }
+        }
+
+        private void SetSelectCardRow(string id, DsSelectCard.CardRow addRow, DsCards.CardsRow cardRow)
+        {
+            DsGirls.GirlsRow addGilrsRow = girlsList[cardRow.名前];
+            DsDispCard.DispCardRow dispRow = dsDispCard.DispCard.FirstOrDefault(r => r.ID == id);
+
+            addRow.ID = id;
+            addRow.名前 = GetDispName(cardRow);
+            addRow.姓名 = GetSortName(cardRow);
+            addRow.なまえ = addGilrsRow.なまえ;
+            addRow.Name = addGilrsRow.Name;
+            addRow.属性 = addGilrsRow.属性;
+            addRow.レア = cardRow.レア;
+            addRow.進展 = cardRow.進展;
+            addRow.好感度 = cardRow.好感度;
+            addRow.Lv = cardRow.Lv;
+            addRow.成長 = cardRow.成長;
+            addRow.スキル = GetSkillName(cardRow);
+            addRow.コスト = cardRow.コスト;
+            addRow.攻スキル = GetAtkSkillPower(cardRow);
+            addRow.守スキル = GetDefSkillPower(cardRow);
+            addRow.ボーナス = cardRow.ボーナス有無 ? cardRow.ボーナス : 0;
+            addRow.スペシャル = cardRow.スペシャル;
+            addRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
+            addRow.コスパ = (int)(addRow.応援値 / cardRow.コスト);
+            addRow.部活 = addGilrsRow.部室;
+            addRow.攻選抜ボーナス1 = addGilrsRow.攻援1;
+            addRow.攻選抜ボーナス2 = addGilrsRow.攻援2;
+            addRow.攻選抜ボーナス3 = addGilrsRow.攻援3;
+            addRow.守選抜ボーナス1 = addGilrsRow.守援1;
+            addRow.守選抜ボーナス2 = addGilrsRow.守援2;
+            addRow.守選抜ボーナス3 = addGilrsRow.守援3;
+            addRow.選抜選択 = IsSelectionBonusSelection(addRow);
+            addRow.ダミー = cardRow.ダミー;
+            addRow.フリー1 = cardRow.フリー1;
+            addRow.フリー2 = cardRow.フリー2;
+            addRow.フリー3 = cardRow.フリー3;
+            addRow.画像 = dispRow.画像;
+        }
+        #endregion
+
         #region デッキ関連イベント
         /// <summary>
         /// デッキロッククリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void ChkDeckLock_Click(object sender, RoutedEventArgs e)
         {
             int currentNumber = (int)CmbDeck.SelectedValue;
@@ -3527,7 +3526,6 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         private void ChkDeckLock_Checked(object sender, RoutedEventArgs e)
         {
             ChkLockIco.Fill = FindResource("IcoLock") as Brush;
@@ -3538,8 +3536,6 @@ namespace GirlFriendDeck
             ChkLockIco.Fill = FindResource("IcoUnLock") as Brush;
         }
 
-=======
->>>>>>> ebd62ab... no message
         private void TxtDeckName_LostFocus(object sender, RoutedEventArgs e)
         {
             int currentNumber = (int)CmbDeck.SelectedValue;
@@ -3552,7 +3548,6 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         private void TxtDeckLimitedCost_LostFocus(object sender, RoutedEventArgs e)
         {
             int currentNumber = (int)CmbDeck.SelectedValue;
@@ -3578,6 +3573,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// Deckコスト制限チェックボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChkDeckCostLimited_Click(object sender, RoutedEventArgs e)
         {
             int currentNumber = (int)CmbDeck.SelectedValue;
@@ -3617,42 +3617,39 @@ namespace GirlFriendDeck
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnDeckAdd_Click(object sender, RoutedEventArgs e)
         {
             int maxNumber = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).Max(r => r.Number) + 1;
+            int maxDisplayIndex = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).Max(r => r.DisplayIndex) + 1;
 
             DsDeckInfo.DeckInfoRow row = deckInfo.DeckInfo.NewDeckInfoRow();
             row.Number = maxNumber;
             row.Name = calcType.ToString() + "デッキ" + maxNumber.ToString();
             row.Type = calcType.ToString();
             row.Lock = false;
-<<<<<<< HEAD
             row.IsCostLimited = false;
             row.LimitedCost = 100;
-=======
->>>>>>> ebd62ab... no message
+            row.DisplayIndex = maxDisplayIndex;
             deckInfo.DeckInfo.AddDeckInfoRow(row);
             deckInfo.AcceptChanges();
             deckInfo.WriteXml(Utility.GetFilePath("deckinfo.xml"));
+            //表示順再作成
+            CreateDeckDisplayIndex(calcType);
+
             SaveDeckNumber(calcType, maxNumber);
             CmbDeck.SelectedValue = maxNumber;
 
             DialogWindow.Show(this, "[" + row.Name + "]を追加しました", DialogWindow.MessageType.Infomation);
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// デッキ削除ボタン
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnDeckDel_Click(object sender, RoutedEventArgs e)
         {
-            if ((int)CmbDeck.SelectedValue == 1)
+            if (CmbDeck.Items.Count == 1)
             {
                 DialogWindow.Show(this, "削除できないデッキです", DialogWindow.MessageType.Error);
                 return;
@@ -3666,7 +3663,6 @@ namespace GirlFriendDeck
             DsDeckInfo.DeckInfoRow row = deckInfo.DeckInfo.FirstOrDefault(r => r.Number == currentNumber && r.Type == calcType.ToString());
             if (row != null)
             {
-
                 if (!DialogWindow.Show(this, "[" + row.Name + "]を削除してもよろしいですか？", "確認", DialogWindow.MessageType.Confirm))
                 {
                     return;
@@ -3680,24 +3676,28 @@ namespace GirlFriendDeck
                 }
                 deckInfo.DeckInfo.RemoveDeckInfoRow(row);
                 deckInfo.AcceptChanges();
+
+                //表示順更新
+                int displayIndex = 1;
+                var newList = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).OrderBy(r => r.DisplayIndex).ToList();
+                foreach (var newRow in newList)
+                {
+                    newRow.DisplayIndex = displayIndex++;
+                }
+
+                //Deck表示順再作成
+                CreateDeckDisplayIndex(calcType);
+
                 deckInfo.WriteXml(Utility.GetFilePath("deckinfo.xml"));
-                CmbDeck.SelectedValue = 1;
+                CmbDeck.SelectedIndex = 0;
             }
         }
 
-<<<<<<< HEAD
-=======
-        private void ChkDeckLock_Checked(object sender, RoutedEventArgs e)
-        {
-            ChkLockIco.Fill = FindResource("IcoLock") as Brush;
-        }
-
-        private void ChkDeckLock_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ChkLockIco.Fill = FindResource("IcoUnLock") as Brush;
-        }
-
->>>>>>> ebd62ab... no message
+        /// <summary>
+        /// デッキ選択変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CmbDeck_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)
@@ -3714,10 +3714,32 @@ namespace GirlFriendDeck
                 editCalcNumber[calcType] = loadNumber;
             }
         }
-<<<<<<< HEAD
+
+        /// <summary>
+        /// Deck表示順変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbDeckDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                int currentNumber = (int)CmbDeck.SelectedValue;
+                int oldDisplayIndex = (int)e.RemovedItems[0];
+                int newDisplayIndex = (int)e.AddedItems[0];
+                var displayIndexList = Enumerable.Range(1, deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).Max(r => r.DisplayIndex)).ToList();
+                displayIndexList.Remove(oldDisplayIndex);
+                displayIndexList.Insert(newDisplayIndex-1, oldDisplayIndex);
+                //全ての表示順を振り直し
+                foreach(DsDeckInfo.DeckInfoRow row in deckInfo.DeckInfo.Where(r=> r.Type == calcType.ToString()))
+                {
+                    row.DisplayIndex = displayIndexList.IndexOf(row.DisplayIndex) + 1;
+                }
+                deckInfo.AcceptChanges();
+                deckInfo.WriteXml(Utility.GetFilePath("deckinfo.xml"));
+            }
+        }
         #endregion
-=======
->>>>>>> ebd62ab... no message
 
         #region デッキ詳細
         private void BtnDeckDetail_Click(object sender, RoutedEventArgs e)
@@ -4057,7 +4079,7 @@ namespace GirlFriendDeck
             {
                 CmbCmpDeck.DisplayMemberPath = "Name";
                 CmbCmpDeck.SelectedValuePath = "Number";
-                CmbCmpDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).AsDataView();
+                CmbCmpDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == calcType.ToString()).OrderBy(r => r.DisplayIndex).AsDataView();
                 CmbCmpDeck.SelectedIndex = 0;
 
                 switch (calcType)
@@ -4182,7 +4204,6 @@ namespace GirlFriendDeck
 
         #endregion
 
-<<<<<<< HEAD
         #region Data表示用
         /// <summary>
         /// レア毎の最大Lv取得
@@ -4205,29 +4226,6 @@ namespace GirlFriendDeck
         }
 
 
-=======
-        private void ReadCards()
-        {
-            dsDispCard.Clear();
-            cardsList.Clear();
-            foreach (DsCards.CardsRow cardRow in dsCards.Cards)
-            {
-                CreateDispCardRow(cardRow);
-                CreateDeckCardRow(cardRow);
-                if (Convert.ToInt32(cardRow.ID) > cardMax)
-                {
-                    cardMax = Convert.ToInt32(cardRow.ID);
-                }
-
-                if (!cardsList.ContainsKey(cardRow.ID))
-                {
-                    cardsList.Add(cardRow.ID, cardRow);
-                }
-            }
-        }
-
-        #region Data表示用
->>>>>>> ebd62ab... no message
         private string GetDispName(DsCards.CardsRow cardRow)
         {
             return (string.IsNullOrEmpty(cardRow.種別) ? string.Empty : ("[" + cardRow.種別 + "] ")) + cardRow.名前 + (cardRow.進展 == 2 ? "+" : string.Empty);
@@ -4306,15 +4304,10 @@ namespace GirlFriendDeck
             dispRow.Name = girlRow.Name;
             dispRow.属性 = girlRow.属性;
             dispRow.進展 = cardRow.進展;
-<<<<<<< HEAD
             dispRow.好感度 = cardRow.好感度;
             dispRow.コスト = cardRow.コスト;
             dispRow.Lv = cardRow.Lv;
             dispRow.成長 = cardRow.成長;
-=======
-            dispRow.コスト = cardRow.コスト;
-            dispRow.Lv = cardRow.Lv;
->>>>>>> ebd62ab... no message
             dispRow.レア = cardRow.レア;
             dispRow.攻援 = cardRow.攻援;
             dispRow.攻コスパ = cardRow.攻援 / cardRow.コスト;
@@ -4355,13 +4348,9 @@ namespace GirlFriendDeck
             deckRow.なまえ = girlRow.なまえ;
             deckRow.Name = girlRow.Name;
             deckRow.Lv = cardRow.Lv;
-<<<<<<< HEAD
             deckRow.成長 = cardRow.成長;
             deckRow.進展 = cardRow.進展;
             deckRow.好感度 = cardRow.好感度;
-=======
-            deckRow.進展 = cardRow.進展;
->>>>>>> ebd62ab... no message
             deckRow.属性 = girlRow.属性;
             deckRow.コスト = cardRow.コスト;
             deckRow.レア = cardRow.レア;
@@ -4397,7 +4386,6 @@ namespace GirlFriendDeck
         #endregion
 
         #region 計算
-<<<<<<< HEAD
         /// <summary>
         /// 攻選抜ボーナス情報作成
         /// </summary>
@@ -4442,8 +4430,6 @@ namespace GirlFriendDeck
             }
         }
 
-=======
->>>>>>> ebd62ab... no message
 
         /// <summary>
         /// 全計算
@@ -4467,6 +4453,9 @@ namespace GirlFriendDeck
                 LblTotalDisp.Content = currentBasePower.ToString();
                 SetBonusLabel(bonusInfo);
 
+                List<string> tmpMainIDs = new List<string>(mainIDs);
+                List<string> tmpSubIDs = new List<string>(subIDs);
+
                 foreach (DsSelectCard.CardRow row in dsMainSelect.Card)
                 {
                     row.発揮値 = atkList[row.ID].Power;
@@ -4476,10 +4465,18 @@ namespace GirlFriendDeck
                 {
                     row.発揮値 = atkList[row.ID].Power;
                     row.センバツ値 = atkList[row.ID].SelectionPower;
+                    //除外発揮値計算
+                    string id = row.ID;
+                    int tmpCurrentPower = 0;
+                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                    BonusInfo tmpBonusInfo;
+                    tmpSubIDs.Remove(id);
+                    tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                    row.除外総発揮値 = tmpCurrentPower;
+                    tmpSubIDs.Add(id);
                 }
 
-                List<string> tmpMainIDs = new List<string>(mainIDs);
-                List<string> tmpSubIDs = new List<string>(subIDs);
                 foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
                 {
                     string id = row.ID;
@@ -4535,6 +4532,18 @@ namespace GirlFriendDeck
                 {
                     row.発揮値 = defList[row.ID].Power;
                     row.センバツ値 = defList[row.ID].SelectionPower;
+
+                    //除外発揮値計算
+                    List<string> tmpMainIDs = new List<string>(mainIDs);
+                    List<string> tmpSubIDs = new List<string>(subIDs);
+                    string id = row.ID;
+                    int tmpCurrentPower = 0;
+                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                    BonusInfo tmpBonusInfo;
+                    tmpSubIDs.Remove(id);
+                    tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                    row.除外総発揮値 = tmpCurrentPower;
                 }
                 foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
                 {
@@ -4594,7 +4603,20 @@ namespace GirlFriendDeck
                 {
                     row.発揮値 = atkList[row.ID].Power;
                     row.センバツ値 = atkList[row.ID].SelectionPower;
+
+                    //除外発揮値計算
+                    List<string> tmpMainIDs = new List<string>(mainIDs);
+                    List<string> tmpSubIDs = new List<string>(subIDs);
+                    string id = row.ID;
+                    int tmpCurrentPower = 0;
+                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                    BonusInfo tmpBonusInfo;
+                    tmpSubIDs.Remove(id);
+                    tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                    row.除外総発揮値 = tmpCurrentPower;
                 }
+
                 foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
                 {
                     string id = row.ID;
@@ -4651,15 +4673,9 @@ namespace GirlFriendDeck
             currentCost = cost;
             if (IsAttack())
             {
-<<<<<<< HEAD
                 int remainCost = (costMax - currentCost);
                 LblRemainCost.Content = remainCost.ToString();
                 int costPer = (currentCost * 100 / costMax);
-=======
-                int remainCost = (dsSetting.User[0].AtkCost - currentCost);
-                LblRemainCost.Content = remainCost.ToString();
-                int costPer = (currentCost * 100 / dsSetting.User[0].AtkCost);
->>>>>>> ebd62ab... no message
                 if (costPer >= 100)
                 {
                     costPer = 100;
@@ -4670,11 +4686,7 @@ namespace GirlFriendDeck
                     BdrCostBar.BorderThickness = new Thickness(1, 1, 0, 1);
                 }
                 BdrCostBar.Width = costPer;
-<<<<<<< HEAD
                 if (currentCost > costMax)
-=======
-                if (currentCost > dsSetting.User[0].AtkCost)
->>>>>>> ebd62ab... no message
                 {
                     LblTotalCost.Foreground = FindResource("OverForeground") as SolidColorBrush;
                     LblRemainCost.Foreground = FindResource("OverForeground") as SolidColorBrush;
@@ -4694,15 +4706,9 @@ namespace GirlFriendDeck
             }
             else
             {
-<<<<<<< HEAD
                 int remainCost = (costMax - currentCost);
                 LblRemainCost.Content = remainCost.ToString();
                 int costPer = (currentCost * 100 / costMax);
-=======
-                int remainCost = (dsSetting.User[0].DefCost - currentCost);
-                LblRemainCost.Content = remainCost.ToString();
-                int costPer = (currentCost * 100 / dsSetting.User[0].DefCost);
->>>>>>> ebd62ab... no message
                 if (costPer >= 100)
                 {
                     costPer = 100;
@@ -4713,11 +4719,7 @@ namespace GirlFriendDeck
                     BdrCostBar.BorderThickness = new Thickness(1, 1, 0, 1);
                 }
                 BdrCostBar.Width = costPer;
-<<<<<<< HEAD
                 if (currentCost > costMax)
-=======
-                if (currentCost > dsSetting.User[0].DefCost)
->>>>>>> ebd62ab... no message
                 {
                     LblTotalCost.Foreground = FindResource("OverForeground") as SolidColorBrush;
                     LblRemainCost.Foreground = FindResource("OverForeground") as SolidColorBrush;
@@ -4736,10 +4738,7 @@ namespace GirlFriendDeck
                 }
             }
             LblTotalCost.Content = cost;
-<<<<<<< HEAD
             LblMaxCost.Content = "/" + costMax.ToString();
-=======
->>>>>>> ebd62ab... no message
         }
 
         private void SetBonusLabel(BonusInfo bonusInfo)
@@ -4781,49 +4780,6 @@ namespace GirlFriendDeck
         }
         #endregion
 
-<<<<<<< HEAD
-=======
-        private void SelectBonusList(string id)
-        {
-            List<SelectionBonusInfo> selectionBonusInfo = LstBonus.ItemsSource as List<SelectionBonusInfo>;
-            if (selectionBonusInfo != null)
-            {
-                if (IsAttack())
-                {
-                    DsCards.CardsRow cardRow = cardsList[id];
-                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        if (girlsBonusList.AtkBonus.Contains(bonus.Name))
-                        {
-                            bonus.IsBonusSelected = true;
-                        }
-                        else
-                        {
-                            bonus.IsBonusSelected = false;
-                        }
-                    }
-                }
-                else
-                {
-                    DsCards.CardsRow cardRow = cardsList[id];
-                    var girlsBonusList = girlsSelectionBonusList[cardRow.名前];
-                    foreach (var bonus in selectionBonusInfo)
-                    {
-                        if (girlsBonusList.DefBonus.Contains(bonus.Name))
-                        {
-                            bonus.IsBonusSelected = true;
-                        }
-                        else
-                        {
-                            bonus.IsBonusSelected = false;
-                        }
-                    }
-                }
-            }
-        }
-
->>>>>>> ebd62ab... no message
         private void SetSubInfo(int count)
         {
             LblSubInfo.Content = count.ToString();
@@ -4837,47 +4793,6 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
-=======
-        private void CreateAtkSelectionBonusInfo()
-        {
-            atkSelectionBonusInfo.Clear();
-            foreach (string b in AtkBounus)
-            {
-                SelectionBonusInfo info = new SelectionBonusInfo();
-                info.Name = b;
-                atkSelectionBonusInfo.Add(b, info);
-            }
-            foreach (var cardRow in dsCards.Cards)
-            {
-                var bonusList = girlsSelectionBonusList[cardRow.名前];
-                foreach (string bonus in bonusList.AtkBonus)
-                {
-                    atkSelectionBonusInfo[bonus].Count++;
-                }
-            }
-        }
-
-        private void CreateDefSelectionBonusInfo()
-        {
-            defSelectionBonusInfo.Clear();
-            foreach (string b in DefBounus)
-            {
-                SelectionBonusInfo info = new SelectionBonusInfo();
-                info.Name = b;
-                defSelectionBonusInfo.Add(b, info);
-            }
-            foreach (var cardRow in dsCards.Cards)
-            {
-                var bonusList = girlsSelectionBonusList[cardRow.名前];
-                foreach (string bonus in bonusList.DefBonus)
-                {
-                    defSelectionBonusInfo[bonus].Count++;
-                }
-            }
-        }
-
->>>>>>> ebd62ab... no message
         #region 攻援
 
         private int CalcTotalAtk(List<string> mainIDs, List<string> subIDs, out Dictionary<string, PowerInfo> atkList, out BonusInfo bonusInfo, out List<SelectionBonusInfo> selectionBonusInfo)
@@ -5670,13 +5585,10 @@ namespace GirlFriendDeck
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 副センバツ最大数計算
         /// </summary>
         /// <param name="userLv"></param>
-=======
->>>>>>> ebd62ab... no message
         private void SetSubMax(string userLv)
         {
             int lv;
@@ -5730,7 +5642,6 @@ namespace GirlFriendDeck
                 dsSetting.WriteXml(Utility.GetFilePath("settings.xml"));
                 if (IsAttack())
                 {
-<<<<<<< HEAD
                     int currentNumber = (int)CmbDeck.SelectedValue;
                     DsDeckInfo.DeckInfoRow row = deckInfo.DeckInfo.FirstOrDefault(r => r.Number == currentNumber && r.Type == calcType.ToString());
                     if (row != null)
@@ -5746,10 +5657,6 @@ namespace GirlFriendDeck
                         }
                     }
                     SetCostInfo();
-=======
-                    SetCostInfo();
-                    LblMaxCost.Content = "/" + atkCost.ToString();
->>>>>>> ebd62ab... no message
                 }
                 else
                 {
@@ -5771,7 +5678,6 @@ namespace GirlFriendDeck
                 }
                 else
                 {
-<<<<<<< HEAD
                     int currentNumber = (int)CmbDeck.SelectedValue;
                     DsDeckInfo.DeckInfoRow row = deckInfo.DeckInfo.FirstOrDefault(r => r.Number == currentNumber && r.Type == calcType.ToString());
                     if (row != null)
@@ -5787,10 +5693,6 @@ namespace GirlFriendDeck
                         }
                     }
                     SetCostInfo();
-=======
-                    SetCostInfo();
-                    LblMaxCost.Content = "/" + defCost.ToString();
->>>>>>> ebd62ab... no message
                 }
             }
         }
@@ -6978,14 +6880,11 @@ namespace GirlFriendDeck
             cardSelectionBonusInfo[id].Bonus.ForEach(b => bonus[b] = bonus[b] + 1);
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Full計算ボタンイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnSubFullAuto_Click(object sender, RoutedEventArgs e)
         {
             if (IsDeckLock())
@@ -7076,10 +6975,6 @@ namespace GirlFriendDeck
                     remainCards.Remove(row.ID);
                 }
 
-<<<<<<< HEAD
-=======
-                int maxCost = dsSetting.User[0].AtkCost;
->>>>>>> ebd62ab... no message
                 int totalCost = dsMainSelect.Card.Sum(r => r.コスト) + dsSubSelect.Card.Sum(r => r.コスト);
                 AutoCalcResult result = new AutoCalcResult()
                 {
@@ -7193,11 +7088,7 @@ namespace GirlFriendDeck
                     AddCalcCard = addCalcCard,
                     CardSelectionBonusInfo = cardSelectionBonusInfo,
                     DispCount = dispCount,
-<<<<<<< HEAD
                     MaxCost = costMax,
-=======
-                    MaxCost = maxCost,
->>>>>>> ebd62ab... no message
                     SubMax = subMax,
                     IdCardList = idCardList,
                     MainIds = mainIds,
@@ -7340,10 +7231,6 @@ namespace GirlFriendDeck
                     remainCards.Remove(row.ID);
                 }
 
-<<<<<<< HEAD
-=======
-                int maxCost = dsSetting.User[0].DefCost;
->>>>>>> ebd62ab... no message
                 int totalCost = dsMainSelect.Card.Sum(r => r.コスト) + dsSubSelect.Card.Sum(r => r.コスト);
                 AutoCalcResult result = new AutoCalcResult()
                 {
@@ -7459,11 +7346,7 @@ namespace GirlFriendDeck
                     AddCalcCard = addCalcCard,
                     CardSelectionBonusInfo = cardSelectionBonusInfo,
                     DispCount = dispCount,
-<<<<<<< HEAD
                     MaxCost = costMax,
-=======
-                    MaxCost = maxCost,
->>>>>>> ebd62ab... no message
                     SubMax = subMax,
                     IdCardList = idCardList,
                     MainIds = mainIds,
@@ -7643,97 +7526,14 @@ namespace GirlFriendDeck
 
         #endregion
 
-        private void AddSelect(string id, DsSelectCard dsSelect)
-        {
-            DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == id);
-            if (cardRow != null)
-            {
-                DsSelectCard.CardRow addRow = dsSelect.Card.NewCardRow();
-
-                SetSelectCardRow(id, addRow, cardRow);
-
-                dsSelect.Card.AddCardRow(addRow);
-
-                //デッキカードから取り除く
-                DsDeckCard.DeckCardRow deckCardRow = dsDeckCard.DeckCard.FirstOrDefault(r => r.ID == id);
-                if (deckCardRow != null)
-                {
-                    dsDeckCard.DeckCard.RemoveDeckCardRow(deckCardRow);
-                }
-            }
-        }
-
-        private void AddCmpSelect(string id, DsSelectCard dsCmp)
-        {
-            DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == id);
-            if (cardRow != null)
-            {
-                DsSelectCard.CardRow addRow = dsCmp.Card.NewCardRow();
-
-                SetSelectCardRow(id, addRow, cardRow);
-
-                dsCmp.Card.AddCardRow(addRow);
-            }
-        }
-
-        private void SetSelectCardRow(string id, DsSelectCard.CardRow addRow, DsCards.CardsRow cardRow)
-        {
-            DsGirls.GirlsRow addGilrsRow = girlsList[cardRow.名前];
-            DsDispCard.DispCardRow dispRow = dsDispCard.DispCard.FirstOrDefault(r => r.ID == id);
-
-            addRow.ID = id;
-            addRow.名前 = GetDispName(cardRow);
-            addRow.姓名 = GetSortName(cardRow);
-            addRow.なまえ = addGilrsRow.なまえ;
-            addRow.Name = addGilrsRow.Name;
-            addRow.属性 = addGilrsRow.属性;
-            addRow.レア = cardRow.レア;
-            addRow.進展 = cardRow.進展;
-<<<<<<< HEAD
-            addRow.好感度 = cardRow.好感度;
-            addRow.Lv = cardRow.Lv;
-            addRow.成長 = cardRow.成長;
-=======
-            addRow.Lv = cardRow.Lv;
->>>>>>> ebd62ab... no message
-            addRow.スキル = GetSkillName(cardRow);
-            addRow.コスト = cardRow.コスト;
-            addRow.攻スキル = GetAtkSkillPower(cardRow);
-            addRow.守スキル = GetDefSkillPower(cardRow);
-            addRow.ボーナス = cardRow.ボーナス有無 ? cardRow.ボーナス : 0;
-            addRow.スペシャル = cardRow.スペシャル;
-            addRow.応援値 = (IsAttack()) ? cardRow.攻援 : cardRow.守援;
-<<<<<<< HEAD
-            addRow.コスパ = (int)(addRow.応援値 / cardRow.コスト);
-=======
->>>>>>> ebd62ab... no message
-            addRow.部活 = addGilrsRow.部室;
-            addRow.攻選抜ボーナス1 = addGilrsRow.攻援1;
-            addRow.攻選抜ボーナス2 = addGilrsRow.攻援2;
-            addRow.攻選抜ボーナス3 = addGilrsRow.攻援3;
-            addRow.守選抜ボーナス1 = addGilrsRow.守援1;
-            addRow.守選抜ボーナス2 = addGilrsRow.守援2;
-            addRow.守選抜ボーナス3 = addGilrsRow.守援3;
-            addRow.選抜選択 = IsSelectionBonusSelection(addRow);
-            addRow.ダミー = cardRow.ダミー;
-            addRow.フリー1 = cardRow.フリー1;
-            addRow.フリー2 = cardRow.フリー2;
-            addRow.フリー3 = cardRow.フリー3;
-            addRow.画像 = dispRow.画像;
-        }
-
         #region デッキ
-<<<<<<< HEAD
         /// <summary>
         /// デッキ読み込み
         /// </summary>
         /// <param name="calc"></param>
         /// <param name="loadNumber"></param>
-=======
->>>>>>> ebd62ab... no message
         private void LoadDeckNumber(CalcType calc, int loadNumber)
         {
-
             DsDeckInfo.DeckInfoRow loadRow = deckInfo.DeckInfo.FirstOrDefault(r => r.Number == loadNumber && r.Type == calcType.ToString());
             DsUserDeck loadDeck = new DsUserDeck();
             string loadFileName = GetDeckNumberName(calc, loadNumber);
@@ -7748,9 +7548,11 @@ namespace GirlFriendDeck
             }
             ChkDeckLock.IsChecked = loadRow.Lock;
             TxtDeckName.Text = loadRow.Name;
-<<<<<<< HEAD
             ChkDeckCostLimited.IsChecked = loadRow.IsCostLimited;
             TxtDeckLimitedCost.Text = loadRow.LimitedCost.ToString();
+            isEvent = false;
+            CmbDeckDisplay.SelectedValue = loadRow.DisplayIndex;
+            isEvent = true;
 
             //最大コスト設定
             if (loadRow.IsCostLimited)
@@ -7761,8 +7563,6 @@ namespace GirlFriendDeck
             {
                 costMax = GetCostMax();
             }
-=======
->>>>>>> ebd62ab... no message
 
             LblMainInfo.Content = dsMainSelect.Card.Count.ToString();
             SetSubInfo(dsSubSelect.Card.Count);
@@ -7770,14 +7570,11 @@ namespace GirlFriendDeck
             ReCalcAll();
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// デッキ保存
         /// </summary>
         /// <param name="calc"></param>
         /// <param name="currentNumber"></param>
-=======
->>>>>>> ebd62ab... no message
         private void SaveDeckNumber(CalcType calc, int currentNumber)
         {
             DsDeckInfo.DeckInfoRow saveRow = deckInfo.DeckInfo.FirstOrDefault(r => r.Number == currentNumber && r.Type == calc.ToString());
@@ -7792,7 +7589,6 @@ namespace GirlFriendDeck
                 deckInfoRow.MainCount = dsMainSelect.Card.Count;
                 deckInfoRow.SubCount = dsSubSelect.Card.Count;
                 deckInfo.WriteXml(Utility.GetFilePath("deckinfo.xml"));
-
             }
         }
 
@@ -7801,6 +7597,10 @@ namespace GirlFriendDeck
             return Path.Combine(Utility.GetFilePath("Deck"), calcName[calc] + "Deck_" + number.ToString() + ".xml");
         }
 
+        /// <summary>
+        /// Deckロック判定
+        /// </summary>
+        /// <returns></returns>
         private bool IsDeckLock()
         {
             int currentNumber = (int)CmbDeck.SelectedValue;
@@ -7810,6 +7610,17 @@ namespace GirlFriendDeck
                 return row.Lock;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Deck表示順コンボボックス作成
+        /// </summary>
+        /// <param name="calc"></param>
+        private void CreateDeckDisplayIndex(CalcType calc)
+        {
+            isEvent = false;
+            CmbDeckDisplay.ItemsSource = Enumerable.Range(1, deckInfo.DeckInfo.Where(r =>r.Type == calcType.ToString()).Max(r => r.DisplayIndex));
+            isEvent = true;
         }
         #endregion
 
@@ -8357,5 +8168,6 @@ namespace GirlFriendDeck
             return null;
         }
         #endregion
+
     }
 }

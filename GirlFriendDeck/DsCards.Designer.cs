@@ -289,17 +289,12 @@ namespace GirlFriendDeck {
             
             private global::System.Data.DataColumn columnLv;
             
-<<<<<<< HEAD
             private global::System.Data.DataColumn column成長;
             
             private global::System.Data.DataColumn column進展;
             
             private global::System.Data.DataColumn column好感度;
             
-=======
-            private global::System.Data.DataColumn column進展;
-            
->>>>>>> ebd62ab... no message
             private global::System.Data.DataColumn columnコスト;
             
             private global::System.Data.DataColumn column攻援;
@@ -405,7 +400,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public global::System.Data.DataColumn 成長Column {
                 get {
                     return this.column成長;
@@ -414,8 +408,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public global::System.Data.DataColumn 進展Column {
                 get {
                     return this.column進展;
@@ -424,7 +416,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public global::System.Data.DataColumn 好感度Column {
                 get {
                     return this.column好感度;
@@ -433,8 +424,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public global::System.Data.DataColumn コストColumn {
                 get {
                     return this.columnコスト;
@@ -596,13 +585,9 @@ namespace GirlFriendDeck {
                         string 種別, 
                         string レア, 
                         int Lv, 
-<<<<<<< HEAD
                         int 成長, 
                         int 進展, 
                         int 好感度, 
-=======
-                        int 進展, 
->>>>>>> ebd62ab... no message
                         int コスト, 
                         int 攻援, 
                         int 守援, 
@@ -625,13 +610,9 @@ namespace GirlFriendDeck {
                         種別,
                         レア,
                         Lv,
-<<<<<<< HEAD
                         成長,
                         進展,
                         好感度,
-=======
-                        進展,
->>>>>>> ebd62ab... no message
                         コスト,
                         攻援,
                         守援,
@@ -674,13 +655,9 @@ namespace GirlFriendDeck {
                 this.column種別 = base.Columns["種別"];
                 this.columnレア = base.Columns["レア"];
                 this.columnLv = base.Columns["Lv"];
-<<<<<<< HEAD
                 this.column成長 = base.Columns["成長"];
                 this.column進展 = base.Columns["進展"];
                 this.column好感度 = base.Columns["好感度"];
-=======
-                this.column進展 = base.Columns["進展"];
->>>>>>> ebd62ab... no message
                 this.columnコスト = base.Columns["コスト"];
                 this.column攻援 = base.Columns["攻援"];
                 this.column守援 = base.Columns["守援"];
@@ -711,17 +688,12 @@ namespace GirlFriendDeck {
                 base.Columns.Add(this.columnレア);
                 this.columnLv = new global::System.Data.DataColumn("Lv", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLv);
-<<<<<<< HEAD
                 this.column成長 = new global::System.Data.DataColumn("成長", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column成長);
                 this.column進展 = new global::System.Data.DataColumn("進展", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column進展);
                 this.column好感度 = new global::System.Data.DataColumn("好感度", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column好感度);
-=======
-                this.column進展 = new global::System.Data.DataColumn("進展", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.column進展);
->>>>>>> ebd62ab... no message
                 this.columnコスト = new global::System.Data.DataColumn("コスト", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnコスト);
                 this.column攻援 = new global::System.Data.DataColumn("攻援", typeof(int), null, global::System.Data.MappingType.Element);
@@ -974,7 +946,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public int 成長 {
                 get {
                     try {
@@ -991,8 +962,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public int 進展 {
                 get {
                     try {
@@ -1009,7 +978,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public int 好感度 {
                 get {
                     try {
@@ -1026,8 +994,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public int コスト {
                 get {
                     try {
@@ -1328,7 +1294,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public bool Is成長Null() {
                 return this.IsNull(this.tableCards.成長Column);
             }
@@ -1341,8 +1306,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public bool Is進展Null() {
                 return this.IsNull(this.tableCards.進展Column);
             }
@@ -1355,7 +1318,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-<<<<<<< HEAD
             public bool Is好感度Null() {
                 return this.IsNull(this.tableCards.好感度Column);
             }
@@ -1368,8 +1330,6 @@ namespace GirlFriendDeck {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-=======
->>>>>>> ebd62ab... no message
             public bool IsコストNull() {
                 return this.IsNull(this.tableCards.コストColumn);
             }

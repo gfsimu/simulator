@@ -103,14 +103,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsYellMember.xsd</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="DsYellTarget.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DsYellTarget.xsd</DependentUpon>
     </Compile>
-=======
->>>>>>> ebd62ab... no message
     <Compile Include="YellSet.xaml.cs">
       <DependentUpon>YellSet.xaml</DependentUpon>
     </Compile>
@@ -257,7 +254,6 @@
     <None Include="DsYellMember.xss">
       <DependentUpon>DsYellMember.xsd</DependentUpon>
     </None>
-<<<<<<< HEAD
     <None Include="DsYellTarget.xsc">
       <DependentUpon>DsYellTarget.xsd</DependentUpon>
     </None>
@@ -269,8 +265,6 @@
     <None Include="DsYellTarget.xss">
       <DependentUpon>DsYellTarget.xsd</DependentUpon>
     </None>
-=======
->>>>>>> ebd62ab... no message
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -29,26 +29,26 @@
 
         <DataGrid x:Name="DgColumnAll" Margin="6,2" Grid.Row="2" MouseLeftButtonUp="Dg_MouseLeftButtonUp"  CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
+                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"  ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
                 <DataGridTextColumn Width="100" Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="DgColumnAtk" Margin="6,2" Grid.Row="2" Grid.Column="1" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
-                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"  ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
+                <DataGridTextColumn Width="100" Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="DgColumnDef" Margin="6,2" Grid.Row="2" Grid.Column="2" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
-                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"  ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
+                <DataGridTextColumn Width="100" Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="DgColumnEvent" Margin="6,2" Grid.Row="2" Grid.Column="3" MouseLeftButtonUp="Dg_MouseLeftButtonUp" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"/>
-                <DataGridTextColumn Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Width="34" Header="表示" Binding="{Binding Visibility}" IsReadOnly="True" CellStyle="{StaticResource CenterCell}"  ElementStyle="{StaticResource DataGridCheckBoxStyle}"/>
+                <DataGridTextColumn Width="100" Header="項目" Binding="{Binding ColumnName}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

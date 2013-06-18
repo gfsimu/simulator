@@ -42,11 +42,8 @@ namespace GirlFriendYell
         private DsYellDispCards dsDispCards = new DsYellDispCards();
         private DsYellDispList dsYellDispList = new DsYellDispList();
 
-<<<<<<< HEAD
         private DsYellTarget dsYellTarget = new DsYellTarget();
 
-=======
->>>>>>> ebd62ab... no message
         private TargetInfo targetInfo = new TargetInfo();
         private TargetInfo targetInfoResult = new TargetInfo();
 
@@ -96,13 +93,10 @@ namespace GirlFriendYell
             CmbFreeRank.ItemsSource = new Dictionary<int, string> { { 1, "1" }, { 2, "2" }, { 3, "3" } };
             CmbFreeRank.SelectedIndex = 0;
 
-<<<<<<< HEAD
             CmbCardGirlFavor.SelectedValuePath = "Key";
             CmbCardGirlFavor.DisplayMemberPath = "Value";
             CmbCardGirlFavor.ItemsSource = new Dictionary<int, string> { { 1, "1" }, { 2, "2" }, { 3, "3" }, { 4, "4" }, { 5, "5" } };
 
-=======
->>>>>>> ebd62ab... no message
             CmbFreeAttr.SelectedValuePath = "Key";
             CmbFreeAttr.DisplayMemberPath = "Value";
             CmbFreeAttr.ItemsSource = attrList;
@@ -147,7 +141,6 @@ namespace GirlFriendYell
             if (File.Exists(Utility.GetFilePath("yellcards.xml")))
             {
                 dsYellCards.ReadXml(Utility.GetFilePath("yellcards.xml"));
-<<<<<<< HEAD
                 #region 互換対応
                 bool isChange = false;
                 if (dsYellCards.Cards.Count > 0 && dsYellCards.Cards[0].Is好感度Null())
@@ -180,8 +173,6 @@ namespace GirlFriendYell
                 }
                 #endregion
 
-=======
->>>>>>> ebd62ab... no message
                 dsDispCards.Clear();
                 cardsList.Clear();
                 foreach (DsYellCards.CardsRow cardRow in dsYellCards.Cards)
@@ -277,10 +268,6 @@ namespace GirlFriendYell
 
             TBtnListExp.IsChecked = true;
             CreateExpList(ExpType.Normal);
-<<<<<<< HEAD
-=======
-            CreateSkillUpList();
->>>>>>> ebd62ab... no message
         }
 
         #endregion
@@ -580,7 +567,6 @@ namespace GirlFriendYell
         /// </summary>
         private void ReCalcAll()
         {
-<<<<<<< HEAD
             //元総経験値
             int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
             int progress = targetInfo.Progress;
@@ -588,8 +574,6 @@ namespace GirlFriendYell
             if (maxLv == targetInfo.Lv) progress = 0;
             targetInfo.TotalExp = YellUtility.GetTotalExp(targetInfo.Lv, progress);
 
-=======
->>>>>>> ebd62ab... no message
             foreach (TabItem tab in TabYellMember.Items)
             {
                 YellSet yellSet = tab.Content as YellSet;
@@ -598,13 +582,10 @@ namespace GirlFriendYell
                 yellSet.CalcYell();
             }
 
-<<<<<<< HEAD
             int resultProgress = targetInfoResult.Progress;
             if (maxLv == targetInfoResult.Lv) resultProgress = 0;
             targetInfoResult.TotalExp = YellUtility.GetTotalExp(targetInfoResult.Lv, resultProgress);
 
-=======
->>>>>>> ebd62ab... no message
             ShowResult();
         }
 
@@ -619,14 +600,11 @@ namespace GirlFriendYell
                 ((TabYellMember.Items[i] as TabItem).Content as YellSet).CalcYell();
             }
 
-<<<<<<< HEAD
             int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
             int resultProgress = targetInfoResult.Progress;
             if (maxLv == targetInfoResult.Lv) resultProgress = 0;
             targetInfoResult.TotalExp = YellUtility.GetTotalExp(targetInfoResult.Lv, resultProgress);
 
-=======
->>>>>>> ebd62ab... no message
             ShowResult();
         }
         #endregion
@@ -1133,17 +1111,12 @@ namespace GirlFriendYell
 
         #region 対象情報変更
         /// <summary>
-<<<<<<< HEAD
         /// 目標ボタン
-=======
-        /// 目安ボタン
->>>>>>> ebd62ab... no message
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnBaseTarget_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
             this.PopBaseTarget.IsOpen = !this.PopBaseTarget.IsOpen;
             if (this.PopBaseTarget.IsOpen)
             {
@@ -1160,10 +1133,14 @@ namespace GirlFriendYell
                 LblPopBaseTargetCurrentProgress.Content = targetInfoResult.Progress;
                 LblPopBaseTargetCurrentExp.Content = targetInfoResult.TotalExp;
 
-
                 //ターゲット情報
                 int maxLv =  YellUtility.GetMaxLv(targetInfo.Rare);
                 TxtPopBaseTargetTargetLv.Text =maxLv.ToString();
+
+                //Silder                
+                SldPopBaseTargetTargetLv.Minimum = 1;
+                SldPopBaseTargetTargetLv.Maximum = maxLv;
+                SldPopBaseTargetTargetLv.SmallChange = 1;
 
                 int targetExp = YellUtility.GetTotalExp(maxLv, 0);
                 LblPopBaseTargetTargetExp.Content = targetExp;
@@ -1186,9 +1163,9 @@ namespace GirlFriendYell
         private void CalcTarget()
         {
             int targetLv;
-            if (int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
+            if (int.TryParse(TxtPopBaseTargetTargetLv.Text.Trim().TrimStart('0'), out targetLv))
             {
-
+                if (targetLv == 0) targetLv = 1;
                 int targetExp = YellUtility.GetTotalExp(targetLv, 0);
 
                 int needExp =0;
@@ -1269,23 +1246,49 @@ namespace GirlFriendYell
         /// <param name="e"></param>
         private void TxtPopBaseTargetTargetLv_LostFocus(object sender, RoutedEventArgs e)
         {
-            int targetLv;
-            if (int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
+
+        }
+
+        /// <summary>
+        /// 目標Lv変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtPopBaseTargetTargetLv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isEvent)
             {
+                int targetLv;
+                if (int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
+                {
+                    if (targetLv == 0) targetLv = 1;
+                    int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+                    if (targetLv > maxLv) targetLv = maxLv;
 
-                int targetExp = YellUtility.GetTotalExp(targetLv, 0);
-                LblPopBaseTargetTargetExp.Content = targetExp;
+                    int targetExp = YellUtility.GetTotalExp(targetLv, 0);
+                    LblPopBaseTargetTargetExp.Content = targetExp;
 
-                CalcTarget();
+                    if (SldPopBaseTargetTargetLv.Value != targetLv)
+                    {
+                        isEvent = false;
+                        SldPopBaseTargetTargetLv.Value = targetLv;
+                        isEvent = true;
+                    }
 
-            }
-            else
-            {
-                LblPopBaseTargetTargetExp.Content = "0";
+                    CalcTarget();
+                }
+                else
+                {
+                    LblPopBaseTargetTargetExp.Content = "0";
 
-                LblPopBaseTargetNeedExp.Content = "0";
+                    LblPopBaseTargetNeedExp.Content = "0";
 
-                CalcTarget();
+                    isEvent = false;
+                    SldPopBaseTargetTargetLv.Value = 0;
+                    isEvent = true;
+
+                    CalcTarget();
+                }
             }
         }
 
@@ -1313,8 +1316,6 @@ namespace GirlFriendYell
 
             //枚数計算
             CalcTarget();
-=======
->>>>>>> ebd62ab... no message
 
         }
 
@@ -1733,7 +1734,6 @@ namespace GirlFriendYell
 
                 foreach (DsCards.CardsRow cardRow in dsCards.Cards)
                 {
-<<<<<<< HEAD
                     DsYellCards.CardsRow yellCardRow = dsYellCards.Cards.FirstOrDefault(r => !r.IsDeckIDNull() && r.DeckID == cardRow.ID);
                     if (cardRow.Is好感度Null())
                     {
@@ -1750,9 +1750,6 @@ namespace GirlFriendYell
                             cardRow.好感度 = 1;
                         }
                     }
-=======
-                    DsYellCards.CardsRow yellCardRow = dsYellCards.Cards.FirstOrDefault(r => r.DeckID == cardRow.ID);
->>>>>>> ebd62ab... no message
                     if (yellCardRow != null)
                     {
                         //更新
@@ -1761,10 +1758,7 @@ namespace GirlFriendYell
                     }
                     else
                     {
-<<<<<<< HEAD
 
-=======
->>>>>>> ebd62ab... no message
                         //新規追加
                         dsYellCards.Cards.ImportRow(cardRow);
                         yellCardRow = dsYellCards.Cards[dsYellCards.Cards.Count - 1];
@@ -1772,7 +1766,6 @@ namespace GirlFriendYell
                         yellCardRow.CommonID = "D" + cardRow.ID;
                         yellCardRow.DeckID = cardRow.ID;
                         yellCardRow.YellID = string.Empty;
-<<<<<<< HEAD
 
                         //成長
                         int progress = 0;
@@ -1789,10 +1782,6 @@ namespace GirlFriendYell
 
                         //経験値の初期化
                         yellCardRow.経験値 = YellUtility.GetTotalExp(yellCardRow.Lv, progress);
-=======
-                        //経験値の初期化
-                        yellCardRow.経験値 = YellUtility.GetTotalExp(yellCardRow.Lv, 0);
->>>>>>> ebd62ab... no message
 
                         CreateDispCardRow(yellCardRow);
 
@@ -1831,10 +1820,7 @@ namespace GirlFriendYell
             CmbCardGirlRare.Text = row.レア;
             TxtCardGirlType.Text = row.種別;
             CmbCardGirlRank.Text = row.進展.ToString();
-<<<<<<< HEAD
             CmbCardGirlFavor.SelectedValue = row.好感度;
-=======
->>>>>>> ebd62ab... no message
             TxtCardGirlCost.Text = row.コスト.ToString();
             TxtCardGirlLv.Text = row.Lv.ToString();
             int progress = GetProgress(row);
@@ -1864,14 +1850,11 @@ namespace GirlFriendYell
             BtnCardUpd.IsEnabled = true;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 成長率取得
         /// </summary>
         /// <param name="row"></param>
         /// <returns></returns>
-=======
->>>>>>> ebd62ab... no message
         private static int GetProgress(DsYellCards.CardsRow row)
         {
             int progress;
@@ -1895,14 +1878,11 @@ namespace GirlFriendYell
             return progress;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// カード追加
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void BtnCardAdd_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1922,10 +1902,7 @@ namespace GirlFriendYell
                 cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
                 cardRow.種別 = TxtCardGirlType.Text;
                 cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
-<<<<<<< HEAD
                 cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-=======
->>>>>>> ebd62ab... no message
                 cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
                 cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
                 cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
@@ -2063,10 +2040,7 @@ namespace GirlFriendYell
                     cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
                     cardRow.種別 = TxtCardGirlType.Text;
                     cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
-<<<<<<< HEAD
                     cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-=======
->>>>>>> ebd62ab... no message
                     cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
                     cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
                     cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
@@ -2233,10 +2207,7 @@ namespace GirlFriendYell
             dispRow.成長 = progress;
             dispRow.経験値 = cardRow.経験値;
             dispRow.進展 = cardRow.進展;
-<<<<<<< HEAD
             dispRow.好感度 = cardRow.好感度;
-=======
->>>>>>> ebd62ab... no message
             dispRow.スキル = GetSkillName(cardRow);
             dispRow.攻スキル = GetAtkSkillPower(cardRow);
             dispRow.守スキル = GetDefSkillPower(cardRow);
@@ -2259,10 +2230,7 @@ namespace GirlFriendYell
             CmbCardGirlRank.Text = string.Empty;
             TxtCardGirlCost.Text = string.Empty;
             TxtCardGirlLv.Text = string.Empty;
-<<<<<<< HEAD
             CmbCardGirlFavor.SelectedValue = 1;
-=======
->>>>>>> ebd62ab... no message
             TxtCardGirlProgress.Text = "0";
             TxtCardGirlAtk.Text = string.Empty;
             TxtCardGirlDef.Text = string.Empty;
@@ -2428,10 +2396,7 @@ namespace GirlFriendYell
             TBtnListExpSame.IsChecked = false;
             TBtnListExpSuccess.IsChecked = false;
             TBtnListSkillUp.IsChecked = false;
-<<<<<<< HEAD
             TBtnListSkillUpNum.IsChecked = false;
-=======
->>>>>>> ebd62ab... no message
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
@@ -2440,24 +2405,18 @@ namespace GirlFriendYell
             CreateExpList(ExpType.Normal);
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 同属性時の取得経験値ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void TBtnListExpSame_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
             TBtnListExp.IsChecked = false;
             TBtnListExpSuccess.IsChecked = false;
             TBtnListSkillUp.IsChecked = false;
-<<<<<<< HEAD
             TBtnListSkillUpNum.IsChecked = false;
-=======
->>>>>>> ebd62ab... no message
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
@@ -2467,24 +2426,18 @@ namespace GirlFriendYell
 
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 大成功時の取得経験値ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void TBtnListExpSuccess_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
             TBtnListExpSame.IsChecked = false;
             TBtnListExp.IsChecked = false;
             TBtnListSkillUp.IsChecked = false;
-<<<<<<< HEAD
             TBtnListSkillUpNum.IsChecked = false;
-=======
->>>>>>> ebd62ab... no message
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
@@ -2494,21 +2447,17 @@ namespace GirlFriendYell
 
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// 声援Up率ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-=======
->>>>>>> ebd62ab... no message
         private void TBtnListSkillUp_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
             TBtnListExpSame.IsChecked = false;
             TBtnListExpSuccess.IsChecked = false;
             TBtnListExp.IsChecked = false;
-<<<<<<< HEAD
             TBtnListSkillUpNum.IsChecked = false;
 
             CreateSkillUpList();
@@ -2532,8 +2481,6 @@ namespace GirlFriendYell
             TBtnListSkillUp.IsChecked = false;
 
             CreateSkillUpNumList();
-=======
->>>>>>> ebd62ab... no message
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Collapsed;
@@ -2581,7 +2528,6 @@ namespace GirlFriendYell
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// 声援アップ枚数表作成
         /// </summary>
         private void CreateSkillUpNumList()
@@ -2633,9 +2579,6 @@ namespace GirlFriendYell
 
         /// <summary>
         /// 経験値取得表作成
-=======
-        /// 声援アップ率表作成
->>>>>>> ebd62ab... no message
         /// </summary>
         private void CreateExpList(ExpType expType)
         {
@@ -2709,9 +2652,6 @@ namespace GirlFriendYell
             }
         }
         #endregion
-<<<<<<< HEAD
-=======
 
->>>>>>> ebd62ab... no message
     }
 }

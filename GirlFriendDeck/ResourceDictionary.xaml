@@ -5,7 +5,6 @@
                 	xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
                     xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     >
-<<<<<<< HEAD
     <SolidColorBrush x:Key="DefaultForeground" Color="#FFDEDEDE" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="OverForeground" Color="#FFD83B1E" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="EmphasisForeground" Color="#FF1ED826" PresentationOptions:Freeze="True"/>
@@ -17,26 +16,12 @@
     <SolidColorBrush x:Key="AtkForeground" Color="#DDE04518" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="DefForeground" Color="#DD1886E0" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="EventForeground" Color="#DD18E033" PresentationOptions:Freeze="True"/>
-=======
-    <SolidColorBrush x:Key="DefaultForeground" Color="#FFDEDEDE"/>
-    <SolidColorBrush x:Key="OverForeground" Color="#FFD83B1E"/>
-    <SolidColorBrush x:Key="EmphasisForeground" Color="#FF1ED826"/>
-    <SolidColorBrush x:Key="WarnForeground" Color="#FFD8D01E"/>
-   
-    
-    <SolidColorBrush x:Key="FocusedBorder" Color="#FFC9DFEF"/>
-
-    <SolidColorBrush x:Key="AtkForeground" Color="#DDE04518"/>
-    <SolidColorBrush x:Key="DefForeground" Color="#DD1886E0"/>
-    <SolidColorBrush x:Key="EventForeground" Color="#DD18E033"/>
->>>>>>> ebd62ab... no message
     <!--SWEET:FF5384-->
     <!--POP:ff8432-->
     <!--COOL:007eea-->
     <!--<SolidColorBrush x:Key="SweetForeground" Color="#DDF04CAD"/>
     <SolidColorBrush x:Key="CoolForeground" Color="#DD36B4F0"/>
     <SolidColorBrush x:Key="PopForeground" Color="#DDE07C18"/>-->
-<<<<<<< HEAD
     <SolidColorBrush x:Key="SweetForeground" Color="#EDFF5384" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="CoolForeground" Color="#ED007efa" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="PopForeground" Color="#EDFF8432" PresentationOptions:Freeze="True"/>
@@ -49,17 +34,6 @@
     <SolidColorBrush x:Key="PopBackground" Color="#BBFF8432" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="YellSkillBackground" Color="#AAFF6633" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="OverBackground" Color="#FFD83B1E" PresentationOptions:Freeze="True"/>
-=======
-    <SolidColorBrush x:Key="SweetForeground" Color="#EDFF5384"/>
-    <SolidColorBrush x:Key="CoolForeground" Color="#ED007efa"/>
-    <SolidColorBrush x:Key="PopForeground" Color="#EDFF8432"/>
-
-    <SolidColorBrush x:Key="SweetBackground" Color="#BBFF5384"/>
-    <SolidColorBrush x:Key="CoolBackground" Color="#BB007eea"/>
-    <SolidColorBrush x:Key="PopBackground" Color="#BBFF8432"/>
-    <SolidColorBrush x:Key="YellSkillBackground" Color="#AAFF6633"/>
-    <SolidColorBrush x:Key="OverBackground" Color="#FFD83B1E"/>
->>>>>>> ebd62ab... no message
 
     <LinearGradientBrush x:Key="AtkBackground"  EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#44E04518" Offset="1"/>
@@ -79,11 +53,14 @@
         <GradientStop Offset="0.6" Color="#00018E07"/>
         <GradientStop Offset="0" Color="#00018E07"/>
     </LinearGradientBrush>
-<<<<<<< HEAD
-    <SolidColorBrush x:Key="WindowBackground" Color="#FF272829" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="#FF171819" PresentationOptions:Freeze="True"/>
     <LinearGradientBrush x:Key="DefaultBackground"  EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
-        <GradientStop Color="#FF323232" Offset="0"/>
-        <GradientStop Color="#FF313035" Offset="1"/>
+        <GradientStop Color="#FF2B2B2B" Offset="0"/>
+        <GradientStop Color="#FF212025" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DefaultDarkBackground"  EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
+        <GradientStop Color="#FF1C1C1C" Offset="0"/>
+        <GradientStop Color="#FF1C1C1C" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="ToggleOnColor" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
@@ -95,23 +72,6 @@
         <GradientStop Color="#FF474747" Offset="0"/>
         <GradientStop Color="#FF474747"/>
         <GradientStop Color="#FF474747" Offset="1"/>
-=======
-    <SolidColorBrush x:Key="WindowBackground" Color="#FF3B3B3B"/>
-    <LinearGradientBrush x:Key="DefaultBackground"  EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FF323232" Offset="0"/>
-        <GradientStop Color="#FF424242" Offset="1"/>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ToggleOnColor" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FFE0E0E0" Offset="0"/>
-        <GradientStop Color="#FF797C81"/>
-        <GradientStop Color="#FFB8B8B8" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ToggleOnBorderColor" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FFC7C7C7" Offset="0"/>
-        <GradientStop Color="#FFB4B4B4"/>
-        <GradientStop Color="#FFBFBFBF" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="IcnBrush" PresentationOptions:Freeze="True" StartPoint="0.60,1" EndPoint="0.4,0">
@@ -128,7 +88,6 @@
             <GradientStop Offset="1" Color="#FF444940" />
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
-<<<<<<< HEAD
     <LinearGradientBrush x:Key="IcnHeartBrush" PresentationOptions:Freeze="True" StartPoint="0.60,1" EndPoint="0.4,0">
         <LinearGradientBrush.GradientStops>
             <GradientStop Offset="0" Color="#FFFD789F" />
@@ -136,9 +95,6 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
     <DrawingBrush x:Key="IcoSearch" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoSearch" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -148,7 +104,6 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoLock" Stretch="Uniform">
         <DrawingBrush.Drawing>
             <DrawingGroup>
@@ -159,18 +114,6 @@
             </DrawingGroup>
         </DrawingBrush.Drawing>
     </DrawingBrush>
-=======
-        <DrawingBrush x:Key="IcoLock" Stretch="Uniform">
-            <DrawingBrush.Drawing>
-                <DrawingGroup>
-                    <DrawingGroup.Children>
-                    <GeometryDrawing Brush="{StaticResource IcnBrush}" Geometry="M 32,38.784C 32,39.7907 31.1827,40.6094 30.1746,40.6094L 6.74666,40.6094C 5.7373,40.6094 4.92131,39.7907 4.92131,38.784L 4.92131,15.356C 4.92131,14.348 5.7373,13.532 6.74666,13.532L 30.1746,13.532C 31.1827,13.532 32,14.348 32,15.356L 32,38.784 Z M 11.7986,9.47607C 11.816,5.81207 14.7906,2.84546 18.46,2.84546C 22.1279,2.84546 25.104,5.81207 25.1213,9.47607L 27.9679,9.47607C 27.9519,4.24005 23.7013,6.10352e-005 18.46,6.10352e-005C 13.2186,6.10352e-005 8.96928,4.24005 8.95329,9.47607L 11.7986,9.47607 Z M 11.792,14.5441L 8.95329,14.5441L 8.95329,9.47607L 11.792,9.47607L 11.792,14.5441 Z M 27.9679,14.5441L 25.1293,14.5441L 25.1293,9.47607L 27.9679,9.47607L 27.9679,14.5441 Z ">
-                        </GeometryDrawing>
-                    </DrawingGroup.Children>
-                </DrawingGroup>
-            </DrawingBrush.Drawing>
-        </DrawingBrush>
->>>>>>> ebd62ab... no message
 
     <DrawingBrush x:Key="IcoUnLock" Stretch="Uniform">
         <DrawingBrush.Drawing>
@@ -183,11 +126,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoAdd" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoAdd" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -197,11 +136,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoRemove" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoRemove" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -211,11 +146,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoStar" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoStar" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -226,12 +157,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoStarMin" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-
-    <DrawingBrush x:Key="IcoStarMin" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -242,11 +168,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoStay" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoStay" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -255,11 +177,7 @@
             </DrawingGroup>
         </DrawingBrush.Drawing>
     </DrawingBrush>
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoUp" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoUp" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -269,11 +187,7 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoRightArrorw" Stretch="Uniform" PresentationOptions:Freeze="True">
-=======
-    <DrawingBrush x:Key="IcoRightArrorw" Stretch="Uniform">
->>>>>>> ebd62ab... no message
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <DrawingGroup.Children>
@@ -284,7 +198,6 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-<<<<<<< HEAD
     <DrawingBrush x:Key="IcoHeartOn" Stretch="Uniform" PresentationOptions:Freeze="True">
         <DrawingBrush.Drawing>
             <DrawingGroup>
@@ -305,8 +218,6 @@
             </DrawingGroup>
         </DrawingBrush.Drawing>
     </DrawingBrush>
-=======
->>>>>>> ebd62ab... no message
 
     <Style x:Key="BdrShowDetailColumnCommon" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#99707070"/>
@@ -349,34 +260,33 @@
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
     </Style>
-<<<<<<< HEAD
 
 
-    <LinearGradientBrush x:Key="ColorCheckBoxBorder"  StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="ColorCheckBoxBorder"  StartPoint="0.5,0" EndPoint="0.5,1" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#AA091A3E" />
         <GradientStop Offset="1" Color="#AA091A3E" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckBoxOnBackground"  StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="ColorCheckBoxOnBackground"  StartPoint="0.5,0" EndPoint="0.5,1" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#EE1684F5" />
         <GradientStop Offset="1" Color="#EE1684F5" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckBoxOffBackground"  StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="ColorCheckBoxOffBackground"  StartPoint="0.5,0" EndPoint="0.5,1" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#779FB1C2" />
         <GradientStop Offset="1" Color="#779FB1C2" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckBoxBackgroundDisable" StartPoint="0.5,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="ColorCheckBoxBackgroundDisable" StartPoint="0.5,0" EndPoint="0.5,1" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#EE13151D" />
         <GradientStop Offset="1" Color="#EE13151D" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckMark"  StartPoint="0,0.5" EndPoint="1,0.5">
+    <LinearGradientBrush x:Key="ColorCheckMark"  StartPoint="0,0.5" EndPoint="1,0.5" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#EEEFEFEF" />
         <GradientStop Offset="1" Color="#EEEFEFEF" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckMarkOver"  StartPoint="0,0.5" EndPoint="1,0.5">
+    <LinearGradientBrush x:Key="ColorCheckMarkOver"  StartPoint="0,0.5" EndPoint="1,0.5" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#AAEFEFEF" />
         <GradientStop Offset="1" Color="#AAEFEFEF" />
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ColorCheckMarkDisable"  StartPoint="0,0.5" EndPoint="1,0.5">
+    <LinearGradientBrush x:Key="ColorCheckMarkDisable"  StartPoint="0,0.5" EndPoint="1,0.5" PresentationOptions:Freeze="True">
         <GradientStop Offset="0" Color="#66EFEFEF" />
         <GradientStop Offset="1" Color="#66EFEFEF" />
     </LinearGradientBrush>
@@ -454,39 +364,182 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" Value="{StaticResource ColorCheckBoxBackgroundDisable}" />
                         </MultiTrigger>
-=======
-    <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DefaultFocusVisual}"/>
-        <Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
-        <Setter Property="Cursor" Value ="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <BulletDecorator SnapsToDevicePixels="true" Background="Transparent">
-                        <BulletDecorator.Bullet>
-                            <Microsoft_Windows_Themes:BulletChrome Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" IsChecked="{TemplateBinding IsChecked}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}"/>
-                        </BulletDecorator.Bullet>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
-                    </BulletDecorator>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="HasContent" Value="true">
-                            <Setter Property="FocusVisualStyle" Value="{StaticResource DefaultFocusVisual}"/>
-                            <Setter Property="Padding" Value="4,0,0,0"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                        </Trigger>
->>>>>>> ebd62ab... no message
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-<<<<<<< HEAD
 
+    <Style x:Key="DataGridCheckBoxStyle" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+    </Style>
 
-=======
->>>>>>> ebd62ab... no message
+    <SolidColorBrush x:Key="SliderThumbHoverBackground" Color="#FF86ECFF"/>
+    <SolidColorBrush x:Key="SliderThumbHoverBorder" Color="#FF86ECFF"/>
+
+    <SolidColorBrush x:Key="SliderThumbPressedBackground" Color="#FF0193B4"/>
+    <SolidColorBrush x:Key="SliderThumbPressedBorder" Color="#FF0193B4"/>
+    <SolidColorBrush x:Key="SliderTrackNormalBackground" Color="#FF5B5B5B"/>
+    <SolidColorBrush x:Key="SliderTrackNormalBorder" Color="#FF212324"/>
+    <SolidColorBrush x:Key="SliderSelectBackground" Color="#FF2369FE"/>
+    <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HorizontalSliderSelectRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Rectangle Fill="Transparent"/>
+                        <Border x:Name="TrackBackground" Margin="5,0,-5,0" VerticalAlignment="center" Height="10.0" Background="{StaticResource SliderSelectBackground}" BorderBrush="#00000000" BorderThickness="1" CornerRadius="3"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="VerticalSliderSelectRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Grid>
+                        <Rectangle Fill="Transparent"/>
+                        <Border x:Name="TrackBackground" Margin="0,-5,0,5" HorizontalAlignment="center" Width="10.0" Background="{StaticResource SliderSelectBackground}" BorderBrush="#00000000" BorderThickness="1" CornerRadius="3"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Foreground" Value="#FF2369FE"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse SnapsToDevicePixels="true" Fill="{TemplateBinding Foreground}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource SliderThumbHoverBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="true">
+                            <Setter Property="Foreground" Value="{StaticResource SliderThumbPressedBorder}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#FFAEB1AF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Slider}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#FF3484A4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Border SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border x:Name="TrackBackground" Margin="5,0" VerticalAlignment="center" Height="8.0" Background="{StaticResource SliderTrackNormalBackground}" BorderBrush="{StaticResource SliderTrackNormalBackground}" BorderThickness="1" CornerRadius="3" Grid.Row="1">
+                                <Canvas Margin="-6,-1">
+                                    <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" StrokeThickness="1.0" Height="8.0" Visibility="Hidden"/>
+                                </Canvas>
+                            </Border>
+                            <TickBar x:Name="TopTick" Height="8" Visibility="Visible" Grid.Row="1" Fill="{TemplateBinding Foreground}" Placement="Top"/>
+                            <Track x:Name="PART_Track" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource HorizontalSliderSelectRepeatButtonStyle}" Command="{x:Static Slider.DecreaseLarge}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource SliderRepeatButtonStyle}" Command="{x:Static Slider.IncreaseLarge}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Style="{StaticResource SliderThumbStyle}"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                            <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Slider}">
+                            <Border SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border x:Name="TrackBackground" HorizontalAlignment="center" Margin="0,5" Width="8.0" Background="{StaticResource SliderTrackNormalBackground}" BorderBrush="{StaticResource SliderTrackNormalBorder}" BorderThickness="1" CornerRadius="3" Grid.Column="1">
+                                        <Canvas Margin="-1,-6">
+                                            <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" StrokeThickness="1.0" Width="4.0" Visibility="Hidden"/>
+                                        </Canvas>
+                                    </Border>
+                                    <TickBar x:Name="TopTick" Width="8" Visibility="Collapsed" Grid.Column="1" Fill="{TemplateBinding Foreground}" Placement="Left"/>
+                                    <Track x:Name="PART_Track" Grid.Column="1">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource VerticalSliderSelectRepeatButtonStyle}" Command="{x:Static Slider.DecreaseLarge}"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource SliderRepeatButtonStyle}" Command="{x:Static Slider.IncreaseLarge}"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Style="{StaticResource SliderThumbStyle}"/>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TickPlacement" Value="Both">
+                                    <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type GroupBox}">
         <Setter Property="Foreground" Value="{StaticResource DefaultForeground}"/>
         <Setter Property="BorderBrush" Value="#FFD5DFE5"/>
@@ -502,11 +555,7 @@
         <Setter Property="CanUserResizeRows" Value="False"/>
         <Setter Property="RowDetailsVisibilityMode" Value="Collapsed"/>
         <Setter Property="HorizontalGridLinesBrush" Value="#FF2D2E43"/>
-<<<<<<< HEAD
         <Setter Property="VerticalGridLinesBrush" Value="#AA8F8991"/>
-=======
-        <Setter Property="VerticalGridLinesBrush" Value="#FF0F0931"/>
->>>>>>> ebd62ab... no message
         <Setter Property="HeadersVisibility" Value="Column"/>
     </Style>
     <SolidColorBrush x:Key="ColorToolTipBackground"
@@ -570,34 +619,20 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
         <GradientStop Color="#FF474747" Offset="0"/>
-<<<<<<< HEAD
         <GradientStop Color="#FF474747" Offset="1"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonDisableBackground" EndPoint="0,1" StartPoint="0,0">
+    <LinearGradientBrush x:Key="ButtonDisableBackground" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
         <GradientStop Color="#FF272727" Offset="1"/>
         <GradientStop Color="#FF272727" Offset="0"/>
-=======
-        <GradientStop Color="#FF6E6E6E" Offset="1"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonDisableBackground" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FF171717" Offset="1"/>
-        <GradientStop Color="#FF2E2E2E" Offset="0"/>
->>>>>>> ebd62ab... no message
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF9F9F9F"/>
-    <SolidColorBrush x:Key="ButtonNormalForeground" Color="#FFE2E2E2"/>
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF9F9F9F" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="ButtonNormalForeground" Color="#FFE2E2E2" PresentationOptions:Freeze="True"/>
     <LinearGradientBrush x:Key="CoolColor" EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
         <GradientStop Color="#FF007eea" Offset="0"/>
         <GradientStop Color="#FF007eea"/>
         <GradientStop Color="#FF007eea" Offset="1"/>
-=======
-        <GradientStop Color="#FFF3F3F3" Offset="0"/>
-        <GradientStop Color="#FF007eea"/>
-        <GradientStop Color="#FF618ACD" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="CoolBorderColor" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -605,15 +640,9 @@
         <GradientStop Color="#FF0019CC" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="SweetColor" EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
         <GradientStop Color="#FFA83052" Offset="0"/>
         <GradientStop Color="#FFA83052"/>
         <GradientStop Color="#FFA83052" Offset="1"/>
-=======
-        <GradientStop Color="#FFF3F3F3" Offset="0"/>
-        <GradientStop Color="#FFFF5384"/>
-        <GradientStop Color="#FFD077A8" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="SweetBorderColor" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -621,15 +650,9 @@
         <GradientStop Color="#FFDE067D" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="PopColor" EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
         <GradientStop Color="#FFFF8432" Offset="0"/>
         <GradientStop Color="#FFFF8432"/>
         <GradientStop Color="#FFFF8432" Offset="1"/>
-=======
-        <GradientStop Color="#FFF3F3F3" Offset="0"/>
-        <GradientStop Color="#FFFF8432"/>
-        <GradientStop Color="#FFCD9861" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="PopBorderColor" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -637,45 +660,26 @@
         <GradientStop Color="#FFDC9005" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="AllColor" EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
         <GradientStop Color="#FF9CA0A6" Offset="0"/>
         <GradientStop Color="#FF9CA0A6"/>
         <GradientStop Color="#FF9CA0A6" Offset="1"/>
-=======
-        <GradientStop Color="#FFF3F3F3" Offset="0"/>
-        <GradientStop Color="#FF8B8F95"/>
-        <GradientStop Color="#FFC3C7CE" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="AllBorderColor" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FFF3F3F3" Offset="0"/>
         <GradientStop Color="#FFD6D6D6"/>
         <GradientStop Color="#FFE9E9E9" Offset="1"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonRedBackground" EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
+    <LinearGradientBrush x:Key="ButtonRedBackground" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
         <GradientStop Color="#FFB42855" Offset="0"/>
         <GradientStop Color="#FFB42855" Offset="1"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonBlueBackground" EndPoint="0,1" StartPoint="0,0">
+    <LinearGradientBrush x:Key="ButtonBlueBackground" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
         <GradientStop Color="#FF2F4FE2" Offset="0"/>
         <GradientStop Color="#FF2F4FE2" Offset="1"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonGreenBackground" EndPoint="0,1" StartPoint="0,0">
+    <LinearGradientBrush x:Key="ButtonGreenBackground" EndPoint="0,1" StartPoint="0,0" PresentationOptions:Freeze="True">
         <GradientStop Color="#FF1D8B36" Offset="0"/>
         <GradientStop Color="#FF1D8B36" Offset="1"/>
-=======
-        <GradientStop Color="#FFDC74A9" Offset="0"/>
-        <GradientStop Color="#FFB1335F" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonBlueBackground" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FF7674DC" Offset="0"/>
-        <GradientStop Color="#FF1A9EAB" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonGreenBackground" EndPoint="0,1" StartPoint="0,0">
-        <GradientStop Color="#FF74DC90" Offset="0"/>
-        <GradientStop Color="#FF21AB1A" Offset="1"/>
->>>>>>> ebd62ab... no message
     </LinearGradientBrush>
     <Style TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
@@ -685,11 +689,7 @@
         <Setter Property="Foreground" Value="{StaticResource ButtonNormalForeground}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-<<<<<<< HEAD
         <Setter Property="Padding" Value="0"/>
-=======
-        <Setter Property="Padding" Value="1"/>
->>>>>>> ebd62ab... no message
         <Setter Property="Cursor" Value ="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -1147,12 +1147,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Right"/>
         <Setter Property="Background" Value="#772F2F2F"/>
     </Style>
-
-<<<<<<< HEAD
+    
     <Style x:Key="AtkCell" TargetType="DataGridCell" BasedOn="{StaticResource NumberCell}">
-=======
-    <Style x:Key="AtkCell" TargetType="DataGridCell" BasedOn="{StaticResource NumberCell}"> 
->>>>>>> ebd62ab... no message
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -1180,14 +1176,11 @@
             <DataTrigger Binding="{Binding 攻スキル}" Value="0">
                 <Setter Property="Background" Value="#00000000"/>
             </DataTrigger>
-<<<<<<< HEAD
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="BorderBrush" Value="#EE202020"/>
                 <Setter Property="Background" Value="#EE202020"/>
                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
             </Trigger>
-=======
->>>>>>> ebd62ab... no message
         </Style.Triggers>
     </Style>
     <Style x:Key="DefSkillCell" TargetType="DataGridCell" BasedOn="{StaticResource CenterCell}">
@@ -1196,14 +1189,11 @@
             <DataTrigger Binding="{Binding 守スキル}" Value="0">
                 <Setter Property="Background" Value="#00000000"/>
             </DataTrigger>
-<<<<<<< HEAD
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="BorderBrush" Value="#EE202020"/>
                 <Setter Property="Background" Value="#EE202020"/>
                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
             </Trigger>
-=======
->>>>>>> ebd62ab... no message
         </Style.Triggers>
     </Style>
 
@@ -1215,13 +1205,10 @@
             <DataTrigger Binding="{Binding ボーナス}" Value="0">
                 <Setter Property="Foreground" Value="#00000000"/>
             </DataTrigger>
-<<<<<<< HEAD
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="BorderBrush" Value="#EE202020"/>
                 <Setter Property="Background" Value="#EE202020"/>
             </Trigger>
-=======
->>>>>>> ebd62ab... no message
         </Style.Triggers>
     </Style>
     <Style x:Key="SpecialCell" TargetType="DataGridCell" BasedOn="{StaticResource CenterCell}">
@@ -1229,13 +1216,10 @@
             <DataTrigger Binding="{Binding スペシャル}" Value="0">
                 <Setter Property="Foreground" Value="#00000000"/>
             </DataTrigger>
-<<<<<<< HEAD
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="BorderBrush" Value="#EE202020"/>
                 <Setter Property="Background" Value="#EE202020"/>
             </Trigger>
-=======
->>>>>>> ebd62ab... no message
         </Style.Triggers>
     </Style>
 
@@ -1325,11 +1309,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding 進展}"  Value="1">
-<<<<<<< HEAD
                             <Setter Property="Visibility" Value="Collapsed" TargetName="Rank2" />
-=======
-                        <Setter Property="Visibility" Value="Collapsed" TargetName="Rank2" />
->>>>>>> ebd62ab... no message
                             <Setter Property="Visibility" Value="Collapsed" TargetName="Rank3" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding 進展}"  Value="2">
@@ -1349,7 +1329,6 @@
         </Style.Triggers>
     </Style>
 
-<<<<<<< HEAD
     <Style x:Key="FavorCell" TargetType="{x:Type DataGridCell}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
@@ -1421,8 +1400,6 @@
         </Style.Triggers>
     </Style>
 
-=======
->>>>>>> ebd62ab... no message
     <Style x:Key="DummyCell" TargetType="{x:Type DataGridCell}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
@@ -1593,11 +1570,7 @@
                                 <ScaleTransform ScaleX=".9" ScaleY=".9" />
                             </Path.RenderTransform>
                         </Path>
-<<<<<<< HEAD
 
-=======
-                        
->>>>>>> ebd62ab... no message
                         <Rectangle Name="VerticalSeparator" Grid.Column="1" Width="1" VerticalAlignment="Stretch" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" />
                         <Rectangle Name="HorizontalSeparator" Grid.ColumnSpan="2" Height="1" VerticalAlignment="Bottom" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" />
 
@@ -1955,11 +1928,7 @@
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#00000000" Offset="0"/>
-<<<<<<< HEAD
                     <GradientStop Color="#02464545" Offset="0.9"/>
-=======
-                    <GradientStop Color="#02464545" Offset="0.8"/>
->>>>>>> ebd62ab... no message
                     <GradientStop Color="#FF6E6D6D" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
@@ -1967,11 +1936,8 @@
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Padding" Value="2,0,0,0"/>
-<<<<<<< HEAD
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
         <Setter Property="BorderBrush" Value="#00000000"/>
-=======
->>>>>>> ebd62ab... no message
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -1983,14 +1949,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#92831515" Offset="0"/>
                                         <GradientStop Color="#92831515" Offset="1"/>
-=======
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="#23B23607" Offset="0.5"/>
-                                        <GradientStop Color="#B2831515" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -1999,14 +1959,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#92837915" Offset="0"/>
                                         <GradientStop Color="#92837915" Offset="1"/>
-=======
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="#23B2B207" Offset="0.5"/>
-                                        <GradientStop Color="#B2837915" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2015,14 +1969,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#92158383" Offset="0"/>
                                         <GradientStop Color="#92158383" Offset="1"/>
-=======
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="#23076CB2" Offset="0.5"/>
-                                        <GradientStop Color="#B2158383" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2031,14 +1979,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#92168320" Offset="0"/>
                                         <GradientStop Color="#92168320" Offset="1"/>
-=======
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="#2307B226" Offset="0.5"/>
-                                        <GradientStop Color="#B215836A" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2047,14 +1989,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#92151A83" Offset="0"/>
                                         <GradientStop Color="#92151A83" Offset="1"/>
-=======
-                                        <GradientStop Color="#00000000" Offset="0"/>
-                                        <GradientStop Color="#23070FB2" Offset="0.5"/>
-                                        <GradientStop Color="#B2151A83" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2063,13 +1999,8 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#AA47E08D" Offset="0"/>
                                         <GradientStop Color="#AA47E08D" Offset="1"/>
-=======
-                                        <GradientStop Color="#AA39D681" Offset="0"/>
-                                        <GradientStop Color="#AA39D681" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2227,7 +2158,6 @@
         </Setter>
     </Style>
 
-<<<<<<< HEAD
     <Style x:Key="ComboBoxItemFavorStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ComboBoxItemStyleBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -2313,8 +2243,6 @@
     </Style>
 
 
-=======
->>>>>>> ebd62ab... no message
     <Style x:Key="ComboBoxItemAttrStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource ComboBoxItemStyleBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -2417,7 +2345,6 @@
                             <Setter Property="Background" TargetName="DefBd" Value="#00000000"/>
                             <Setter Property="Background" TargetName="AtkBd" Value="#00000000"/>
                             <Setter Property="Background" TargetName="Bd" >
-<<<<<<< HEAD
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
                                         <GradientStop Color="#88A323C9"/>
@@ -2426,16 +2353,6 @@
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
-=======
-                                    <Setter.Value>
-                                        <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                                        <GradientStop Color="#88A323C9"/>
-                                        <GradientStop Color="#88A323C9" Offset="0.7"/>
-                                        <GradientStop Color="#88A323C9" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
->>>>>>> ebd62ab... no message
                         </MultiDataTrigger>
                         <Trigger Property="IsHighlighted" Value="true">
                             <Setter Property="Background" TargetName="Bd" Value="#DF6D6D6D"/>
@@ -2467,7 +2384,10 @@
                             </Grid.ColumnDefinitions>
                             <Rectangle Fill="{StaticResource IcoLock}" Width="16" Height="16" Margin="2,2,4,2" HorizontalAlignment="Left" VerticalAlignment="Center" Name="Ico"/>
                             <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-
+                            <Border Grid.Column="1" Background="#44101010" HorizontalAlignment="Right">
+                                <Label Content="{Binding DisplayIndex}" FontSize="9" Foreground="#EEC0C0C0" Width="20" HorizontalContentAlignment="Right" VerticalAlignment="Center" Padding="1"/>
+                            </Border>
+                            
                             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
@@ -2589,13 +2509,8 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#FFE26B33" Offset="0"/>
                                         <GradientStop Color="#FFE26B33" Offset="1"/>
-=======
-                                        <GradientStop Color="#FFC02A12" Offset="0"/>
-                                        <GradientStop Color="#FFE45613" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2633,13 +2548,8 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#FF2272AA" Offset="0"/>
                                         <GradientStop Color="#FF2272AA" Offset="1"/>
-=======
-                                        <GradientStop Color="#FF3986BC" Offset="0"/>
-                                        <GradientStop Color="#FF004AB8" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -2677,13 +2587,8 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-<<<<<<< HEAD
                                         <GradientStop Color="#FF2CCD4A" Offset="0"/>
                                         <GradientStop Color="#FF2CCD4A" Offset="1"/>
-=======
-                                        <GradientStop Color="#FF12C032" Offset="0"/>
-                                        <GradientStop Color="#FF13E485" Offset="1"/>
->>>>>>> ebd62ab... no message
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
@@ -3299,11 +3204,7 @@
         <GradientStop Color="#FF469AED" Offset="0.15"/>
         <GradientStop Color="#FF489BE7" Offset="1"/>
     </LinearGradientBrush>
-<<<<<<< HEAD
     <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#FF3257D4"/>
-=======
-    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#FF3282D4"/>
->>>>>>> ebd62ab... no message
     <LinearGradientBrush x:Key="TabItemHotBorderBrush" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#FF369AED" Offset="0.15"/>
         <GradientStop Color="#FF489BE7" Offset="1"/>

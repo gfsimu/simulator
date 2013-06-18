@@ -30,7 +30,6 @@ namespace GirlFriendYell
     public class TargetInfo
     {
         public int Lv { set; get; }
-<<<<<<< HEAD
         /// <summary>成長</summary>
         public int Progress { set; get; }
         /// <summary>現在Lvの経験値</summary>
@@ -44,14 +43,6 @@ namespace GirlFriendYell
         /// <summary>使用ガル</summary>
         public int Gall { set; get; }
         /// <summary>属性</summary>
-=======
-        public int Exp { set; get; }
-        public int TotalExp { set; get; }
-        public int Progress { set; get; }
-        public int SkillLv { set; get; }
-        public Rare Rare { set; get; }
-        public int Gall { set; get; }
->>>>>>> ebd62ab... no message
         public Attr Attr { set; get; }
 
         public void Copy(TargetInfo info)
@@ -63,10 +54,7 @@ namespace GirlFriendYell
             info.Progress = this.Progress;
             info.Gall = this.Gall;
             info.Attr = this.Attr;
-<<<<<<< HEAD
             info.TotalExp = this.TotalExp;
-=======
->>>>>>> ebd62ab... no message
         }
     }
 

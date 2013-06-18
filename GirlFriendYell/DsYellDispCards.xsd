@@ -12,11 +12,7 @@
   <xs:element name="DsYellDispCards" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsYellDispCards" msprop:Generator_UserDSName="DsYellDispCards">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-<<<<<<< HEAD
         <xs:element name="DispCard" msprop:Generator_TableClassName="DispCardDataTable" msprop:Generator_TableVarName="tableDispCard" msprop:Generator_TablePropName="DispCard" msprop:Generator_RowDeletingName="DispCardRowDeleting" msprop:Generator_RowChangingName="DispCardRowChanging" msprop:Generator_RowEvHandlerName="DispCardRowChangeEventHandler" msprop:Generator_RowDeletedName="DispCardRowDeleted" msprop:Generator_UserTableName="DispCard" msprop:Generator_RowChangedName="DispCardRowChanged" msprop:Generator_RowEvArgName="DispCardRowChangeEvent" msprop:Generator_RowClassName="DispCardRow">
-=======
-        <xs:element name="DispCard" msprop:Generator_TableClassName="DispCardDataTable" msprop:Generator_TableVarName="tableDispCard" msprop:Generator_RowChangedName="DispCardRowChanged" msprop:Generator_TablePropName="DispCard" msprop:Generator_RowDeletingName="DispCardRowDeleting" msprop:Generator_RowChangingName="DispCardRowChanging" msprop:Generator_RowEvHandlerName="DispCardRowChangeEventHandler" msprop:Generator_RowDeletedName="DispCardRowDeleted" msprop:Generator_RowClassName="DispCardRow" msprop:Generator_UserTableName="DispCard" msprop:Generator_RowEvArgName="DispCardRowChangeEvent">
->>>>>>> ebd62ab... no message
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CommonID" msprop:Generator_ColumnVarNameInTable="columnCommonID" msprop:Generator_ColumnPropNameInRow="CommonID" msprop:Generator_ColumnPropNameInTable="CommonIDColumn" msprop:Generator_UserColumnName="CommonID" type="xs:string" minOccurs="0" />
@@ -32,10 +28,7 @@
               <xs:element name="経験値" msprop:Generator_ColumnVarNameInTable="column経験値" msprop:Generator_ColumnPropNameInRow="経験値" msprop:Generator_ColumnPropNameInTable="経験値Column" msprop:Generator_UserColumnName="経験値" type="xs:int" minOccurs="0" />
               <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
               <xs:element name="進展" msprop:Generator_ColumnVarNameInTable="column進展" msprop:Generator_ColumnPropNameInRow="進展" msprop:Generator_ColumnPropNameInTable="進展Column" msprop:Generator_UserColumnName="進展" type="xs:int" minOccurs="0" />
-<<<<<<< HEAD
               <xs:element name="好感度" msprop:Generator_ColumnVarNameInTable="column好感度" msprop:Generator_ColumnPropNameInRow="好感度" msprop:Generator_ColumnPropNameInTable="好感度Column" msprop:Generator_UserColumnName="好感度" type="xs:int" minOccurs="0" />
-=======
->>>>>>> ebd62ab... no message
               <xs:element name="攻援" msprop:Generator_ColumnVarNameInTable="column攻援" msprop:Generator_ColumnPropNameInRow="攻援" msprop:Generator_ColumnPropNameInTable="攻援Column" msprop:Generator_UserColumnName="攻援" type="xs:int" minOccurs="0" />
               <xs:element name="守援" msprop:Generator_ColumnVarNameInTable="column守援" msprop:Generator_ColumnPropNameInRow="守援" msprop:Generator_ColumnPropNameInTable="守援Column" msprop:Generator_UserColumnName="守援" type="xs:int" minOccurs="0" />
               <xs:element name="スキル" msprop:Generator_ColumnVarNameInTable="columnスキル" msprop:Generator_ColumnPropNameInRow="スキル" msprop:Generator_ColumnPropNameInTable="スキルColumn" msprop:Generator_UserColumnName="スキル" type="xs:string" minOccurs="0" />
