@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 
 using GirlFriendCommon;
 using GirlFriendDeck;
+using System.Windows.Controls.Primitives;
 
 
 namespace GirlFriendYell
@@ -36,7 +37,11 @@ namespace GirlFriendYell
         private List<SkillInfo> Skills;
         private List<NameInfo> nameList = new List<NameInfo>();
 
-        
+        /// <summary>
+        /// 早見表トグルbuttonリスト
+        /// </summary>
+        private List<ToggleButton> toggleButtonList; 
+
         private DsYellInfo dsYellInfo = new DsYellInfo();
         private DsYellCards dsYellCards = new DsYellCards();
         private DsYellDispCards dsDispCards = new DsYellDispCards();
@@ -67,6 +72,7 @@ namespace GirlFriendYell
             Normal,
             Success,
             Same,
+            SameSuccess,
         }
         
         public MainWindow()
@@ -81,6 +87,15 @@ namespace GirlFriendYell
             this.Title += " for XP(.Net4.0)";
 #endif
             Initialize();
+
+            toggleButtonList = new List<ToggleButton>() {
+            TBtnListExp,
+            TBtnListExpSame,
+            TBtnListExpSuccess,
+            TBtnListExpSameSuccess,
+            TBtnListSkillUp,
+            TBtnListSkillUpNum};
+
 
             #region コントロール初期化
             CmbBaseAttr.SelectedValuePath = "Key";
@@ -276,29 +291,7 @@ namespace GirlFriendYell
         private void Initialize()
         {
             #region スキル
-            Skills = new List<SkillInfo>()
-            {
-                new SkillInfo(){ Name = "攻守スーパー特大", IsAttack=true, IsDeffence = true, IsOwn = true, IsDown=false, Power = 30,AllPower=30},
-                new SkillInfo(){ Name = "攻援スーパー特大", IsAttack=true, IsDeffence = false, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
-                new SkillInfo(){ Name = "守援スーパー特大", IsAttack=false, IsDeffence = true, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
-                new SkillInfo(){ Name = "攻守特大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "攻援特大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "守援特大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "攻守大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 15,AllPower=13},
-                new SkillInfo(){ Name = "攻援大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
-                new SkillInfo(){ Name = "守援大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
-                new SkillInfo(){ Name = "攻守中", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 8,AllPower=6},
-                new SkillInfo(){ Name = "攻援中", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
-                new SkillInfo(){ Name = "守援中", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
-                new SkillInfo(){ Name = "攻守小", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "攻援小", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "守援小", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "守援スーパー特大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "攻援スーパー特大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "守援大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "攻援大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "なし", IsAttack=false, IsDeffence = false, IsOwn = false, IsDown=false, Power = 0,AllPower=0},
-           };
+            Skills = Card.GetSkills();
             #endregion
         }
 
@@ -685,6 +678,12 @@ namespace GirlFriendYell
             //フリー情報更新
             ShowFreeYellInfo();
             ShowFreeListYellInfo();
+
+            if (PopBaseTarget.IsOpen)
+            {
+                //目標情報表示
+                ShowPopBaseTargetInfo();
+            }
         }
         #endregion
 
@@ -1095,6 +1094,9 @@ namespace GirlFriendYell
             //経験値
             int getExp = YellUtility.CalcExp(targetInfo, false, yellInfo);
             row.経験値 = getExp;
+            //大成功経験値
+            getExp = YellUtility.CalcExp(targetInfo, true, yellInfo);
+            row.大成功 = getExp;
 
             if (yellInfo.HasSkill)
             {
@@ -1120,39 +1122,61 @@ namespace GirlFriendYell
             this.PopBaseTarget.IsOpen = !this.PopBaseTarget.IsOpen;
             if (this.PopBaseTarget.IsOpen)
             {
+                this.BtnBaseTarget.Style = FindResource("BlueButton") as Style;
+
                 TBtnPopBaseTargetBase.IsChecked = true;
                 TBtnPopBaseTargetCurrent.IsChecked = false;
 
-                //元情報をコピーする
-                LblPopBaseTargetBaseLv.Content = targetInfo.Lv;
-                LblPopBaseTargetBaseProgress.Content = targetInfo.Progress;
-                LblPopBaseTargetBaseExp.Content = targetInfo.TotalExp;
-
-                //現在情報
-                LblPopBaseTargetCurrentLv.Content = targetInfoResult.Lv;
-                LblPopBaseTargetCurrentProgress.Content = targetInfoResult.Progress;
-                LblPopBaseTargetCurrentExp.Content = targetInfoResult.TotalExp;
-
                 //ターゲット情報
-                int maxLv =  YellUtility.GetMaxLv(targetInfo.Rare);
-                TxtPopBaseTargetTargetLv.Text =maxLv.ToString();
+                int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+                TxtPopBaseTargetTargetLv.Text = maxLv.ToString();
 
                 //Silder                
                 SldPopBaseTargetTargetLv.Minimum = 1;
                 SldPopBaseTargetTargetLv.Maximum = maxLv;
                 SldPopBaseTargetTargetLv.SmallChange = 1;
 
-                int targetExp = YellUtility.GetTotalExp(maxLv, 0);
-                LblPopBaseTargetTargetExp.Content = targetExp;
-
-                LblPopBaseTargetNeedExp.Content = targetExp - targetInfo.TotalExp;
-
                 //Targetリスト作成
                 CreateTargetList();
 
-                //枚数計算
-                CalcTarget();
+                //目標情報表示
+                ShowPopBaseTargetInfo();
             }
+            else
+            {
+                this.BtnBaseTarget.Style = FindResource(typeof(Button)) as Style;
+            }
+        }
+
+        private void ShowPopBaseTargetInfo()
+        {
+            //元情報をコピーする
+            LblPopBaseTargetBaseLv.Content = targetInfo.Lv;
+            LblPopBaseTargetBaseProgress.Content = targetInfo.Progress;
+            LblPopBaseTargetBaseExp.Content = targetInfo.TotalExp;
+
+            //現在情報
+            LblPopBaseTargetCurrentLv.Content = targetInfoResult.Lv;
+            LblPopBaseTargetCurrentProgress.Content = targetInfoResult.Progress;
+            LblPopBaseTargetCurrentExp.Content = targetInfoResult.TotalExp;
+
+            //ターゲット情報
+            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int targetLv;
+            if (!int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
+            {
+                targetLv = maxLv;
+            }
+            if (targetLv > maxLv) targetLv = maxLv;
+
+            int targetExp = YellUtility.GetTotalExp(targetLv, 0);
+            LblPopBaseTargetTargetExp.Content = targetExp;
+
+            //必要経験値
+            LblPopBaseTargetNeedExp.Content = targetExp - targetInfo.TotalExp;
+
+            //枚数計算
+            CalcTarget();
         }
 
         /// <summary>
@@ -2385,6 +2409,16 @@ namespace GirlFriendYell
         #region 早見表タブ
 
         #region ボタン選択
+
+        /// <summary>
+        /// 早見表トグルbuttonをOffにする
+        /// </summary>
+        /// <param name="onButton"></param>
+        private void ListToggleButtonOff(ToggleButton onButton)
+        {
+            toggleButtonList.ForEach(b=> b.IsChecked = (b==onButton));
+        }
+
         /// <summary>
         /// 経験値ボタンクリック
         /// </summary>
@@ -2393,16 +2427,18 @@ namespace GirlFriendYell
         private void TBtnListExp_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
-            TBtnListExpSame.IsChecked = false;
-            TBtnListExpSuccess.IsChecked = false;
-            TBtnListSkillUp.IsChecked = false;
-            TBtnListSkillUpNum.IsChecked = false;
+            ListToggleButtonOff(TBtnListExp);
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
             GrdListSkillUpPer.Visibility = System.Windows.Visibility.Collapsed;
 
             CreateExpList(ExpType.Normal);
+            //強調表示条件がある場合
+            if (!string.IsNullOrEmpty(TxtListExpOver.Text) || !string.IsNullOrEmpty(TxtListExpUnder.Text))
+            {
+                Dispatcher.BeginInvoke((Action)EmphansisExpList, System.Windows.Threading.DispatcherPriority.Background, null);
+            }
         }
 
         /// <summary>
@@ -2413,10 +2449,7 @@ namespace GirlFriendYell
         private void TBtnListExpSame_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
-            TBtnListExp.IsChecked = false;
-            TBtnListExpSuccess.IsChecked = false;
-            TBtnListSkillUp.IsChecked = false;
-            TBtnListSkillUpNum.IsChecked = false;
+            ListToggleButtonOff(TBtnListExpSame);
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
@@ -2424,6 +2457,11 @@ namespace GirlFriendYell
 
             CreateExpList(ExpType.Same);
 
+            //強調表示条件がある場合
+            if (!string.IsNullOrEmpty(TxtListExpOver.Text) || !string.IsNullOrEmpty(TxtListExpUnder.Text))
+            {
+                Dispatcher.BeginInvoke((Action)EmphansisExpList, System.Windows.Threading.DispatcherPriority.Background, null);
+            }
         }
 
         /// <summary>
@@ -2434,10 +2472,7 @@ namespace GirlFriendYell
         private void TBtnListExpSuccess_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
-            TBtnListExpSame.IsChecked = false;
-            TBtnListExp.IsChecked = false;
-            TBtnListSkillUp.IsChecked = false;
-            TBtnListSkillUpNum.IsChecked = false;
+            ListToggleButtonOff(TBtnListExpSuccess);
 
             //経験値表を表示する
             GrdListExp.Visibility = System.Windows.Visibility.Visible;
@@ -2445,6 +2480,34 @@ namespace GirlFriendYell
 
             CreateExpList(ExpType.Success);
 
+            //強調表示条件がある場合
+            if (!string.IsNullOrEmpty(TxtListExpOver.Text) || !string.IsNullOrEmpty(TxtListExpUnder.Text))
+            {
+                Dispatcher.BeginInvoke((Action)EmphansisExpList, System.Windows.Threading.DispatcherPriority.Background, null);
+            }
+        }
+
+        /// <summary>
+        /// 同属性大成功時の取得経験値ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TBtnListExpSameSuccess_Click(object sender, RoutedEventArgs e)
+        {
+            //他のボタンをOffにする
+            ListToggleButtonOff(TBtnListExpSameSuccess);
+
+            //経験値表を表示する
+            GrdListExp.Visibility = System.Windows.Visibility.Visible;
+            GrdListSkillUpPer.Visibility = System.Windows.Visibility.Collapsed;
+
+            CreateExpList(ExpType.SameSuccess);
+
+            //強調表示条件がある場合
+            if (!string.IsNullOrEmpty(TxtListExpOver.Text) || !string.IsNullOrEmpty(TxtListExpUnder.Text))
+            {
+                Dispatcher.BeginInvoke((Action)EmphansisExpList, System.Windows.Threading.DispatcherPriority.Background, null);
+            }
         }
 
         /// <summary>
@@ -2455,10 +2518,7 @@ namespace GirlFriendYell
         private void TBtnListSkillUp_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
-            TBtnListExpSame.IsChecked = false;
-            TBtnListExpSuccess.IsChecked = false;
-            TBtnListExp.IsChecked = false;
-            TBtnListSkillUpNum.IsChecked = false;
+            ListToggleButtonOff(TBtnListSkillUp);
 
             CreateSkillUpList();
 
@@ -2475,10 +2535,7 @@ namespace GirlFriendYell
         private void TBtnListSkillUpNum_Click(object sender, RoutedEventArgs e)
         {
             //他のボタンをOffにする
-            TBtnListExpSame.IsChecked = false;
-            TBtnListExpSuccess.IsChecked = false;
-            TBtnListExp.IsChecked = false;
-            TBtnListSkillUp.IsChecked = false;
+            ListToggleButtonOff(TBtnListSkillUpNum);
 
             CreateSkillUpNumList();
 
@@ -2587,9 +2644,9 @@ namespace GirlFriendYell
             //同属性の場合はSweet、それ以外はCool（Sweet以外）
             TargetInfo targetInfo = new TargetInfo()
             {
-                Attr = expType == ExpType.Same ? Attr.Sweet : Attr.Cool,
+                Attr = (expType == ExpType.Same || expType == ExpType.SameSuccess) ? Attr.Sweet : Attr.Cool,
             };
-            bool isSuccess = expType == ExpType.Success;
+            bool isSuccess =( expType == ExpType.Success || expType == ExpType.SameSuccess);
 
             for (int cost = 1; cost <= 40; cost++)
             {
@@ -2604,6 +2661,7 @@ namespace GirlFriendYell
                     if (cost == 35 && baseRare != Rare.N) continue;
                     if (cost == 40 && baseRare != Rare.R) continue;
 
+                    //各進展毎に作成
                     for (int rank = 1; rank <= 3; rank++)
                     {
                         if ((baseRare == Rare.N && rank == 3) ||
@@ -2611,7 +2669,6 @@ namespace GirlFriendYell
                         //久保田、荒井は進展１のみ
                         if (cost == 35 && rank > 1) continue;
                         if (cost == 40 && rank > 1) continue;
-
 
                         int exp = YellUtility.CalcExp(targetInfo, isSuccess, new YellInfo()
                          {
@@ -2634,6 +2691,78 @@ namespace GirlFriendYell
         }
         #endregion
 
+        #region 強調表示
+
+        #region 経験値
+        /// <summary>
+        /// 経験値強調表示以上
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtListExpOver_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EmphansisExpList();
+        }
+
+        /// <summary>
+        /// 経験値強調表示以上
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtListExpUnder_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EmphansisExpList();
+        }
+
+        /// <summary>
+        /// 経験値リスト強調表示
+        /// </summary>
+        private void EmphansisExpList()
+        {
+            //以上
+            int over;
+            if(!int.TryParse(TxtListExpOver.Text,out over))
+            {
+                over =0;
+            }
+            //以下
+            int under;
+            if (!int.TryParse(TxtListExpUnder.Text, out under))
+            {
+                under = 0;
+            }
+
+            for (int row = 0; row < DgExpList.Items.Count; row++)
+            {
+                DataGridRow dgr = DgExpList.ItemContainerGenerator.ContainerFromIndex(row) as DataGridRow;
+
+                for (int i = 1; i < DgExpList.Columns.Count; i++)
+                {
+                    var dgc = DgExpList.Columns[i].GetCellContent(dgr).Parent as DataGridCell;
+                    string dataText = (dgc.Content as TextBlock).Text;
+                    if (!string.IsNullOrEmpty(dataText))
+                    {
+                        int data = Convert.ToInt32(dataText);
+                        if (over > 0 && data >= over)
+                        {
+                            dgc.Style = FindResource("OverEmphasisCell") as Style;
+                        }
+                        else if (under > 0 && data <= under)
+                        {
+                            dgc.Style = FindResource("UnderEmphasisCell") as Style;
+                        }
+                        else
+                        {
+                            dgc.Style = FindResource("NumberCell") as Style;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region 共通メソッド
@@ -2652,6 +2781,5 @@ namespace GirlFriendYell
             }
         }
         #endregion
-
     }
 }

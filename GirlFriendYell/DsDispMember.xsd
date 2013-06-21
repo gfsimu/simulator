@@ -12,7 +12,7 @@
   <xs:element name="DsDispMember" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsDispMember" msprop:Generator_UserDSName="DsDispMember">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Member" msprop:Generator_TableClassName="MemberDataTable" msprop:Generator_TableVarName="tableMember" msprop:Generator_TablePropName="Member" msprop:Generator_RowDeletingName="MemberRowDeleting" msprop:Generator_RowChangingName="MemberRowChanging" msprop:Generator_RowEvHandlerName="MemberRowChangeEventHandler" msprop:Generator_RowDeletedName="MemberRowDeleted" msprop:Generator_UserTableName="Member" msprop:Generator_RowChangedName="MemberRowChanged" msprop:Generator_RowEvArgName="MemberRowChangeEvent" msprop:Generator_RowClassName="MemberRow">
+        <xs:element name="Member" msprop:Generator_TableClassName="MemberDataTable" msprop:Generator_TableVarName="tableMember" msprop:Generator_RowChangedName="MemberRowChanged" msprop:Generator_TablePropName="Member" msprop:Generator_RowDeletingName="MemberRowDeleting" msprop:Generator_RowChangingName="MemberRowChanging" msprop:Generator_RowEvHandlerName="MemberRowChangeEventHandler" msprop:Generator_RowDeletedName="MemberRowDeleted" msprop:Generator_RowClassName="MemberRow" msprop:Generator_UserTableName="Member" msprop:Generator_RowEvArgName="MemberRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
@@ -23,6 +23,7 @@
               <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
               <xs:element name="声援" msprop:Generator_ColumnVarNameInTable="column声援" msprop:Generator_ColumnPropNameInRow="声援" msprop:Generator_ColumnPropNameInTable="声援Column" msprop:Generator_UserColumnName="声援" type="xs:boolean" minOccurs="0" />
               <xs:element name="経験値" msprop:Generator_ColumnVarNameInTable="column経験値" msprop:Generator_ColumnPropNameInRow="経験値" msprop:Generator_ColumnPropNameInTable="経験値Column" msprop:Generator_UserColumnName="経験値" type="xs:int" minOccurs="0" />
+              <xs:element name="大成功" msprop:Generator_ColumnVarNameInTable="column大成功" msprop:Generator_ColumnPropNameInRow="大成功" msprop:Generator_ColumnPropNameInTable="大成功Column" msprop:Generator_UserColumnName="大成功" type="xs:int" minOccurs="0" />
               <xs:element name="声援Up" msprop:Generator_ColumnVarNameInTable="column声援Up" msprop:Generator_ColumnPropNameInRow="声援Up" msprop:Generator_ColumnPropNameInTable="声援UpColumn" msprop:Generator_UserColumnName="声援Up" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

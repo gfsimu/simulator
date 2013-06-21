@@ -114,8 +114,43 @@ namespace GirlFriendCommon
     }
     #endregion
 
+    static class Card
+    {
+        #region スキル
+        public static List<SkillInfo> GetSkills()
+        {
+            return new List<SkillInfo>()
+            {
+                new SkillInfo(){ Name = "攻守スーパー特大", IsAttack=true, IsDeffence = true, IsOwn = true, IsDown=false, Power = 30,AllPower=30},
+                new SkillInfo(){ Name = "攻援スーパー特大", IsAttack=true, IsDeffence = false, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
+                new SkillInfo(){ Name = "守援スーパー特大", IsAttack=false, IsDeffence = true, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
+                new SkillInfo(){ Name = "攻守特大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
+                new SkillInfo(){ Name = "攻援特大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
+                new SkillInfo(){ Name = "守援特大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
+                new SkillInfo(){ Name = "攻守大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 15,AllPower=13},
+                new SkillInfo(){ Name = "攻援大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
+                new SkillInfo(){ Name = "守援大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
+                new SkillInfo(){ Name = "攻守中", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 8,AllPower=6},
+                new SkillInfo(){ Name = "攻援中", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
+                new SkillInfo(){ Name = "守援中", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
+                new SkillInfo(){ Name = "攻守小", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
+                new SkillInfo(){ Name = "攻援小", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
+                new SkillInfo(){ Name = "守援小", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
+                new SkillInfo(){ Name = "守援スーパー特大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "攻援スーパー特大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "守援大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "攻援大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "守援中DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "攻援中DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
+                new SkillInfo(){ Name = "なし", IsAttack=false, IsDeffence = false, IsOwn = false, IsDown=false, Power = 0,AllPower=0},
+           };
+        }
+        #endregion
+    }
+
     static class Utility
     {
+        #region ユーティリティ
         private static string basePath = Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
 
         /// <summary>
@@ -143,6 +178,7 @@ namespace GirlFriendCommon
                 }
             }
         }
+        #endregion
     }
 
     static class Search

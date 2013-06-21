@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:GirlFriendYell"
         Foreground="{DynamicResource DefaultForeground}"
-        Title="ガールフレンド(仮) YellSimulater(仮) Ver.20130618_01" Height="540" Width="800" Loaded="Window_Loaded_1" Icon="GFIconYell.ico">
+        Title="ガールフレンド(仮) YellSimulater(仮) Ver.20130621_01" Height="540" Width="800" Loaded="Window_Loaded_1" Icon="GFIconYell.ico">
     <Window.Resources>
         <SolidColorBrush x:Key="YellBaseBarBackground" Color="#66101423" />
         <SolidColorBrush x:Key="YellBaseBarStatus" Color="#772B56A2" />
@@ -147,7 +147,7 @@
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <ToggleButton x:Name="TBtnPopBaseTargetBase" Content="初期" Foreground="#FFE28706" IsChecked="True" Margin="8,0" Click="TBtnPopBaseTargetBase_Click" />
-                                        <ToggleButton x:Name="TBtnPopBaseTargetCurrent"  Content="現在" Grid.Column="1" Foreground="#FF0044D4" Margin="8,0" Click="TBtnPopBaseTargetCurrent_Click"  />
+                                        <ToggleButton x:Name="TBtnPopBaseTargetCurrent"  Content="現在" Grid.Column="1" Foreground="#FF13D6D6" Margin="8,0" Click="TBtnPopBaseTargetCurrent_Click"  />
                                     </Grid>
 
                                     <Border Background="#AA9220C7" Grid.Column="1" Grid.Row="1" Height="6" VerticalAlignment="Bottom"  Margin="0,4"/>
@@ -167,12 +167,8 @@
                                             <DataGridTextColumn Binding="{Binding 枚数}" Header="枚数" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                             <DataGridTextColumn Binding="{Binding 大成功}" Header="大成功" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                                         </DataGrid.Columns>
-
                                     </DataGrid>
-
                                 </Grid>
-
-
                             </Grid>
                         </Popup>
 
@@ -416,7 +412,6 @@
                         <Label Content="レア" Grid.Column="2" Grid.Row="3"/>
                         <ComboBox x:Name="CmbSearchFreeRare" Grid.Row="3" Grid.Column="3" SelectionChanged="CmbSearchFree_SelectionChanged"  />
 
-
                         <Label Content="コスト" Grid.Row="4"/>
                         <TextBox x:Name="TxtSearchFreeCostUp" Width="40" Grid.Row="4" Grid.Column="1" Margin="4,2" HorizontalAlignment="Left" TextChanged="TxtSearchFree_TextChanged"  InputMethod.IsInputMethodSuspended="True" />
                         <Label Content="以上" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -426,10 +421,7 @@
                         <Label Content="声援" Grid.Column="2" Grid.Row="4"/>
                         <CheckBox x:Name="ChkSearchFreeSkill" Content="あり" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" Margin="4,2" Click="ChkSearchFree_Click" />
 
-
                         <Border Grid.ColumnSpan="6" Grid.Row="6" Height="2" Background="#AA101010" />
-
-
                     </Grid>
                     <!--操作エリア-->
                     <Grid Grid.Row="1" Height="30">
@@ -452,12 +444,10 @@
                             <DataGridTextColumn Binding="{Binding 名前}" Header="名前" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding 声援}" Header="声援" CellStyle="{StaticResource HasSkillCell}" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding 経験値}" Header="経験値" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding 大成功}" Header="大成功" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding 声援Up}" Header="声援Up" CellStyle="{StaticResource NumberCell}" IsReadOnly="True"/>
                         </DataGrid.Columns>
-
                     </DataGrid>
-
-
                 </Grid>
             </TabItem>
 
@@ -740,18 +730,42 @@
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
 
                 <ToggleButton x:Name="TBtnListExp" IsChecked="True" Content="経験値" Grid.Column="0" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExp_Click" />
                 <ToggleButton x:Name="TBtnListExpSame"  Content="同属性"  Grid.Column="1" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExpSame_Click"/>
                 <ToggleButton x:Name="TBtnListExpSuccess"  Content="大成功"  Grid.Column="2" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExpSuccess_Click"/>
-                <ToggleButton x:Name="TBtnListSkillUp"  Content="声援Up率"  Grid.Column="3" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUp_Click"/>
-                <ToggleButton x:Name="TBtnListSkillUpNum"  Content="声援Up数"  Grid.Column="4" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUpNum_Click"/>
+                <ToggleButton x:Name="TBtnListExpSameSuccess"  Content="同属大成功"  Grid.Column="3" Margin="4,0" Foreground="#FF00D876" Click="TBtnListExpSameSuccess_Click"/>
+                <ToggleButton x:Name="TBtnListSkillUp"  Content="声援Up率"  Grid.Column="4" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUp_Click"/>
+                <ToggleButton x:Name="TBtnListSkillUpNum"  Content="声援Up数"  Grid.Column="5" Margin="4,0" Foreground="#FFE67D00" Click="TBtnListSkillUpNum_Click"/>
             </Grid>
-
             
             <Grid Grid.Row="1" Grid.Column="1" x:Name="GrdListExp" Visibility="Visible">
-                <DataGrid x:Name="DgExpList" CanUserAddRows="False" SelectionMode="Single"  FrozenColumnCount="1" ColumnHeaderHeight="30" ColumnHeaderStyle="{DynamicResource CenterColumnHeader}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="強調表示" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtListExpOver" Width="80" Grid.Column="2"  Height="24" Style="{StaticResource ClearTextBox}" TextChanged="TxtListExpOver_TextChanged"/>
+                    <Label Content="以上" Grid.Column="3" Padding="0" Margin="2,2,8,2" VerticalAlignment="Center" />
+                    <TextBox x:Name="TxtListExpUnder" Width="80" Grid.Column="5"  Height="24" Style="{StaticResource ClearTextBox}" TextChanged="TxtListExpUnder_TextChanged"/>
+                    <Label Content="以下" Grid.Column="6" Padding="0" Margin="2,2,8,2" VerticalAlignment="Center" />
+                </Grid>
+                
+                <DataGrid x:Name="DgExpList" Grid.Row="1" CanUserAddRows="False" SelectionMode="Single"  FrozenColumnCount="1" ColumnHeaderHeight="30" ColumnHeaderStyle="{DynamicResource CenterColumnHeader}" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding コスト}" Header="コスト" CellStyle="{StaticResource HeaderCenterCell}" IsReadOnly="True" Width="50"/>
                         <DataGridTextColumn Binding="{Binding N}" Header="N&#xa;☆" CellStyle="{StaticResource NumberCell}" IsReadOnly="True" Width="50" />
@@ -776,7 +790,6 @@
 
                 </DataGrid>
             </Grid>
-
 
             <Grid Grid.Row="1" Grid.Column="1" x:Name="GrdListSkillUpPer" Visibility="Collapsed">
                 <DataGrid x:Name="DgSkillUpPerList" CanUserAddRows="False" SelectionMode="Single"  RowStyle="{StaticResource RareRow}" Width="430" HorizontalAlignment="Left">

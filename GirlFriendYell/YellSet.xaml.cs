@@ -200,22 +200,23 @@ namespace GirlFriendYell
         /// <param name="rate"></param>
         private void SetLvLabel()
         {
+            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
             //エール前Lv
             LblLvBefore.Content = targetInfo.Lv.ToString() + " (" + targetInfo.Progress.ToString() + "%)";
             //エール後Lv
-            if (targetInfoAfter.Lv > targetInfo.Lv)
+            if (targetInfoAfter.Lv == maxLv)
             {
-                LblLvAfter.Foreground = FindResource("EmphasisForeground") as Brush;
+                  BdrLvAfter.Background = FindResource("YellLvMaxBackground") as Brush;
             }
             else
             {
-                LblLvAfter.Foreground = FindResource("DefaultForeground") as Brush;
+                BdrLvAfter.Background = FindResource("YellLvBackground") as Brush;
             }
             LblLvAfter.Content =targetInfoAfter.Lv.ToString();
 
             //最大レベル
-            LblLvAfterMax.Content = YellUtility.GetMaxLv(targetInfo.Rare);
-            //エール後Lv
+            LblLvAfterMax.Content = maxLv;
+            //エール後LvUP
             if (targetInfoAfter.Lv > targetInfo.Lv)
             {
                 LblLvAfterLvUP.Foreground = FindResource("RedForeground") as Brush;

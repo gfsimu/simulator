@@ -295,6 +295,8 @@ namespace GirlFriendYell {
             
             private global::System.Data.DataColumn column経験値;
             
+            private global::System.Data.DataColumn column大成功;
+            
             private global::System.Data.DataColumn column声援Up;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -396,6 +398,14 @@ namespace GirlFriendYell {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn 大成功Column {
+                get {
+                    return this.column大成功;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn 声援UpColumn {
                 get {
                     return this.column声援Up;
@@ -439,7 +449,7 @@ namespace GirlFriendYell {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MemberRow AddMemberRow(string ID, string 属性, int コスト, string レア, int 進展, string 名前, bool 声援, int 経験値, int 声援Up) {
+            public MemberRow AddMemberRow(string ID, string 属性, int コスト, string レア, int 進展, string 名前, bool 声援, int 経験値, int 大成功, int 声援Up) {
                 MemberRow rowMemberRow = ((MemberRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -450,6 +460,7 @@ namespace GirlFriendYell {
                         名前,
                         声援,
                         経験値,
+                        大成功,
                         声援Up};
                 rowMemberRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMemberRow);
@@ -481,6 +492,7 @@ namespace GirlFriendYell {
                 this.column名前 = base.Columns["名前"];
                 this.column声援 = base.Columns["声援"];
                 this.column経験値 = base.Columns["経験値"];
+                this.column大成功 = base.Columns["大成功"];
                 this.column声援Up = base.Columns["声援Up"];
             }
             
@@ -503,6 +515,8 @@ namespace GirlFriendYell {
                 base.Columns.Add(this.column声援);
                 this.column経験値 = new global::System.Data.DataColumn("経験値", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column経験値);
+                this.column大成功 = new global::System.Data.DataColumn("大成功", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column大成功);
                 this.column声援Up = new global::System.Data.DataColumn("声援Up", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column声援Up);
             }
@@ -775,6 +789,22 @@ namespace GirlFriendYell {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int 大成功 {
+                get {
+                    try {
+                        return ((int)(this[this.tableMember.大成功Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'Member\' にある列 \'大成功\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableMember.大成功Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int 声援Up {
                 get {
                     try {
@@ -883,6 +913,18 @@ namespace GirlFriendYell {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Set経験値Null() {
                 this[this.tableMember.経験値Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Is大成功Null() {
+                return this.IsNull(this.tableMember.大成功Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Set大成功Null() {
+                this[this.tableMember.大成功Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

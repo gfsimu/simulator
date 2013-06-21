@@ -166,7 +166,6 @@ namespace GirlFriendDeck
             public Dictionary<string, int> Items { set; get; }
             /// <summary>声選抜ボーナス</summary>
             public ActiveSkill Skill { set; get; }
-
         }
 
         class PowerInfo
@@ -549,35 +548,6 @@ namespace GirlFriendDeck
                 File.AppendAllText(Utility.GetFilePath("log.txt"), "[settings.xml]読み込み完了 \r\n");
 #endif
                 bool isChange = false;
-                if (dsSetting.Window.Count == 0)
-                {
-                    DsSetting.WindowRow windowSetting = dsSetting.Window.NewWindowRow();
-                    windowSetting.PosX = this.Left;
-                    windowSetting.PosY = this.Top;
-                    windowSetting.Height = this.Height;
-                    windowSetting.Width = this.Width;
-                    dsSetting.Window.AddWindowRow(windowSetting);
-                    isChange = true;
-                }
-                if (dsSetting.User[0].IsClubNull())
-                {
-                    dsSetting.User[0].Club = "なし";
-                    isChange = true;
-                }
-                if (dsSetting.Etc.Count == 0)
-                {
-                    DsSetting.EtcRow etcRow = dsSetting.Etc.NewEtcRow();
-                    etcRow.EditColumn = true;
-                    etcRow.ShowGirlPath = string.Empty;
-                    dsSetting.Etc.AddEtcRow(etcRow);
-                    isChange = true;
-                }
-                if (dsSetting.Etc[0].IsShowGirlPathNull())
-                {
-                    DsSetting.EtcRow etcRow = dsSetting.Etc[0];
-                    etcRow.ShowGirlPath = string.Empty;
-                    isChange = true;
-                }
                 if (dsSetting.User[0].Role == "攻援隊長")
                 {
                     dsSetting.User[0].Role = "攻キャプテン";
@@ -633,6 +603,7 @@ namespace GirlFriendDeck
             this.Top = this.dsSetting.Window[0].PosY;
         }
 
+        #region Windowイベント
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             isEvent = false;
@@ -677,6 +648,8 @@ namespace GirlFriendDeck
 
             isEvent = true;
 
+            Skills = Card.GetSkills();
+
             #region ボーナス読み込み
             if (File.Exists(Utility.GetFilePath("system_settings.xml")))
             {
@@ -692,19 +665,31 @@ namespace GirlFriendDeck
                 clubDefBonus = bonusRow.守援隊長;
 
                 //声援
-                Skills = new List<SkillInfo>();
                 foreach (DsSystemSetting.声援Row skillRow in dsSystemSetting.声援)
                 {
-                    Skills.Add(new SkillInfo()
+                    SkillInfo skill = Skills.FirstOrDefault(s => s.Name == skillRow.名前);
+                    if (skill != null)
                     {
-                        Name = skillRow.名前,
-                        IsAttack = skillRow.攻援,
-                        IsDeffence = skillRow.守援,
-                        IsOwn = skillRow.自身,
-                        IsDown = skillRow.DOWN,
-                        Power = skillRow.Power,
-                        AllPower = skillRow.全属Power,
-                    });
+                        skill.Power = skillRow.Power;
+                        skill.AllPower = skillRow.全属Power;
+                        skill.IsAttack = skillRow.攻援;
+                        skill.IsDeffence = skillRow.守援;
+                        skill.IsOwn = skillRow.自身;
+                        skill.IsDown = skillRow.DOWN;
+                    }
+                    else
+                    {
+                        Skills.Add(new SkillInfo()
+                        {
+                            Name = skillRow.名前,
+                            IsAttack = skillRow.攻援,
+                            IsDeffence = skillRow.守援,
+                            IsOwn = skillRow.自身,
+                            IsDown = skillRow.DOWN,
+                            Power = skillRow.Power,
+                            AllPower = skillRow.全属Power,
+                        });
+                    }
                 }
 
                 //センバツ
@@ -729,30 +714,6 @@ namespace GirlFriendDeck
                 bonusRow.攻援隊長 = clubAtkBonus;
                 bonusRow.守援隊長 = clubDefBonus;
                 dsSystemSetting.Bonus.AddBonusRow(bonusRow);
-
-                Skills = new List<SkillInfo>()
-            {
-                new SkillInfo(){ Name = "攻守スーパー特大", IsAttack=true, IsDeffence = true, IsOwn = true, IsDown=false, Power = 30,AllPower=30},
-                new SkillInfo(){ Name = "攻援スーパー特大", IsAttack=true, IsDeffence = false, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
-                new SkillInfo(){ Name = "守援スーパー特大", IsAttack=false, IsDeffence = true, IsOwn = true, IsDown=false, Power = 35,AllPower=35},
-                new SkillInfo(){ Name = "攻守特大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "攻援特大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "守援特大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 20,AllPower=18},
-                new SkillInfo(){ Name = "攻守大", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 15,AllPower=13},
-                new SkillInfo(){ Name = "攻援大", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
-                new SkillInfo(){ Name = "守援大", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 13,AllPower=15},
-                new SkillInfo(){ Name = "攻守中", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 8,AllPower=6},
-                new SkillInfo(){ Name = "攻援中", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
-                new SkillInfo(){ Name = "守援中", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 10,AllPower=8},
-                new SkillInfo(){ Name = "攻守小", IsAttack=true, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "攻援小", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "守援小", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=false, Power = 5,AllPower=3},
-                new SkillInfo(){ Name = "守援スーパー特大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "攻援スーパー特大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "守援大DOWN", IsAttack=true, IsDeffence = false, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "攻援大DOWN", IsAttack=false, IsDeffence = true, IsOwn = false, IsDown=true, Power = 0,AllPower=0},
-                new SkillInfo(){ Name = "なし", IsAttack=false, IsDeffence = false, IsOwn = false, IsDown=false, Power = 0,AllPower=0},
-           };
 
                 //声援
                 Skills.ForEach(s =>
@@ -883,40 +844,13 @@ namespace GirlFriendDeck
             //所持カード情報読み込み
             if (File.Exists(Utility.GetFilePath("cards.xml")))
             {
-                try
-                {
-                    dsCards.ReadXml(Utility.GetFilePath("cards.xml"));
+                dsCards.ReadXml(Utility.GetFilePath("cards.xml"));
 #if DEBUG_
-                    File.AppendAllText(Utility.GetFilePath("log.txt"), "[cards.xml]読み込み完了:" + dsCards.Cards.Count.ToString() + "\r\n");
+                File.AppendAllText(Utility.GetFilePath("log.txt"), "[cards.xml]読み込み完了:" + dsCards.Cards.Count.ToString() + "\r\n");
 #endif
-                }
-                catch (Exception)
-                {
-                    //データ互換対応
-                    //読み込みエラーの場合は、旧DataSetで読み込む
-                    DsCardsOld old = new DsCardsOld();
-                    old.ReadXml(Utility.GetFilePath("cards.xml"));
-                    foreach (DsCardsOld.CardsRow row in old.Cards)
-                    {
-                        if (string.IsNullOrEmpty(row.進展))
-                        {
-                            row.進展 = "1";
-                        }
-                    }
-                    old.AcceptChanges();
-                    old.WriteXml(Utility.GetFilePath("cards.xml"));
-#if DEBUG_
-                    File.AppendAllText(Utility.GetFilePath("log.txt"), "[cards.xml]変換完了:" + "\r\n");
-#endif
-
-                    dsCards.ReadXml(Utility.GetFilePath("cards.xml"));
-#if DEBUG_
-                    File.AppendAllText(Utility.GetFilePath("log.txt"), "[cards.xml]読み込み完了:" + dsCards.Cards.Count.ToString() + "\r\n");
-#endif
-                }
                 //所持カードデータ互換
                 ConvertCards();
-
+                //所持カード情報読み込み
                 ReadCards();
             }
             else
@@ -1010,10 +944,6 @@ namespace GirlFriendDeck
             CmbDeck.ItemsSource = deckInfo.DeckInfo.Where(r => r.Type == "攻援").OrderBy(r => r.DisplayIndex).AsDataView();
             CmbDeck.SelectedIndex = 0;
 
-            #region 自動保存変換
-            ConvertAutoDeckToUserDeck();
-            #endregion
-
             int number = (int)CmbDeck.SelectedValue;
             LoadDeckNumber(CalcType.攻援, number);
             LblMainInfo.Content = dsMainSelect.Card.Count.ToString();
@@ -1057,8 +987,12 @@ namespace GirlFriendDeck
             {
             }
         }
+        #endregion
 
         #region 初期化
+        /// <summary>
+        /// カード情報読み込み
+        /// </summary>
         private void LoadGilrs()
         {
             InitGirls();
@@ -1292,55 +1226,7 @@ namespace GirlFriendDeck
         {
             //スペシャルが設定されていない場合
             bool isChange = false;
-            if (dsCards.Cards.Count > 0 && dsCards.Cards[0].IsスペシャルNull())
-            {
-                foreach (DsCards.CardsRow row in dsCards.Cards)
-                {
-                    if (row.IsスペシャルNull())
-                    {
-                        row.スペシャル = 0;
-                        isChange = true;
-                    }
-                }
-            }
-            if (dsCards.Cards.Count > 0 && dsCards.Cards[0].IsLvNull())
-            {
-                foreach (DsCards.CardsRow row in dsCards.Cards)
-                {
-                    if (row.IsLvNull())
-                    {
-                        row.Lv = 1;
-                        isChange = true;
-                    }
-                }
-            }
-            if (dsCards.Cards.Count > 0 && dsCards.Cards[0].Isボーナス有無Null())
-            {
-                foreach (DsCards.CardsRow row in dsCards.Cards)
-                {
-                    if (row.Isボーナス有無Null())
-                    {
-                        row.ボーナス有無 = false;
-                        row.ボーナス = 0;
-                        isChange = true;
-                    }
-                }
-            }
-            if (dsCards.Cards.Count > 0 && dsCards.Cards[0].IsダミーNull())
-            {
-                foreach (DsCards.CardsRow row in dsCards.Cards)
-                {
-                    if (row.IsダミーNull())
-                    {
-                        row.ダミー = false;
-                        row.画像 = string.Empty;
-                        row.フリー1 = string.Empty;
-                        row.フリー2 = string.Empty;
-                        row.フリー3 = string.Empty;
-                        isChange = true;
-                    }
-                }
-            }
+
             if (dsCards.Cards.Count > 0 && dsCards.Cards[0].Is表示順Null())
             {
                 int count = 1;
@@ -1402,33 +1288,23 @@ namespace GirlFriendDeck
             }
         }
 
-        private void ConvertAutoDeckToUserDeck()
-        {
-            if (File.Exists(Utility.GetFilePath("auto_AtkDeck.xml")))
-            {
-                DsUserDeck deck = new DsUserDeck();
-                deck.ReadXml(Utility.GetFilePath("auto_AtkDeck.xml"));
-                deck.WriteXml(GetDeckNumberName(CalcType.攻援, 1));
-                File.Delete(Utility.GetFilePath("auto_AtkDeck.xml"));
-            }
-            if (File.Exists(Utility.GetFilePath("auto_DefDeck.xml")))
-            {
-                DsUserDeck deck = new DsUserDeck();
-                deck.ReadXml(Utility.GetFilePath("auto_DefDeck.xml"));
-                deck.WriteXml(GetDeckNumberName(CalcType.守援, 1));
-                File.Delete(Utility.GetFilePath("auto_DefDeck.xml"));
-            }
-            if (File.Exists(Utility.GetFilePath("auto_EventDeck.xml")))
-            {
-                DsUserDeck deck = new DsUserDeck();
-                deck.ReadXml(Utility.GetFilePath("auto_EventDeck.xml"));
-                deck.WriteXml(GetDeckNumberName(CalcType.イベント, 1));
-                File.Delete(Utility.GetFilePath("auto_EventDeck.xml"));
-            }
-        }
         #endregion
 
         #region ガールタブ
+        /// <summary>
+        /// ガール一覧名称検索
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtSearchGirls_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LstAtkBonus.SelectedItem = null;
+            LstDefBonus.SelectedItem = null;
+            TextBox textBox = sender as TextBox;
+            DataGrid grid = DgGirls;
+            DataSet ds = dsGilrs;
+            Search.SearchName(textBox, grid, ds);
+        }
 
         /// <summary>
         /// ガール一覧選択
@@ -1469,7 +1345,6 @@ namespace GirlFriendDeck
                 }
                 LstAtkBonus.ItemsSource = atkBonusList.OrderBy(b => b.IsBonusSelected ? 0 : 1);
                 LstDefBonus.ItemsSource = defBonusList.OrderBy(b => b.IsBonusSelected ? 0 : 1);
-
             }
             else
             {
@@ -1484,6 +1359,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 攻援ボーナスリスト選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LstAtkBonus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TxtSearchGirls.Text = string.Empty;
@@ -1501,6 +1381,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 守援ボーナスリスト選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LstDefBonus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TxtSearchGirls.Text = string.Empty;
@@ -1517,7 +1402,11 @@ namespace GirlFriendDeck
                 DgGirls.ItemsSource = dsGilrs.Girls;
             }
         }
-
+        /// <summary>
+        /// センバツボーナス検索
+        /// </summary>
+        /// <param name="atkBonus"></param>
+        /// <param name="defBonus"></param>
         private void SearchGirlsBonus(List<string> atkBonus, List<string> defBonus)
         {
             DgGirls.ItemsSource = dsGilrs.Girls.Where(r =>
@@ -1581,7 +1470,7 @@ namespace GirlFriendDeck
                 }
             }
         }
-
+        #region CSV
         /// <summary>
         /// CSV読込
         /// </summary>
@@ -1647,13 +1536,7 @@ namespace GirlFriendDeck
                             if (dispRow.名前 == girlsRow.名前)
                             {
                                 dispRow.属性 = girlsRow.属性;
-                                dispRow.攻選抜ボーナス1 = girlsRow.攻援1;
-                                dispRow.攻選抜ボーナス2 = girlsRow.攻援2;
-                                dispRow.攻選抜ボーナス3 = girlsRow.攻援3;
-                                dispRow.守選抜ボーナス1 = girlsRow.守援1;
-                                dispRow.守選抜ボーナス2 = girlsRow.守援2;
-                                dispRow.守選抜ボーナス3 = girlsRow.守援3;
-
+                                CopySelectionBonusRow(girlsRow, dispRow);
                             }
                         }
                         foreach (DsDeckCard.DeckCardRow deckCardRow in dsDeckCard.DeckCard)
@@ -1661,12 +1544,7 @@ namespace GirlFriendDeck
                             if (deckCardRow.名前 == girlsRow.名前)
                             {
                                 deckCardRow.属性 = girlsRow.属性;
-                                deckCardRow.攻選抜ボーナス1 = girlsRow.攻援1;
-                                deckCardRow.攻選抜ボーナス2 = girlsRow.攻援2;
-                                deckCardRow.攻選抜ボーナス3 = girlsRow.攻援3;
-                                deckCardRow.守選抜ボーナス1 = girlsRow.守援1;
-                                deckCardRow.守選抜ボーナス2 = girlsRow.守援2;
-                                deckCardRow.守選抜ボーナス3 = girlsRow.守援3;
+                                CopySelectionBonusRow(girlsRow, deckCardRow);
                             }
                         }
 
@@ -1675,13 +1553,7 @@ namespace GirlFriendDeck
                             if (mainSelectRow.名前 == girlsRow.名前)
                             {
                                 mainSelectRow.属性 = girlsRow.属性;
-                                mainSelectRow.攻選抜ボーナス1 = girlsRow.攻援1;
-                                mainSelectRow.攻選抜ボーナス2 = girlsRow.攻援2;
-                                mainSelectRow.攻選抜ボーナス3 = girlsRow.攻援3;
-                                mainSelectRow.守選抜ボーナス1 = girlsRow.守援1;
-                                mainSelectRow.守選抜ボーナス2 = girlsRow.守援2;
-                                mainSelectRow.守選抜ボーナス3 = girlsRow.守援3;
-
+                                CopySelectionBonusRow(girlsRow, mainSelectRow);
                             }
                         }
 
@@ -1690,12 +1562,7 @@ namespace GirlFriendDeck
                             if (subSelectRow.名前 == girlsRow.名前)
                             {
                                 subSelectRow.属性 = girlsRow.属性;
-                                subSelectRow.攻選抜ボーナス1 = girlsRow.攻援1;
-                                subSelectRow.攻選抜ボーナス2 = girlsRow.攻援2;
-                                subSelectRow.攻選抜ボーナス3 = girlsRow.攻援3;
-                                subSelectRow.守選抜ボーナス1 = girlsRow.守援1;
-                                subSelectRow.守選抜ボーナス2 = girlsRow.守援2;
-                                subSelectRow.守選抜ボーナス3 = girlsRow.守援3;
+                                CopySelectionBonusRow(girlsRow, subSelectRow);
                             }
                         }
                     }
@@ -1712,6 +1579,21 @@ namespace GirlFriendDeck
                     DialogWindow.Show(this, "CSV読み込みエラー", DialogWindow.MessageType.Error);
                 }
             }
+        }
+
+        /// <summary>
+        /// 選抜ボーナスコピー
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dest"></param>
+        private void CopySelectionBonusRow(DataRow src, DataRow dest)
+        {
+            dest["攻選抜ボーナス1"] = src["攻援1"] as string;
+            dest["攻選抜ボーナス2"] = src["攻援2"] as string;
+            dest["攻選抜ボーナス3"] = src["攻援3"] as string;
+            dest["守選抜ボーナス1"] = src["守援1"] as string;
+            dest["守選抜ボーナス2"] = src["守援2"] as string;
+            dest["守選抜ボーナス3"] = src["守援3"] as string;
         }
 
         /// <summary>
@@ -1762,16 +1644,7 @@ namespace GirlFriendDeck
                 DialogWindow.Show(this, "CSV書き込み完了", DialogWindow.MessageType.Infomation);
             }
         }
-
-        private void TxtSearchGirls_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            LstAtkBonus.SelectedItem = null;
-            LstDefBonus.SelectedItem = null;
-            TextBox textBox = sender as TextBox;
-            DataGrid grid = DgGirls;
-            DataSet ds = dsGilrs;
-            Search.SearchName(textBox, grid, ds);
-        }
+        #endregion
 
         #endregion
 
@@ -1790,6 +1663,12 @@ namespace GirlFriendDeck
             Search.SearchName(textBox, grid, ds);
         }
 
+        #region CSV
+        /// <summary>
+        /// CSV読込
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOwnCardCSVLoad_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog dialog = new System.Windows.Forms.OpenFileDialog();
@@ -1924,7 +1803,11 @@ namespace GirlFriendDeck
             }
 
         }
-
+        /// <summary>
+        /// CSV書き込み
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOwnCardCSVSave_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.SaveFileDialog dialog = new System.Windows.Forms.SaveFileDialog();
@@ -1968,6 +1851,7 @@ namespace GirlFriendDeck
                 DialogWindow.Show(this, "CSV書き込み完了", DialogWindow.MessageType.Infomation);
             }
         }
+        #endregion
 
         #region カード編集
 
@@ -2019,28 +1903,7 @@ namespace GirlFriendDeck
             {
                 DsCards.CardsRow cardRow = dsCards.Cards.NewCardsRow();
                 cardRow.ID = (++cardMax).ToString();
-                cardRow.名前 = CmbCardGirlName.SelectedValue.ToString();
-                cardRow.コスト = string.IsNullOrEmpty(TxtCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtCardGirlCost.Text);
-                cardRow.Lv = string.IsNullOrEmpty(TxtCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlLv.Text);
-                cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
-                cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
-                cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
-                cardRow.レア = CmbCardGirlRare.Text;
-                cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
-                cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
-                cardRow.種別 = TxtCardGirlType.Text;
-                cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
-                cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-                cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
-                cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
-                cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
-                cardRow.スペシャル = string.IsNullOrEmpty(TxtCardGirlSpecial.Text) ? 0 : Convert.ToDouble(TxtCardGirlSpecial.Text);
-                cardRow.ダミー = ChkCardGirlDummy.IsChecked ?? false;
-                cardRow.画像 = TxtCardGirlImageName.Text;
-                cardRow.表示順 = string.IsNullOrEmpty(TxtCardGirlDispOrder.Text) ? 99999 : Convert.ToInt32(TxtCardGirlDispOrder.Text);
-                cardRow.フリー1 = TxtCardGirlFree1.Text;
-                cardRow.フリー2 = TxtCardGirlFree2.Text;
-                cardRow.フリー3 = TxtCardGirlFree3.Text;
+                GetInputCardInfo(cardRow);
 
                 dsCards.Cards.AddCardsRow(cardRow);
 
@@ -2067,6 +1930,36 @@ namespace GirlFriendDeck
             {
                 DialogWindow.Show(this, "未入力か、不正な値が入力されています", "入力エラー", DialogWindow.MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// カード入力情報取得
+        /// </summary>
+        /// <param name="cardRow"></param>
+        private void GetInputCardInfo(DsCards.CardsRow cardRow)
+        {
+            cardRow.名前 = CmbCardGirlName.SelectedValue.ToString();
+            cardRow.コスト = string.IsNullOrEmpty(TxtCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtCardGirlCost.Text);
+            cardRow.Lv = string.IsNullOrEmpty(TxtCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlLv.Text);
+            cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
+            cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
+            cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
+            cardRow.レア = CmbCardGirlRare.Text;
+            cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
+            cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
+            cardRow.種別 = TxtCardGirlType.Text;
+            cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
+            cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
+            cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
+            cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
+            cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
+            cardRow.スペシャル = string.IsNullOrEmpty(TxtCardGirlSpecial.Text) ? 0 : Convert.ToDouble(TxtCardGirlSpecial.Text);
+            cardRow.ダミー = ChkCardGirlDummy.IsChecked ?? false;
+            cardRow.画像 = TxtCardGirlImageName.Text;
+            cardRow.表示順 = string.IsNullOrEmpty(TxtCardGirlDispOrder.Text) ? 99999 : Convert.ToInt32(TxtCardGirlDispOrder.Text);
+            cardRow.フリー1 = TxtCardGirlFree1.Text;
+            cardRow.フリー2 = TxtCardGirlFree2.Text;
+            cardRow.フリー3 = TxtCardGirlFree3.Text;
         }
 
         private void BtnCardDel_Click(object sender, RoutedEventArgs e)
@@ -2159,27 +2052,7 @@ namespace GirlFriendDeck
                 try
                 {
                     DsCards.CardsRow cardRow = dsCards.Cards.FirstOrDefault(r => r.ID == currentEditID);
-                    cardRow.コスト = string.IsNullOrEmpty(TxtCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtCardGirlCost.Text);
-                    cardRow.Lv = string.IsNullOrEmpty(TxtCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlLv.Text);
-                    cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
-                    cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
-                    cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
-                    cardRow.レア = CmbCardGirlRare.Text;
-                    cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
-                    cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
-                    cardRow.種別 = TxtCardGirlType.Text;
-                    cardRow.進展 = Convert.ToInt32(CmbCardGirlRank.Text);
-                    cardRow.好感度 = (int)CmbCardGirlFavor.SelectedValue;
-                    cardRow.全属性スキル = ChkCardGirlAllSkill.IsChecked ?? false;
-                    cardRow.ボーナス有無 = ChkCardGirlBonus.IsChecked ?? false;
-                    cardRow.ボーナス = string.IsNullOrEmpty(TxtCardGirlBonus.Text) ? 0 : Convert.ToInt32(TxtCardGirlBonus.Text);
-                    cardRow.スペシャル = string.IsNullOrEmpty(TxtCardGirlSpecial.Text) ? 0 : Convert.ToDouble(TxtCardGirlSpecial.Text);
-                    cardRow.ダミー = ChkCardGirlDummy.IsChecked ?? false;
-                    cardRow.画像 = TxtCardGirlImageName.Text;
-                    cardRow.表示順 = string.IsNullOrEmpty(TxtCardGirlDispOrder.Text) ? 99999 : Convert.ToInt32(TxtCardGirlDispOrder.Text);
-                    cardRow.フリー1 = TxtCardGirlFree1.Text;
-                    cardRow.フリー2 = TxtCardGirlFree2.Text;
-                    cardRow.フリー3 = TxtCardGirlFree3.Text;
+                    GetInputCardInfo(cardRow);
                     cardRow.AcceptChanges();
 
                     //表示順再設定
@@ -2418,7 +2291,7 @@ namespace GirlFriendDeck
             else
             {
                 SkillInfo skillInfo = Skills.FirstOrDefault(s => s.Name == cardRow.スキル);
-                if (skillInfo.IsAttack)
+                if (skillInfo.IsAttack && !skillInfo.IsDown)
                 {
                     int power = (cardRow.全属性スキル ? skillInfo.AllPower : skillInfo.Power) + cardRow.スキルLv - 1;
                     return power;
@@ -2439,7 +2312,7 @@ namespace GirlFriendDeck
             else
             {
                 SkillInfo skillInfo = Skills.FirstOrDefault(s => s.Name == cardRow.スキル);
-                if (skillInfo.IsDeffence)
+                if (skillInfo.IsDeffence && !skillInfo.IsDown)
                 {
                     int power = (cardRow.全属性スキル ? skillInfo.AllPower : skillInfo.Power) + cardRow.スキルLv - 1;
                     return power;
@@ -3339,6 +3212,11 @@ namespace GirlFriendDeck
             return false;
         }
 
+        /// <summary>
+        /// デッキセンバツボーナス選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LstBonus_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (isEvent)
@@ -3354,35 +3232,53 @@ namespace GirlFriendDeck
                     HashSet<string> bonusList = new HashSet<string>();
                     bonus.ForEach(b => bonusList.Add(b.Name));
 
-                    foreach (DsSelectCard.CardRow cardRow in dsMainSelect.Card.Where(r =>
-                        bonusList.Contains(r.攻選抜ボーナス1) ||
-                        bonusList.Contains(r.攻選抜ボーナス2) ||
-                        bonusList.Contains(r.攻選抜ボーナス3) ||
-                        bonusList.Contains(r.守選抜ボーナス1) ||
-                        bonusList.Contains(r.守選抜ボーナス2) ||
-                        bonusList.Contains(r.守選抜ボーナス3)))
+                    if (IsAttack())
                     {
-                        cardRow.選抜選択 = true;
+                        foreach (DsSelectCard.CardRow cardRow in dsMainSelect.Card.Where(r =>
+                            bonusList.Contains(r.攻選抜ボーナス1) ||
+                            bonusList.Contains(r.攻選抜ボーナス2) ||
+                            bonusList.Contains(r.攻選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
+                        foreach (DsSelectCard.CardRow cardRow in dsSubSelect.Card.Where(r =>
+                            bonusList.Contains(r.攻選抜ボーナス1) ||
+                            bonusList.Contains(r.攻選抜ボーナス2) ||
+                            bonusList.Contains(r.攻選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
+                        foreach (DsDeckCard.DeckCardRow cardRow in dsDeckCard.DeckCard.Where(r =>
+                            bonusList.Contains(r.攻選抜ボーナス1) ||
+                            bonusList.Contains(r.攻選抜ボーナス2) ||
+                            bonusList.Contains(r.攻選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
                     }
-                    foreach (DsSelectCard.CardRow cardRow in dsSubSelect.Card.Where(r =>
-                        bonusList.Contains(r.攻選抜ボーナス1) ||
-                        bonusList.Contains(r.攻選抜ボーナス2) ||
-                        bonusList.Contains(r.攻選抜ボーナス3) ||
-                        bonusList.Contains(r.守選抜ボーナス1) ||
-                        bonusList.Contains(r.守選抜ボーナス2) ||
-                        bonusList.Contains(r.守選抜ボーナス3)))
+                    else
                     {
-                        cardRow.選抜選択 = true;
-                    }
-                    foreach (DsDeckCard.DeckCardRow cardRow in dsDeckCard.DeckCard.Where(r =>
-                        bonusList.Contains(r.攻選抜ボーナス1) ||
-                        bonusList.Contains(r.攻選抜ボーナス2) ||
-                        bonusList.Contains(r.攻選抜ボーナス3) ||
-                        bonusList.Contains(r.守選抜ボーナス1) ||
-                        bonusList.Contains(r.守選抜ボーナス2) ||
-                        bonusList.Contains(r.守選抜ボーナス3)))
-                    {
-                        cardRow.選抜選択 = true;
+                        foreach (DsSelectCard.CardRow cardRow in dsMainSelect.Card.Where(r =>
+                            bonusList.Contains(r.守選抜ボーナス1) ||
+                            bonusList.Contains(r.守選抜ボーナス2) ||
+                            bonusList.Contains(r.守選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
+                        foreach (DsSelectCard.CardRow cardRow in dsSubSelect.Card.Where(r =>
+                            bonusList.Contains(r.守選抜ボーナス1) ||
+                            bonusList.Contains(r.守選抜ボーナス2) ||
+                            bonusList.Contains(r.守選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
+                        foreach (DsDeckCard.DeckCardRow cardRow in dsDeckCard.DeckCard.Where(r =>
+                            bonusList.Contains(r.守選抜ボーナス1) ||
+                            bonusList.Contains(r.守選抜ボーナス2) ||
+                            bonusList.Contains(r.守選抜ボーナス3)))
+                        {
+                            cardRow.選抜選択 = true;
+                        }
                     }
                 }
             }
@@ -4430,7 +4326,6 @@ namespace GirlFriendDeck
             }
         }
 
-
         /// <summary>
         /// 全計算
         /// </summary>
@@ -4443,7 +4338,6 @@ namespace GirlFriendDeck
             BonusInfo bonusInfo;
             if (calcType == CalcType.攻援)
             {
-                //CalcTotalAtkBase(mainIDs, subIDs, out bonusList, out selectionBonusInfo, out selectionBonusTotal, out skills, out role, out items, out ownKind);
                 //発揮値の書き換え
                 CreateAtkSelectionBonusInfo();
                 Dictionary<string, PowerInfo> atkList = new Dictionary<string, PowerInfo>();
@@ -4461,61 +4355,70 @@ namespace GirlFriendDeck
                     row.発揮値 = atkList[row.ID].Power;
                     row.センバツ値 = atkList[row.ID].SelectionPower;
                 }
-                foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
-                {
-                    row.発揮値 = atkList[row.ID].Power;
-                    row.センバツ値 = atkList[row.ID].SelectionPower;
-                    //除外発揮値計算
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    tmpSubIDs.Remove(id);
-                    tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                    row.除外総発揮値 = tmpCurrentPower;
-                    tmpSubIDs.Add(id);
-                }
 
-                foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
+                //除外発揮値計算
+                //対象カードを除いて発揮値を計算する
+                if (DgDeckSub.Columns.FirstOrDefault(c => c.Header as string == "除外総発揮値").Visibility == System.Windows.Visibility.Visible)
                 {
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    if (mainIDs.Count >= 5)
+                    foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
                     {
-                        row.主センバツ = 0;
-                        row.主総発揮値 = 0;
-                    }
-                    else
-                    {
-                        tmpMainIDs.Add(id);
-                        tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.主センバツ = tmpAtkList[id].Power;
-                        row.主総発揮値 = tmpCurrentPower;
-                        tmpMainIDs.Remove(id);
-                    }
-                    if (subIDs.Count >= subMax)
-                    {
-                        row.副センバツ = 0;
-                        row.副総発揮値 = 0;
-                    }
-                    else
-                    {
-                        tmpSubIDs.Add(id);
-                        tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.副センバツ = tmpAtkList[id].Power;
-                        row.副総発揮値 = tmpCurrentPower;
+                        row.発揮値 = atkList[row.ID].Power;
+                        row.センバツ値 = atkList[row.ID].SelectionPower;
+                        //除外発揮値計算
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
                         tmpSubIDs.Remove(id);
+                        tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                        row.除外総発揮値 = tmpCurrentPower;
+                        tmpSubIDs.Add(id);
                     }
                 }
 
+                //追加発揮値計算
+                if (DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "主総発揮値").Visibility == System.Windows.Visibility.Visible ||
+                    DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "副総発揮値").Visibility == System.Windows.Visibility.Visible)
+                {
+                    foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
+                    {
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
+                        if (mainIDs.Count >= 5)
+                        {
+                            row.主センバツ = 0;
+                            row.主総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpMainIDs.Add(id);
+                            tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.主センバツ = tmpAtkList[id].Power;
+                            row.主総発揮値 = tmpCurrentPower;
+                            tmpMainIDs.Remove(id);
+                        }
+                        if (subIDs.Count >= subMax)
+                        {
+                            row.副センバツ = 0;
+                            row.副総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpSubIDs.Add(id);
+                            tmpCurrentPower = CalcTotalAtk(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.副センバツ = tmpAtkList[id].Power;
+                            row.副総発揮値 = tmpCurrentPower;
+                            tmpSubIDs.Remove(id);
+                        }
+                    }
+                }
             }
             else if (calcType == CalcType.守援)
             {
-                //CalcTotalDefBase(mainIDs, subIDs, out bonusList, out selectionBonusInfo, out selectionBonusTotal, out skills, out role, out items, out ownKind);
                 CreateDefSelectionBonusInfo();
                 //発揮値の書き換え
                 Dictionary<string, PowerInfo> defList = new Dictionary<string, PowerInfo>();
@@ -4528,62 +4431,72 @@ namespace GirlFriendDeck
                     row.発揮値 = defList[row.ID].Power;
                     row.センバツ値 = defList[row.ID].SelectionPower;
                 }
-                foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
-                {
-                    row.発揮値 = defList[row.ID].Power;
-                    row.センバツ値 = defList[row.ID].SelectionPower;
 
-                    //除外発揮値計算
-                    List<string> tmpMainIDs = new List<string>(mainIDs);
-                    List<string> tmpSubIDs = new List<string>(subIDs);
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    tmpSubIDs.Remove(id);
-                    tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                    row.除外総発揮値 = tmpCurrentPower;
-                }
-                foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
+                //除外発揮値計算
+                //対象カードを除いて発揮値を計算する
+                if (DgDeckSub.Columns.FirstOrDefault(c => c.Header as string == "除外総発揮値").Visibility == System.Windows.Visibility.Visible)
                 {
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    List<string> tmpMainIDs = new List<string>(mainIDs);
-                    List<string> tmpSubIDs = new List<string>(subIDs);
-                    Dictionary<string, PowerInfo> tmpDefList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    if (mainIDs.Count >= 5)
+                    foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
                     {
-                        row.主センバツ = 0;
-                        row.主総発揮値 = 0;
+                        row.発揮値 = defList[row.ID].Power;
+                        row.センバツ値 = defList[row.ID].SelectionPower;
+
+                        //除外発揮値計算
+                        List<string> tmpMainIDs = new List<string>(mainIDs);
+                        List<string> tmpSubIDs = new List<string>(subIDs);
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
+                        tmpSubIDs.Remove(id);
+                        tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                        row.除外総発揮値 = tmpCurrentPower;
                     }
-                    else
+                }
+                //追加発揮値計算
+                if (DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "主総発揮値").Visibility == System.Windows.Visibility.Visible ||
+                    DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "副総発揮値").Visibility == System.Windows.Visibility.Visible)
+                {
+                    foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
                     {
-                        tmpMainIDs.Add(id);
-                        tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpDefList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.主センバツ = tmpDefList[id].Power;
-                        row.主総発揮値 = tmpCurrentPower;
-                        tmpMainIDs.Remove(id);
-                    }
-                    if (subIDs.Count >= subMax)
-                    {
-                        row.副センバツ = 0;
-                        row.副総発揮値 = 0;
-                    }
-                    else
-                    {
-                        tmpSubIDs.Add(id);
-                        tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpDefList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.副センバツ = tmpDefList[id].Power;
-                        row.副総発揮値 = tmpCurrentPower;
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        List<string> tmpMainIDs = new List<string>(mainIDs);
+                        List<string> tmpSubIDs = new List<string>(subIDs);
+                        Dictionary<string, PowerInfo> tmpDefList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
+                        if (mainIDs.Count >= 5)
+                        {
+                            row.主センバツ = 0;
+                            row.主総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpMainIDs.Add(id);
+                            tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpDefList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.主センバツ = tmpDefList[id].Power;
+                            row.主総発揮値 = tmpCurrentPower;
+                            tmpMainIDs.Remove(id);
+                        }
+                        if (subIDs.Count >= subMax)
+                        {
+                            row.副センバツ = 0;
+                            row.副総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpSubIDs.Add(id);
+                            tmpCurrentPower = CalcTotalDef(tmpMainIDs, tmpSubIDs, out tmpDefList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.副センバツ = tmpDefList[id].Power;
+                            row.副総発揮値 = tmpCurrentPower;
+                        }
                     }
                 }
             }
             else
             {
-                //CalcTotalDefBase(mainIDs, subIDs, out bonusList, out selectionBonusInfo, out selectionBonusTotal, out skills, out role, out items, out ownKind);
                 //発揮値の書き換え
                 CreateAtkSelectionBonusInfo();
 
@@ -4599,57 +4512,66 @@ namespace GirlFriendDeck
                     row.発揮値 = atkList[row.ID].Power;
                     row.センバツ値 = atkList[row.ID].SelectionPower;
                 }
-                foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
+                //除外発揮値計算
+                //対象カードを除いて発揮値を計算する
+                if (DgDeckSub.Columns.FirstOrDefault(c => c.Header as string == "除外総発揮値").Visibility == System.Windows.Visibility.Visible)
                 {
-                    row.発揮値 = atkList[row.ID].Power;
-                    row.センバツ値 = atkList[row.ID].SelectionPower;
+                    foreach (DsSelectCard.CardRow row in dsSubSelect.Card)
+                    {
+                        row.発揮値 = atkList[row.ID].Power;
+                        row.センバツ値 = atkList[row.ID].SelectionPower;
 
-                    //除外発揮値計算
-                    List<string> tmpMainIDs = new List<string>(mainIDs);
-                    List<string> tmpSubIDs = new List<string>(subIDs);
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    tmpSubIDs.Remove(id);
-                    tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                    row.除外総発揮値 = tmpCurrentPower;
+                        //除外発揮値計算
+                        List<string> tmpMainIDs = new List<string>(mainIDs);
+                        List<string> tmpSubIDs = new List<string>(subIDs);
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
+                        tmpSubIDs.Remove(id);
+                        tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                        row.除外総発揮値 = tmpCurrentPower;
+                    }
                 }
-
-                foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
+                //追加発揮値計算
+                if (DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "主総発揮値").Visibility == System.Windows.Visibility.Visible ||
+                    DgDeckCards.Columns.FirstOrDefault(c => c.Header as string == "副総発揮値").Visibility == System.Windows.Visibility.Visible)
                 {
-                    string id = row.ID;
-                    int tmpCurrentPower = 0;
-                    List<string> tmpMainIDs = new List<string>(mainIDs);
-                    List<string> tmpSubIDs = new List<string>(subIDs);
-                    Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
-                    List<SelectionBonusInfo> tmpSelectionBonusInfo;
-                    BonusInfo tmpBonusInfo;
-                    if (mainIDs.Count >= 5)
+                    foreach (DsDeckCard.DeckCardRow row in dsDeckCard.DeckCard)
                     {
-                        row.主センバツ = 0;
-                        row.主総発揮値 = 0;
-                    }
-                    else
-                    {
-                        tmpMainIDs.Add(id);
-                        tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.主センバツ = tmpAtkList[id].Power;
-                        row.主総発揮値 = tmpCurrentPower;
-                        tmpMainIDs.Remove(id);
-                    }
-                    if (subIDs.Count >= subMax)
-                    {
-                        row.副センバツ = 0;
-                        row.副総発揮値 = 0;
-                    }
-                    else
-                    {
-                        tmpSubIDs.Add(id);
-                        tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
-                        row.副センバツ = tmpAtkList[id].Power;
-                        row.副総発揮値 = tmpCurrentPower;
+                        string id = row.ID;
+                        int tmpCurrentPower = 0;
+                        List<string> tmpMainIDs = new List<string>(mainIDs);
+                        List<string> tmpSubIDs = new List<string>(subIDs);
+                        Dictionary<string, PowerInfo> tmpAtkList = new Dictionary<string, PowerInfo>();
+                        List<SelectionBonusInfo> tmpSelectionBonusInfo;
+                        BonusInfo tmpBonusInfo;
+                        if (mainIDs.Count >= 5)
+                        {
+                            row.主センバツ = 0;
+                            row.主総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpMainIDs.Add(id);
+                            tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.主センバツ = tmpAtkList[id].Power;
+                            row.主総発揮値 = tmpCurrentPower;
+                            tmpMainIDs.Remove(id);
+                        }
+                        if (subIDs.Count >= subMax)
+                        {
+                            row.副センバツ = 0;
+                            row.副総発揮値 = 0;
+                        }
+                        else
+                        {
+                            tmpSubIDs.Add(id);
+                            tmpCurrentPower = CalcTotalEvent(tmpMainIDs, tmpSubIDs, out tmpAtkList, out tmpBonusInfo, out tmpSelectionBonusInfo);
+                            row.副センバツ = tmpAtkList[id].Power;
+                            row.副総発揮値 = tmpCurrentPower;
+                        }
                     }
                 }
             }
@@ -4667,6 +4589,9 @@ namespace GirlFriendDeck
             SetCostInfo();
         }
 
+        /// <summary>
+        /// コスト情報表示
+        /// </summary>
         private void SetCostInfo()
         {
             int cost = dsMainSelect.Card.Sum(r => r.コスト) + dsSubSelect.Card.Sum(r => r.コスト);
@@ -4778,7 +4703,6 @@ namespace GirlFriendDeck
             }
             LblBonusPop.Content = "P:" + popBonus.ToString() + (popBonusSkill > 0 ? "(" + popBonusSkill.ToString() + ")" : string.Empty);
         }
-        #endregion
 
         private void SetSubInfo(int count)
         {
@@ -4793,8 +4717,18 @@ namespace GirlFriendDeck
             }
         }
 
-        #region 攻援
+        #endregion
 
+        #region 攻援
+        /// <summary>
+        /// 攻援発揮値計算
+        /// </summary>
+        /// <param name="mainIDs"></param>
+        /// <param name="subIDs"></param>
+        /// <param name="atkList"></param>
+        /// <param name="bonusInfo"></param>
+        /// <param name="selectionBonusInfo"></param>
+        /// <returns></returns>
         private int CalcTotalAtk(List<string> mainIDs, List<string> subIDs, out Dictionary<string, PowerInfo> atkList, out BonusInfo bonusInfo, out List<SelectionBonusInfo> selectionBonusInfo)
         {
             int total = 0;
@@ -4860,7 +4794,11 @@ namespace GirlFriendDeck
                     + Math.Ceiling(mainAtk * totalMainSkill / 100d)
                     + Math.Ceiling(mainAtk * (role + mainItem) / 100d)
                     + Math.Ceiling(mainAtk * mainAttr / 100d)
-                    + Math.Ceiling((mainAtk * mainClub / 100d));
+                    + Math.Ceiling(mainAtk * mainClub / 100d);
+
+                mainBonusAtk += Math.Ceiling(mainAtk * (role + mainItem) / 100d)
+                    + Math.Ceiling(mainAtk * mainAttr / 100d)
+                    + Math.Ceiling(mainAtk * mainClub / 100d);
 
                 selectionBonusPower.ForEach(p =>
                     {
@@ -4917,7 +4855,7 @@ namespace GirlFriendDeck
         private void CalcTotalAtkBase(List<string> mainIDs, List<string> subIDs, out Dictionary<string, int> bonusList, out List<SelectionBonusInfo> selectionBonusInfo, out int selectionBonusTotal, out List<int> selectionBonusPower, out List<ActiveSkill> skills, out int role, out HashSet<string> items, out string ownKind)
         {
             //選抜ボーナスの計算
-            List<string> allIDs = new List<string>();
+            List<string> allIDs = new List<string>(mainIDs.Count + subIDs.Count);
             allIDs.AddRange(mainIDs);
             allIDs.AddRange(subIDs);
             bonusList = new Dictionary<string, int>();
@@ -4976,22 +4914,22 @@ namespace GirlFriendDeck
             selectionBonusInfo = selectionBonusInfoDic.Select(sbi => sbi.Value).ToList();
 
             //声援
-            List<string> skillId = new List<string>();
+            List<string> skillIds = new List<string>();
             if (mainIDs.Count > 0)
             {
-                skillId.Add(mainIDs[0]);
+                skillIds.Add(mainIDs[0]);
             }
-            skillId.AddRange(dsMainSelect.Card.Skip(1).Where(r => r.スキル発動).Select(r => r.ID));
+            skillIds.AddRange(dsMainSelect.Card.Skip(1).Where(r => r.スキル発動).Select(r => r.ID));
 
-            foreach (string topId in skillId)
+            foreach (string skillId in skillIds)
             {
-                DsCards.CardsRow topCardRow = cardsList[topId];
+                DsCards.CardsRow topCardRow = cardsList[skillId];
                 DsGirls.GirlsRow topGilrsRow = girlsList[topCardRow.名前];
                 SkillInfo topSkill = Skills.FirstOrDefault(s => s.Name == topCardRow.スキル);
                 ActiveSkill skill = new ActiveSkill()
                 {
-                    Power = topSkill.IsAttack ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
-                    ID = topId,
+                    Power = (topSkill.IsAttack && !topSkill.IsDown) ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
+                    ID = skillId,
                     isOwn = topSkill.IsOwn,
                     isAll = topCardRow.全属性スキル,
                     Attr = topGilrsRow.属性,
@@ -5102,6 +5040,10 @@ namespace GirlFriendDeck
                     + Math.Ceiling(mainDef * (role + mainItem) / 100d)
                     + Math.Ceiling(mainDef * mainAttr / 100d)
                     + Math.Ceiling((mainDef * mainClub / 100d));
+
+                mainBonusDef += Math.Ceiling(mainDef * (role + mainItem) / 100d)
+                    + Math.Ceiling(mainDef * mainAttr / 100d)
+                    + Math.Ceiling(mainDef * mainClub / 100d);
 
                 selectionBonusPower.ForEach(p =>
                 {
@@ -5215,23 +5157,23 @@ namespace GirlFriendDeck
             selectionBonusInfo = selectionBonusInfoDic.Select(sbi => sbi.Value).ToList();
 
             //声援
-            List<string> skillId = new List<string>();
+            List<string> skillIds = new List<string>();
             if (mainIDs.Count > 0)
             {
-                skillId.Add(mainIDs[0]);
+                skillIds.Add(mainIDs[0]);
             }
 
-            skillId.AddRange(dsMainSelect.Card.Skip(1).Where(r => r.スキル発動).Select(r => r.ID));
+            skillIds.AddRange(dsMainSelect.Card.Skip(1).Where(r => r.スキル発動).Select(r => r.ID));
 
-            foreach (string topId in skillId)
+            foreach (string skillId in skillIds)
             {
-                DsCards.CardsRow topCardRow = cardsList[topId];
+                DsCards.CardsRow topCardRow = cardsList[skillId];
                 DsGirls.GirlsRow topGilrsRow = girlsList[topCardRow.名前];
                 SkillInfo topSkill = Skills.FirstOrDefault(s => s.Name == topCardRow.スキル);
                 ActiveSkill skill = new ActiveSkill()
                 {
-                    Power = topSkill.IsDeffence ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
-                    ID = topId,
+                    Power = (topSkill.IsDeffence && !topSkill.IsDown) ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
+                    ID = skillId,
                     isOwn = topSkill.IsOwn,
                     isAll = topCardRow.全属性スキル,
                     Attr = topGilrsRow.属性,
@@ -5463,22 +5405,22 @@ namespace GirlFriendDeck
             selectionBonusInfo = selectionBonusInfoDic.Select(sbi => sbi.Value).ToList();
 
             //声援
-            List<string> skillId = new List<string>();
+            List<string> skillIds = new List<string>();
             if (mainIDs.Count > 0)
             {
-                skillId.Add(mainIDs[0]);
+                skillIds.Add(mainIDs[0]);
             }
-            skillId.AddRange(dsMainSelect.Card.Where(r => r.スキル発動).Select(r => r.ID));
+            skillIds.AddRange(dsMainSelect.Card.Where(r => r.スキル発動).Select(r => r.ID));
 
-            foreach (string topId in skillId)
+            foreach (string skillId in skillIds)
             {
-                DsCards.CardsRow topCardRow = cardsList[topId];
+                DsCards.CardsRow topCardRow = cardsList[skillId];
                 DsGirls.GirlsRow topGilrsRow = girlsList[topCardRow.名前];
                 SkillInfo topSkill = Skills.FirstOrDefault(s => s.Name == topCardRow.スキル);
                 ActiveSkill skill = new ActiveSkill()
                 {
-                    Power = topSkill.IsAttack ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
-                    ID = topId,
+                    Power = (topSkill.IsAttack && !topSkill.IsDown) ? (topCardRow.全属性スキル ? topSkill.AllPower + Convert.ToInt32(topCardRow.スキルLv) - 1 : topSkill.Power + Convert.ToInt32(topCardRow.スキルLv) - 1) : 0,
+                    ID = skillId,
                     isOwn = topSkill.IsOwn,
                     isAll = topCardRow.全属性スキル,
                     Attr = topGilrsRow.属性,
@@ -5520,6 +5462,22 @@ namespace GirlFriendDeck
             ownKind = dsSetting.User[0].Attribute;
         }
         #endregion
+
+        private string GetDistinctGilrsBonus(string id)
+        {
+            DsCards.CardsRow cardRow = cardsList[id];
+            StringBuilder sb = new StringBuilder();
+            sb.Append(cardRow.名前);
+            sb.Append("/");
+            sb.Append(cardRow.レア);
+            sb.Append("/");
+            sb.Append(cardRow.コスト);
+            sb.Append("/");
+            sb.Append(cardRow.進展);
+            sb.Append("/");
+            sb.Append(cardRow.種別);
+            return sb.ToString();
+        }
 
         private void RefreshDeckCard()
         {
@@ -7946,6 +7904,11 @@ namespace GirlFriendDeck
         #endregion
 
         #region DataGrid表示切替
+        /// <summary>
+        /// DataGrid表示切替ボタン表示
+        /// </summary>
+        /// <param name="dg"></param>
+        /// <param name="calcType"></param>
         private void SetDataGridColumnButton(DataGrid dg, CalcType calcType)
         {
             dataGridSet[dg].CalcType = calcType;
@@ -7967,6 +7930,11 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// 表示切替ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TBtn_Click(object sender, RoutedEventArgs e)
         {
             ((ToggleButton)sender).IsChecked = true;
@@ -7983,6 +7951,9 @@ namespace GirlFriendDeck
                 SetDataGridColumn(gi.Grid, gi.Grid.Name, cType);
                 List<ToggleButton> tb = GetChilds<ToggleButton>(p.Child);
                 tb.ForEach(t => t.IsChecked = (t == sender as ToggleButton));
+
+                //再計算
+                ReCalcAll();
             }
         }
 
@@ -8018,6 +7989,9 @@ namespace GirlFriendDeck
                     dsSetting.WriteXml(Utility.GetFilePath("settings.xml"));
 
                     SetDataGridColumn(gi.Grid, gi.Grid.Name, gi.CalcType);
+
+                    //再計算
+                    ReCalcAll();
                 }
                 else
                 {
@@ -8026,22 +8000,6 @@ namespace GirlFriendDeck
             }
         }
         #endregion
-
-        private string GetDistinctGilrsBonus(string id)
-        {
-            DsCards.CardsRow cardRow = cardsList[id];
-            StringBuilder sb = new StringBuilder();
-            sb.Append(cardRow.名前);
-            sb.Append("/");
-            sb.Append(cardRow.レア);
-            sb.Append("/");
-            sb.Append(cardRow.コスト);
-            sb.Append("/");
-            sb.Append(cardRow.進展);
-            sb.Append("/");
-            sb.Append(cardRow.種別);
-            return sb.ToString();
-        }
 
         #region 共通メソッド
 

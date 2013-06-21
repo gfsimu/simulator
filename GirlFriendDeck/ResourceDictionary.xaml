@@ -34,6 +34,11 @@
     <SolidColorBrush x:Key="PopBackground" Color="#BBFF8432" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="YellSkillBackground" Color="#AAFF6633" PresentationOptions:Freeze="True"/>
     <SolidColorBrush x:Key="OverBackground" Color="#FFD83B1E" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="YellLvBackground" Color="#AA20CF20" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="YellLvMaxBackground" Color="#AACF4820" PresentationOptions:Freeze="True"/>
+
+    <SolidColorBrush x:Key="EmphasisOverBackground" Color="#AA8F2815" PresentationOptions:Freeze="True"/>
+    <SolidColorBrush x:Key="EmphasisUnderBackground" Color="#AA15268F" PresentationOptions:Freeze="True"/>
 
     <LinearGradientBrush x:Key="AtkBackground"  EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#44E04518" Offset="1"/>
@@ -1471,6 +1476,13 @@
         <Setter Property="Foreground" Value="#FFFB2F73"/>
     </Style>
 
+    <Style x:Key="OverEmphasisCell" TargetType="DataGridCell" BasedOn="{StaticResource NumberCell}">
+        <Setter Property="Background" Value="{StaticResource EmphasisOverBackground}" />
+    </Style>
+    <Style x:Key="UnderEmphasisCell" TargetType="DataGridCell" BasedOn="{StaticResource NumberCell}">
+        <Setter Property="Background" Value="{StaticResource EmphasisUnderBackground}" />
+    </Style>
+    
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="8"/>
         <Setter Property="Background" Value="Transparent"/>

@@ -68,11 +68,6 @@
     <Compile Include="DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DsCardsOld.Designer.cs">
-      <DependentUpon>DsCardsOld.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="DsSystemSetting.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -284,17 +279,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="DsCardsOld.xsc">
-      <DependentUpon>DsCardsOld.xsd</DependentUpon>
-    </None>
-    <None Include="DsCardsOld.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsCardsOld.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DsCardsOld.xss">
-      <DependentUpon>DsCardsOld.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
