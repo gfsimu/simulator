@@ -65,6 +65,16 @@
     <Compile Include="ColumnSettingWindow.xaml.cs">
       <DependentUpon>ColumnSettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DsDispIndicationCards.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsDispIndicationCards.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsIndicationCards.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsIndicationCards.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DsSystemSetting.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,6 +230,17 @@
     <None Include="DsDispCard.xss">
       <DependentUpon>DsDispCard.xsd</DependentUpon>
     </None>
+    <None Include="DsDispIndicationCards.xsc">
+      <DependentUpon>DsDispIndicationCards.xsd</DependentUpon>
+    </None>
+    <None Include="DsDispIndicationCards.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsDispIndicationCards.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsDispIndicationCards.xss">
+      <DependentUpon>DsDispIndicationCards.xsd</DependentUpon>
+    </None>
     <None Include="DsGirls.xsc">
       <DependentUpon>DsGirls.xsd</DependentUpon>
     </None>
@@ -230,6 +251,17 @@
     </None>
     <None Include="DsGirls.xss">
       <DependentUpon>DsGirls.xsd</DependentUpon>
+    </None>
+    <None Include="DsIndicationCards.xsc">
+      <DependentUpon>DsIndicationCards.xsd</DependentUpon>
+    </None>
+    <None Include="DsIndicationCards.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsIndicationCards.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsIndicationCards.xss">
+      <DependentUpon>DsIndicationCards.xsd</DependentUpon>
     </None>
     <None Include="DsSelectCard.xsc">
       <DependentUpon>DsSelectCard.xsd</DependentUpon>

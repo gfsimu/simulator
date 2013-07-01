@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsIndicationCards" targetNamespace="http://tempuri.org/DsIndicationCards.xsd" xmlns:mstns="http://tempuri.org/DsIndicationCards.xsd" xmlns="http://tempuri.org/DsIndicationCards.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsIndicationCards" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsIndicationCards" msprop:Generator_UserDSName="DsIndicationCards">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Card" msprop:Generator_TableClassName="CardDataTable" msprop:Generator_TableVarName="tableCard" msprop:Generator_TablePropName="Card" msprop:Generator_RowDeletingName="CardRowDeleting" msprop:Generator_RowChangingName="CardRowChanging" msprop:Generator_RowEvHandlerName="CardRowChangeEventHandler" msprop:Generator_RowDeletedName="CardRowDeleted" msprop:Generator_UserTableName="Card" msprop:Generator_RowChangedName="CardRowChanged" msprop:Generator_RowEvArgName="CardRowChangeEvent" msprop:Generator_RowClassName="CardRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="名前" msprop:Generator_ColumnVarNameInTable="column名前" msprop:Generator_ColumnPropNameInRow="名前" msprop:Generator_ColumnPropNameInTable="名前Column" msprop:Generator_UserColumnName="名前" type="xs:string" minOccurs="0" />
+              <xs:element name="種別" msprop:Generator_ColumnVarNameInTable="column種別" msprop:Generator_ColumnPropNameInRow="種別" msprop:Generator_ColumnPropNameInTable="種別Column" msprop:Generator_UserColumnName="種別" type="xs:string" minOccurs="0" />
+              <xs:element name="レア" msprop:Generator_ColumnVarNameInTable="columnレア" msprop:Generator_ColumnPropNameInRow="レア" msprop:Generator_ColumnPropNameInTable="レアColumn" msprop:Generator_UserColumnName="レア" type="xs:string" minOccurs="0" />
+              <xs:element name="コスト" msprop:Generator_ColumnVarNameInTable="columnコスト" msprop:Generator_ColumnPropNameInRow="コスト" msprop:Generator_ColumnPropNameInTable="コストColumn" msprop:Generator_UserColumnName="コスト" type="xs:int" minOccurs="0" />
+              <xs:element name="好感度" msprop:Generator_ColumnVarNameInTable="column好感度" msprop:Generator_ColumnPropNameInRow="好感度" msprop:Generator_ColumnPropNameInTable="好感度Column" msprop:Generator_UserColumnName="好感度" type="xs:int" minOccurs="0" />
+              <xs:element name="ステータス" msprop:Generator_ColumnVarNameInTable="columnステータス" msprop:Generator_ColumnPropNameInRow="ステータス" msprop:Generator_ColumnPropNameInTable="ステータスColumn" msprop:Generator_UserColumnName="ステータス" type="xs:string" minOccurs="0" />
+              <xs:element name="攻援" msprop:Generator_ColumnVarNameInTable="column攻援" msprop:Generator_ColumnPropNameInRow="攻援" msprop:Generator_ColumnPropNameInTable="攻援Column" msprop:Generator_UserColumnName="攻援" type="xs:int" minOccurs="0" />
+              <xs:element name="守援" msprop:Generator_ColumnVarNameInTable="column守援" msprop:Generator_ColumnPropNameInRow="守援" msprop:Generator_ColumnPropNameInTable="守援Column" msprop:Generator_UserColumnName="守援" type="xs:int" minOccurs="0" />
+              <xs:element name="表示順" msprop:Generator_ColumnVarNameInTable="column表示順" msprop:Generator_ColumnPropNameInRow="表示順" msprop:Generator_ColumnPropNameInTable="表示順Column" msprop:Generator_UserColumnName="表示順" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsDispIndicationCards" targetNamespace="http://tempuri.org/DsDispIndicationCards.xsd" xmlns:mstns="http://tempuri.org/DsDispIndicationCards.xsd" xmlns="http://tempuri.org/DsDispIndicationCards.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsDispIndicationCards" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DsDispIndicationCards" msprop:Generator_UserDSName="DsDispIndicationCards">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DispCard" msprop:Generator_TableClassName="DispCardDataTable" msprop:Generator_TableVarName="tableDispCard" msprop:Generator_TablePropName="DispCard" msprop:Generator_RowDeletingName="DispCardRowDeleting" msprop:Generator_RowChangingName="DispCardRowChanging" msprop:Generator_RowEvHandlerName="DispCardRowChangeEventHandler" msprop:Generator_RowDeletedName="DispCardRowDeleted" msprop:Generator_UserTableName="DispCard" msprop:Generator_RowChangedName="DispCardRowChanged" msprop:Generator_RowEvArgName="DispCardRowChangeEvent" msprop:Generator_RowClassName="DispCardRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

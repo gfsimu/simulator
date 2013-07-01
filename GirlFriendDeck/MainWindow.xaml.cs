@@ -128,6 +128,10 @@ namespace GirlFriendDeck
 
         #endregion
 
+        #region クラス定義
+        /// <summary>
+        /// 計算種別
+        /// </summary>
         public enum CalcType
         {
             攻援,
@@ -136,7 +140,30 @@ namespace GirlFriendDeck
             共通,
         }
 
-        #region クラス定義
+        public enum StatusType
+        {
+            ST3,
+            D3,
+            MAX3,
+            ST4,
+            D4,
+            MAX4,
+        }
+
+        /// <summary>
+        /// 目安
+        /// </summary>
+        class IndicationPower
+        {
+            /// <summary>3スト</summary>
+            public int D3 { set; get; }
+            /// <summary>3MAX</summary>
+            public int MAX3 { set; get; }
+            /// <summary>4スト</summary>
+            public int D4 { set; get; }
+            /// <summary>4MAX/summary>
+            public int MAX4 { set; get; }
+        }
 
         class GirlsSelectionBonus
         {
@@ -621,6 +648,34 @@ namespace GirlFriendDeck
             CmbCardGirlFavor.DisplayMemberPath = "Value";
             CmbCardGirlFavor.ItemsSource = new Dictionary<int, string> { { 1, "1" }, { 2, "2" }, { 3, "3" }, { 4, "4" }, { 5, "5" } };
 
+            Utility.SetComboBox<Rare>(CmbCardGirlRare);
+
+
+            #region 応援値
+            CmbIndicationCardGirlBaseFavor.SelectedValuePath = "Key";
+            CmbIndicationCardGirlBaseFavor.DisplayMemberPath = "Value";
+            CmbIndicationCardGirlBaseFavor.ItemsSource = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 } };
+            CmbIndicationCardGirlBaseFavor.SelectedValue = 1;
+            CmbIndicationCardGirlFavor.SelectedValuePath = "Key";
+            CmbIndicationCardGirlFavor.DisplayMemberPath = "Value";
+            CmbIndicationCardGirlFavor.ItemsSource = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 } };
+            CmbIndicationCardGirlFavor.SelectedValue = 5;
+
+            CmbIndicationCardGirlBaseStatus.SelectedValuePath = "Key";
+            CmbIndicationCardGirlBaseStatus.DisplayMemberPath = "Value";
+            CmbIndicationCardGirlBaseStatus.ItemsSource = new Dictionary<StatusType, string> { { StatusType.ST3, "３スト" }, { StatusType.ST4, "４スト" }, { StatusType.D3, "３直" }, { StatusType.MAX3, "３MAX" }, { StatusType.D4, "４直" }, { StatusType.MAX4, "４MAX" } };
+            CmbIndicationCardGirlBaseStatus.SelectedValue = StatusType.ST3;
+
+            CmbIndicationCardGirlRank.SelectedIndex = 2;
+            CmbIndicationCardGirlFavor.SelectedValue = 5;
+            TxtIndicationCardGirlSkillLv.Text = "1";
+
+            Utility.SetComboBox<Rare>(CmbIndicationCardGirlRare);
+
+
+            RBtnIndicationCardGirl4Max.IsChecked = true;
+            #endregion
+
             //DataGrid情報の初期化
             InitDataGridSet();
 
@@ -744,6 +799,9 @@ namespace GirlFriendDeck
             CmbCardGirlSkill.DisplayMemberPath = "Name";
             CmbCardGirlSkill.SelectedValuePath = "Name";
             CmbCardGirlSkill.ItemsSource = Skills;
+            CmbIndicationCardGirlSkill.DisplayMemberPath = "Name";
+            CmbIndicationCardGirlSkill.SelectedValuePath = "Name";
+            CmbIndicationCardGirlSkill.ItemsSource = Skills;
 
             #region　POPUP画面初期化
             Dictionary<string, string> attrListEmpty = new Dictionary<string, string>();
@@ -1028,6 +1086,15 @@ namespace GirlFriendDeck
             LstGirlsName.SelectedValuePath = "Name";
             LstGirlsName.DisplayMemberPath = "Display";
             LstGirlsName.ItemsSource = nameList;
+
+            CmbIndicationCardGirlName.SelectedValuePath = "Name";
+            CmbIndicationCardGirlName.DisplayMemberPath = "Display";
+            CmbIndicationCardGirlName.ItemsSource = nameList;
+
+            LstIndicationGirlsName.SelectedValuePath = "Name";
+            LstIndicationGirlsName.DisplayMemberPath = "Display";
+            LstIndicationGirlsName.ItemsSource = nameList;
+
         }
 
         private void InitGirls()
@@ -1470,6 +1537,7 @@ namespace GirlFriendDeck
                 }
             }
         }
+
         #region CSV
         /// <summary>
         /// CSV読込
@@ -1648,6 +1716,348 @@ namespace GirlFriendDeck
 
         #endregion
 
+        #region 応援値タブ
+
+        private void BtnSearchIndicationGirlName_Click(object sender, RoutedEventArgs e)
+        {
+            TxtPopSearchIndicationGirlName.Text = string.Empty;
+            PopSearchIndicationGirlName.IsOpen = true;
+        }
+
+        private void TxtPopSearchIndicationGirlName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            Search.SearchListName(textBox, LstIndicationGirlsName, nameList);
+        }
+
+        private void LstIndicationGirlsName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CmbIndicationCardGirlName.SelectedValue = LstIndicationGirlsName.SelectedValue;
+            PopSearchIndicationGirlName.IsOpen = false;
+            LstIndicationGirlsName.SelectedValue = null;
+        }
+
+        /// <summary>
+        /// 基準応援値変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtIndicationCardGirlBaseAtk_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalcIndicationBaseAtk();
+        }
+
+
+        /// <summary>
+        /// 基準守援値変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtIndicationCardGirlBaseDef_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CalcIndicationBaseDef();
+        }
+
+        /// <summary>
+        /// 基準好感度変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbIndicationCardGirlFavor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                CalcIndicationBaseAtk();
+                CalcIndicationBaseDef();
+            }
+        }
+
+        /// <summary>
+        /// 基準ステータス変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbIndicationCardGirlBaseStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                CalcIndicationBaseAtk();
+                CalcIndicationBaseDef();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RBtnIndicationCardGirl_Checked(object sender, RoutedEventArgs e)
+        {
+            if (isEvent)
+            {
+                CalcIndicationBaseAtk();
+                CalcIndicationBaseDef();
+            }
+        }
+
+        /// <summary>
+        /// レア変更イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbIndicationCardGirlRare_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                //最大レベルを設定する
+                Rare rare = (Rare)CmbIndicationCardGirlRare.SelectedValue;
+                TxtIndicationCardGirlLv.Text = Card.GetMaxLv(rare).ToString();
+                TxtIndicationCardGirlProgress.Text = "100";
+            }
+        }
+
+        /// <summary>
+        /// カード追加
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnIndicationCardAdd_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DsCards.CardsRow cardRow = dsCards.Cards.NewCardsRow();
+                cardRow.ID = (++cardMax).ToString();
+                cardRow.名前 = CmbIndicationCardGirlName.SelectedValue.ToString();
+                cardRow.コスト = string.IsNullOrEmpty(TxtIndicationCardGirlCost.Text) ? 1 : Convert.ToInt32(TxtIndicationCardGirlCost.Text);
+                cardRow.Lv = string.IsNullOrEmpty(TxtIndicationCardGirlLv.Text) ? 1 : Convert.ToInt32(TxtIndicationCardGirlLv.Text);
+                cardRow.成長 = string.IsNullOrEmpty(TxtIndicationCardGirlProgress.Text) ? 100 : Convert.ToInt32(TxtIndicationCardGirlProgress.Text);
+                cardRow.スキル = CmbIndicationCardGirlSkill.SelectedValue.ToString();
+                cardRow.スキルLv = string.IsNullOrEmpty(TxtIndicationCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtIndicationCardGirlSkillLv.Text);
+                cardRow.レア = CmbIndicationCardGirlRare.SelectedValue.ToString();
+                cardRow.攻援 = string.IsNullOrEmpty(TxtIndicationCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtIndicationCardGirlAtk.Text);
+                cardRow.守援 = string.IsNullOrEmpty(TxtIndicationCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtIndicationCardGirlDef.Text);
+                cardRow.種別 = TxtIndicationCardGirlType.Text;
+                cardRow.進展 = Convert.ToInt32(CmbIndicationCardGirlRank.Text);
+                cardRow.好感度 = (int)CmbIndicationCardGirlFavor.SelectedValue;
+                cardRow.全属性スキル = ChkIndicationCardGirlAllSkill.IsChecked ?? false;
+                cardRow.ボーナス有無 = false;
+                cardRow.ボーナス = 0 ;
+                cardRow.スペシャル = 0;
+                cardRow.ダミー = ChkIndicationCardGirlDummy.IsChecked ?? false;
+                cardRow.画像 = TxtIndicationCardGirlImageName.Text;
+                cardRow.表示順 = dsCards.Cards.Count > 0 ? (dsCards.Cards.Max(r => r.表示順) + 1) : 1;
+                cardRow.フリー1 = string.Empty;
+                cardRow.フリー2 = string.Empty;
+                cardRow.フリー3 = string.Empty;
+                dsCards.Cards.AddCardsRow(cardRow);
+
+                //表示順再設定
+                ReDispOrder(cardRow);
+
+                dsCards.WriteXml(Utility.GetFilePath("cards.xml"));
+
+                if (!cardsList.ContainsKey(cardRow.ID))
+                {
+                    cardsList.Add(cardRow.ID, cardRow);
+                }
+
+                CreateDispCardRow(cardRow);
+                CreateDeckCardRow(cardRow);
+
+
+                ClearIndicationInput();
+
+                DialogWindow.Show(this, "所持カードを追加しました", "Infomation", DialogWindow.MessageType.Infomation);
+
+            }
+            catch (Exception ex)
+            {
+                DialogWindow.Show(this, "未入力か、不正な値が入力されています", "入力エラー", DialogWindow.MessageType.Error);
+            }
+        }
+
+
+        /// <summary>
+        /// クリア
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnIndicationCardClear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearIndicationInput();
+        }
+
+        /// <summary>
+        /// 応援値クリア
+        /// </summary>
+        private void ClearIndicationInput()
+        {
+            TxtIndicationCardGirlType.Text = string.Empty;
+            TxtIndicationCardGirlCost.Text = string.Empty;
+            TxtIndicationCardGirlBaseAtk.Text = string.Empty;
+            TxtIndicationCardGirlBaseDef.Text = string.Empty;
+            CmbIndicationCardGirlRank.SelectedIndex = 2;
+            TxtIndicationCardGirlAtk.Text = string.Empty;
+            TxtIndicationCardGirlDef.Text = string.Empty;
+            if (CmbIndicationCardGirlRare.SelectedValue != null)
+            {
+                Rare rare = (Rare)CmbIndicationCardGirlRare.SelectedValue;
+                TxtIndicationCardGirlLv.Text = Card.GetMaxLv(rare).ToString();
+            }
+            else
+            {
+                TxtIndicationCardGirlLv.Text = string.Empty;
+            }
+            TxtIndicationCardGirlProgress.Text = "100";
+            TxtIndicationCardGirlSkillLv.Text = "1";
+            CmbIndicationCardGirlSkill.SelectedIndex = -1;
+            ChkIndicationCardGirlDummy.IsChecked = true;
+            ChkIndicationCardGirlAllSkill.IsChecked = false;
+        }
+
+        /// <summary>
+        /// 基準攻援値計算
+        /// </summary>
+        private void CalcIndicationBaseAtk()
+        {
+            int atk;
+            if (int.TryParse(TxtIndicationCardGirlBaseAtk.Text, out atk))
+            {
+                //基準好感度
+                int baseFavor = (int)CmbIndicationCardGirlBaseFavor.SelectedValue;
+                //基準ステータス
+                StatusType baseStatus = (StatusType)CmbIndicationCardGirlBaseStatus.SelectedValue;
+                int favor = (int)CmbIndicationCardGirlFavor.SelectedValue;
+
+                IndicationPower pow = CalcIndication(atk, baseStatus, baseFavor, favor);
+
+                LblIndicationCardGirl3DAtk.Content = pow.D3;
+                LblIndicationCardGirl3MaxAtk.Content = pow.MAX3;
+                LblIndicationCardGirl4DAtk.Content = pow.D4;
+                LblIndicationCardGirl4MaxAtk.Content = pow.MAX4;
+
+                //攻援値更新
+                if (RBtnIndicationCardGirl3D.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlAtk.Text = pow.D3.ToString();
+                }
+                else if (RBtnIndicationCardGirl3Max.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlAtk.Text = pow.MAX3.ToString();
+                }
+                else if (RBtnIndicationCardGirl4D.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlAtk.Text = pow.D4.ToString();
+                }
+                else if (RBtnIndicationCardGirl4Max.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlAtk.Text = pow.MAX4.ToString();
+                }
+            }
+            else
+            {
+                //値が不正な場合は０をにする
+                LblIndicationCardGirl3DAtk.Content = "0";
+                LblIndicationCardGirl3MaxAtk.Content = "0";
+                LblIndicationCardGirl4DAtk.Content = "0";
+                LblIndicationCardGirl4MaxAtk.Content = "0";
+            }
+        }
+
+        /// <summary>
+        /// 基準守援値計算
+        /// </summary>
+        private void CalcIndicationBaseDef()
+        {
+            int def;
+            if (int.TryParse(TxtIndicationCardGirlBaseDef.Text, out def))
+            {
+                //基準好感度
+                int baseFavor = (int)CmbIndicationCardGirlBaseFavor.SelectedValue;
+                //基準ステータス
+                StatusType baseStatus = (StatusType)CmbIndicationCardGirlBaseStatus.SelectedValue;
+                int favor = (int)CmbIndicationCardGirlFavor.SelectedValue;
+
+                IndicationPower pow = CalcIndication(def, baseStatus, baseFavor, favor);
+
+                LblIndicationCardGirl3DDef.Content = pow.D3;
+                LblIndicationCardGirl3MaxDef.Content = pow.MAX3;
+                LblIndicationCardGirl4DDef.Content = pow.D4;
+                LblIndicationCardGirl4MaxDef.Content = pow.MAX4;
+
+                //守援値更新
+                if (RBtnIndicationCardGirl3D.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlDef.Text = pow.D3.ToString();
+                }
+                else if (RBtnIndicationCardGirl3Max.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlDef.Text = pow.MAX3.ToString();
+                }
+                else if (RBtnIndicationCardGirl4D.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlDef.Text = pow.D4.ToString();
+                }
+                else if (RBtnIndicationCardGirl4Max.IsChecked ?? false)
+                {
+                    TxtIndicationCardGirlDef.Text = pow.MAX4.ToString();
+                }
+
+            }
+            else
+            {
+                //値が不正な場合は０をにする
+                LblIndicationCardGirl3DDef.Content = "0";
+                LblIndicationCardGirl3MaxDef.Content = "0";
+                LblIndicationCardGirl4DDef.Content = "0";
+                LblIndicationCardGirl4MaxDef.Content = "0";
+            }
+        }
+
+        /// <summary>
+        /// 基準応援値計算
+        /// </summary>
+        /// <param name="basePower"></param>
+        /// <param name="baseFavor"></param>
+        /// <param name="favor"></param>
+        /// <returns></returns>
+        private IndicationPower CalcIndication(int basePower, StatusType baseStatus, int baseFavor, int favor)
+        {
+            var result = new IndicationPower();
+            double power = (double)basePower;
+            //好感度が１以上の場合は基準の応援値を取得する
+            if (baseFavor > 1)
+            {
+                power = power / (1 + (baseFavor - 1) * 0.05);
+            }
+            //基準ステータスにより、３スト時の値に変換する
+            switch (baseStatus)
+            {
+                case StatusType.ST3: break;
+                case StatusType.ST4: break;
+                case StatusType.D3: // ３直⇒３スト
+                    power = power / 1.125;
+                    break;
+                case StatusType.MAX3: // ３MAX⇒３スト
+                    power = power / 1.136;
+                    break;
+                case StatusType.D4: // ４直⇒３スト
+                    power = power / 1.14;
+                    break;
+                case StatusType.MAX4: // ４MAX⇒３スト
+                    power = power / 1.162;
+                    break;
+            }
+
+            result.D3 = (int)(Math.Ceiling(power * 1.125 * (1 + (favor - 1) * 0.05)));
+            result.MAX3 = (int)(Math.Ceiling(power * 1.136 * (1 + (favor - 1) * 0.05)));
+            result.D4 = (int)(Math.Ceiling(power *1.14 * (1 + (favor - 1) * 0.05)));
+            result.MAX4 = (int)(Math.Ceiling(power * 1.162 * (1 + (favor - 1) * 0.05)));
+            return result;
+        }
+
+        #endregion
+
         #region 所持カードタブ
 
         /// <summary>
@@ -1662,6 +2072,194 @@ namespace GirlFriendDeck
             DataSet ds = dsDispCard;
             Search.SearchName(textBox, grid, ds);
         }
+
+        #region 所持カード画面デッキ検索
+
+        private void BtnSearchOwnCard_Click(object sender, RoutedEventArgs e)
+        {
+            PopSearchOwnCard.IsOpen = !PopSearchOwnCard.IsOpen;
+            //閉じた場合は検索クリア
+            if (!PopSearchOwnCard.IsOpen)
+            {
+                SeachOwnCardClearAll();
+            }
+            else
+            {
+                //ボーナス表示
+                CreateAtkSelectionBonusInfo();
+                LstPopSearchOwnCardBonusAtk.DisplayMemberPath = "DisplayNoUseCount";
+                LstPopSearchOwnCardBonusAtk.SelectedValuePath = "Name";
+                LstPopSearchOwnCardBonusAtk.ItemsSource = atkSelectionBonusInfo.Select(b => b.Value).OrderByDescending(r => r.Count).ToList();
+
+                CreateDefSelectionBonusInfo();
+                LstPopSearchOwnCardBonusDef.DisplayMemberPath = "DisplayNoUseCount";
+                LstPopSearchOwnCardBonusDef.SelectedValuePath = "Name";
+                LstPopSearchOwnCardBonusDef.ItemsSource = defSelectionBonusInfo.Select(b => b.Value).OrderByDescending(r => r.Count).ToList();
+
+            }
+        }
+
+        private void SeachOwnCardClearAll()
+        {
+            isEvent = false;
+            TxtPopSearchOwnCardName.Text = string.Empty;
+            LstPopSearchOwnCardBonusAtk.SelectedItem = null;
+            LstPopSearchOwnCardBonusDef.SelectedItem = null;
+            TxtPopSearchOwnCardAtkUp.Text = string.Empty;
+            TxtPopSearchOwnCardAtkDown.Text = string.Empty;
+            TxtPopSearchOwnCardCostDown.Text = string.Empty;
+            TxtPopSearchOwnCardCostUp.Text = string.Empty;
+            TxtPopSearchOwnCardDefDown.Text = string.Empty;
+            TxtPopSearchOwnCardDefUp.Text = string.Empty;
+            CmbPopSearchOwnCardAttr.SelectedValue = string.Empty;
+            isEvent = true;
+            SearchOwnCard();
+        }
+
+        private void TxtPopSearchOwnCard_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                //検索条件の重複を防ぐため名称検索をクリアする
+                TxtSearchOwnCard.Text = string.Empty;
+
+                SearchOwnCard();
+            }
+        }
+
+        /// <summary>
+        /// 所持カード検索
+        /// </summary>
+        private void SearchOwnCard()
+        {
+            EnumerableRowCollection<DataRow> search = dsDispCard.Tables[0].AsEnumerable();
+
+            search = Search.SearchText(TxtPopSearchOwnCardName.Text, search);
+
+            if (LstPopSearchOwnCardBonusAtk.SelectedItems != null && LstPopSearchOwnCardBonusAtk.SelectedItems.Count > 0)
+            {
+                var bonus = LstPopSearchOwnCardBonusAtk.SelectedItems.OfType<SelectionBonusInfo>().ToList();
+                HashSet<string> bonusList = new HashSet<string>();
+                bonus.ForEach(b => bonusList.Add(b.Name));
+                search = search.Where(r =>
+                        bonusList.Contains(r["攻選抜ボーナス1"] as string) ||
+                        bonusList.Contains(r["攻選抜ボーナス2"] as string) ||
+                        bonusList.Contains(r["攻選抜ボーナス3"] as string));
+            }
+
+            if (LstPopSearchOwnCardBonusDef.SelectedItems != null && LstPopSearchOwnCardBonusDef.SelectedItems.Count > 0)
+            {
+                var bonus = LstPopSearchOwnCardBonusDef.SelectedItems.OfType<SelectionBonusInfo>().ToList();
+                HashSet<string> bonusList = new HashSet<string>();
+                bonus.ForEach(b => bonusList.Add(b.Name));
+                search = search.Where(r =>
+                        bonusList.Contains(r["守選抜ボーナス1"] as string) ||
+                        bonusList.Contains(r["守選抜ボーナス2"] as string) ||
+                        bonusList.Contains(r["守選抜ボーナス3"] as string));
+            }
+
+
+            var upTextList = new[]{
+                new{ Text= TxtPopSearchOwnCardCostUp, Column="コスト"},
+                new{ Text= TxtPopSearchOwnCardAtkUp, Column="攻援"},
+                new{ Text= TxtPopSearchOwnCardDefUp, Column="守援"},
+            };
+
+            foreach (var t in upTextList)
+            {
+                if (!string.IsNullOrEmpty(t.Text.Text))
+                {
+                    int num = 0;
+                    if (int.TryParse(t.Text.Text, out num))
+                    {
+                        search = search.Where(r => Convert.ToInt32(r[t.Column]) >= num);
+                    }
+                }
+            }
+            var downTextList = new[]{
+                new{ Text= TxtPopSearchOwnCardCostDown, Column="コスト"},
+                new{ Text= TxtPopSearchOwnCardAtkDown, Column="攻援"},
+                new{ Text= TxtPopSearchOwnCardDefDown, Column="守援"},
+            };
+
+            foreach (var t in downTextList)
+            {
+                if (!string.IsNullOrEmpty(t.Text.Text))
+                {
+                    int num = 0;
+                    if (int.TryParse(t.Text.Text, out num))
+                    {
+                        search = search.Where(r => Convert.ToInt32(r[t.Column]) <= num);
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(CmbPopSearchOwnCardAttr.SelectedValue as string))
+            {
+                search = search.Where(r => r["属性"] as string == CmbPopSearchOwnCardAttr.SelectedValue as string);
+            }
+
+            DgCards.ItemsSource = search.OrderBy(r => r["表示順"]).AsDataView();
+        }
+
+        private void LstPopSearchOwnCardBonusAtk_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                //検索条件の重複を防ぐため名称検索をクリアする
+                TxtSearchOwnCard.Text = string.Empty;
+
+                //守援ボーナス選択解除
+                isEvent = false;
+                LstPopSearchOwnCardBonusDef.SelectedItem = null;
+                isEvent = true;
+
+                SearchOwnCard();
+            }
+        }
+
+        private void LstPopSearchOwnCardBonusDef_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                //検索条件の重複を防ぐため名称検索をクリアする
+                TxtSearchOwnCard.Text = string.Empty;
+
+                //攻援ボーナス選択解除
+                isEvent = false;
+                LstPopSearchOwnCardBonusAtk.SelectedItem = null;
+                isEvent = true;
+
+                SearchOwnCard();
+            }
+        }
+
+        private void BtnPopSearchOwnCardClearAll_Click(object sender, RoutedEventArgs e)
+        {
+            SeachOwnCardClearAll();
+        }
+
+        private void BtnPopSearchOwnCardClearBonusAtk_Click(object sender, RoutedEventArgs e)
+        {
+            LstPopSearchOwnCardBonusAtk.SelectedItem = null;
+        }
+
+        private void BtnPopSearchOwnCardClearBonusDef_Click(object sender, RoutedEventArgs e)
+        {
+            LstPopSearchOwnCardBonusDef.SelectedItem = null;
+        }
+
+        private void CmbPopSearchOwnCardAttr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isEvent)
+            {
+                //検索条件の重複を防ぐため名称検索をクリアする
+                TxtSearchOwnCard.Text = string.Empty;
+
+                SearchOwnCard();
+            }
+        }
+        #endregion
 
         #region CSV
         /// <summary>
@@ -1860,7 +2458,7 @@ namespace GirlFriendDeck
             DsDispCard.DispCardRow dispRow = (DgCards.SelectedItem as DataRowView).Row as DsDispCard.DispCardRow;
             DsCards.CardsRow row = dsCards.Cards.FirstOrDefault(r => r.ID == dispRow.ID);
             CmbCardGirlName.SelectedValue = row.名前;
-            CmbCardGirlRare.Text = row.レア;
+            CmbCardGirlRare.SelectedValue = (Rare)Enum.Parse(typeof(Rare),row.レア);
             TxtCardGirlType.Text = row.種別;
             CmbCardGirlRank.Text = row.進展.ToString();
             CmbCardGirlFavor.SelectedValue = row.好感度;
@@ -1922,8 +2520,6 @@ namespace GirlFriendDeck
                 CreateDispCardRow(cardRow);
                 CreateDeckCardRow(cardRow);
 
-                ReCalcAll();
-
                 ClearCardInput();
             }
             catch (Exception ex)
@@ -1944,7 +2540,7 @@ namespace GirlFriendDeck
             cardRow.成長 = string.IsNullOrEmpty(TxtCardGirlProgress.Text) ? 0 : Convert.ToInt32(TxtCardGirlProgress.Text);
             cardRow.スキル = CmbCardGirlSkill.SelectedValue.ToString();
             cardRow.スキルLv = string.IsNullOrEmpty(TxtCardGirlSkillLv.Text) ? 1 : Convert.ToInt32(TxtCardGirlSkillLv.Text);
-            cardRow.レア = CmbCardGirlRare.Text;
+            cardRow.レア = CmbCardGirlRare.SelectedValue.ToString();
             cardRow.攻援 = string.IsNullOrEmpty(TxtCardGirlAtk.Text) ? 0 : Convert.ToInt32(TxtCardGirlAtk.Text);
             cardRow.守援 = string.IsNullOrEmpty(TxtCardGirlDef.Text) ? 0 : Convert.ToInt32(TxtCardGirlDef.Text);
             cardRow.種別 = TxtCardGirlType.Text;
@@ -1962,6 +2558,11 @@ namespace GirlFriendDeck
             cardRow.フリー3 = TxtCardGirlFree3.Text;
         }
 
+        /// <summary>
+        /// 所持カード削除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCardDel_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(currentEditID))
@@ -2327,7 +2928,7 @@ namespace GirlFriendDeck
         private void ClearCardInput()
         {
             //CmbCardGirlName.SelectedValue = string.Empty;
-            CmbCardGirlRare.Text = string.Empty;
+            CmbCardGirlRare.SelectedIndex = -1;
             TxtCardGirlType.Text = string.Empty;
             CmbCardGirlRank.Text = string.Empty;
             CmbCardGirlFavor.SelectedValue = 1;
@@ -2360,6 +2961,7 @@ namespace GirlFriendDeck
         }
         #endregion
 
+        #region ボタン操作
         /// <summary>
         /// 所持カード表示順
         /// </summary>
@@ -2470,6 +3072,7 @@ namespace GirlFriendDeck
                 }
             }
         }
+        #endregion
 
         #endregion
 
@@ -3328,6 +3931,18 @@ namespace GirlFriendDeck
                     return dsSetting.User[0].DefCost;
             }
             return 20;
+        }
+
+
+        private void RefreshDeckCard()
+        {
+            TBtnSelectAllDeck.IsChecked = true;
+            TBtnSelectCoolDeck.IsChecked = false;
+            TBtnSelectPopDeck.IsChecked = false;
+            TBtnSelectSweetDeck.IsChecked = false;
+            DgDeckCards.ItemsSource = dsDeckCard.DeckCard.OrderBy(r => r.表示順).AsDataView();
+            ClearSelectionBonusDisplay();
+            LstBonus.SelectedItem = null;
         }
 
         #region デッキ追加
@@ -4717,6 +5332,26 @@ namespace GirlFriendDeck
             }
         }
 
+        /// <summary>
+        /// センバツボーナス重複チェック用名称取得
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private string GetDistinctGilrsBonus(string id)
+        {
+            DsCards.CardsRow cardRow = cardsList[id];
+            StringBuilder sb = new StringBuilder();
+            sb.Append(cardRow.名前);
+            sb.Append("/");
+            sb.Append(cardRow.レア);
+            sb.Append("/");
+            sb.Append(cardRow.コスト);
+            sb.Append("/");
+            sb.Append(cardRow.進展);
+            sb.Append("/");
+            sb.Append(cardRow.種別);
+            return sb.ToString();
+        }
         #endregion
 
         #region 攻援
@@ -5462,33 +6097,6 @@ namespace GirlFriendDeck
             ownKind = dsSetting.User[0].Attribute;
         }
         #endregion
-
-        private string GetDistinctGilrsBonus(string id)
-        {
-            DsCards.CardsRow cardRow = cardsList[id];
-            StringBuilder sb = new StringBuilder();
-            sb.Append(cardRow.名前);
-            sb.Append("/");
-            sb.Append(cardRow.レア);
-            sb.Append("/");
-            sb.Append(cardRow.コスト);
-            sb.Append("/");
-            sb.Append(cardRow.進展);
-            sb.Append("/");
-            sb.Append(cardRow.種別);
-            return sb.ToString();
-        }
-
-        private void RefreshDeckCard()
-        {
-            TBtnSelectAllDeck.IsChecked = true;
-            TBtnSelectCoolDeck.IsChecked = false;
-            TBtnSelectPopDeck.IsChecked = false;
-            TBtnSelectSweetDeck.IsChecked = false;
-            DgDeckCards.ItemsSource = dsDeckCard.DeckCard.OrderBy(r=>r.表示順).AsDataView();
-            ClearSelectionBonusDisplay();
-            LstBonus.SelectedItem = null;
-        }
 
         #region デッキ表示選択
         private void TBtnSelectAllDeck_Checked(object sender, RoutedEventArgs e)
@@ -7715,194 +8323,6 @@ namespace GirlFriendDeck
         }
         #endregion
 
-        #region 所持カード画面デッキ検索
-
-        private void BtnSearchOwnCard_Click(object sender, RoutedEventArgs e)
-        {
-            PopSearchOwnCard.IsOpen = !PopSearchOwnCard.IsOpen;
-            //閉じた場合は検索クリア
-            if (!PopSearchOwnCard.IsOpen)
-            {
-                SeachOwnCardClearAll();
-            }
-            else
-            {
-                //ボーナス表示
-                CreateAtkSelectionBonusInfo();
-                LstPopSearchOwnCardBonusAtk.DisplayMemberPath = "DisplayNoUseCount";
-                LstPopSearchOwnCardBonusAtk.SelectedValuePath = "Name";
-                LstPopSearchOwnCardBonusAtk.ItemsSource = atkSelectionBonusInfo.Select(b => b.Value).OrderByDescending(r => r.Count).ToList();
-
-                CreateDefSelectionBonusInfo();
-                LstPopSearchOwnCardBonusDef.DisplayMemberPath = "DisplayNoUseCount";
-                LstPopSearchOwnCardBonusDef.SelectedValuePath = "Name";
-                LstPopSearchOwnCardBonusDef.ItemsSource = defSelectionBonusInfo.Select(b => b.Value).OrderByDescending(r => r.Count).ToList();
-
-            }
-        }
-
-        private void SeachOwnCardClearAll()
-        {
-            isEvent = false;
-            TxtPopSearchOwnCardName.Text = string.Empty;
-            LstPopSearchOwnCardBonusAtk.SelectedItem = null;
-            LstPopSearchOwnCardBonusDef.SelectedItem = null;
-            TxtPopSearchOwnCardAtkUp.Text = string.Empty;
-            TxtPopSearchOwnCardAtkDown.Text = string.Empty;
-            TxtPopSearchOwnCardCostDown.Text = string.Empty;
-            TxtPopSearchOwnCardCostUp.Text = string.Empty;
-            TxtPopSearchOwnCardDefDown.Text = string.Empty;
-            TxtPopSearchOwnCardDefUp.Text = string.Empty;
-            CmbPopSearchOwnCardAttr.SelectedValue = string.Empty;
-            isEvent = true;
-            SearchOwnCard();
-        }
-
-        private void TxtPopSearchOwnCard_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (isEvent)
-            {
-                //検索条件の重複を防ぐため名称検索をクリアする
-                TxtSearchOwnCard.Text = string.Empty;
-
-                SearchOwnCard();
-            }
-        }
-
-        /// <summary>
-        /// 所持カード検索
-        /// </summary>
-        private void SearchOwnCard()
-        {
-            EnumerableRowCollection<DataRow> search = dsDispCard.Tables[0].AsEnumerable();
-
-            search = Search.SearchText(TxtPopSearchOwnCardName.Text, search);
-
-            if (LstPopSearchOwnCardBonusAtk.SelectedItems != null && LstPopSearchOwnCardBonusAtk.SelectedItems.Count > 0)
-            {
-                var bonus = LstPopSearchOwnCardBonusAtk.SelectedItems.OfType<SelectionBonusInfo>().ToList();
-                HashSet<string> bonusList = new HashSet<string>();
-                bonus.ForEach(b => bonusList.Add(b.Name));
-                search = search.Where(r =>
-                        bonusList.Contains(r["攻選抜ボーナス1"] as string) ||
-                        bonusList.Contains(r["攻選抜ボーナス2"] as string) ||
-                        bonusList.Contains(r["攻選抜ボーナス3"] as string));
-            }
-
-            if (LstPopSearchOwnCardBonusDef.SelectedItems != null && LstPopSearchOwnCardBonusDef.SelectedItems.Count > 0)
-            {
-                var bonus = LstPopSearchOwnCardBonusDef.SelectedItems.OfType<SelectionBonusInfo>().ToList();
-                HashSet<string> bonusList = new HashSet<string>();
-                bonus.ForEach(b => bonusList.Add(b.Name));
-                search = search.Where(r =>
-                        bonusList.Contains(r["守選抜ボーナス1"] as string) ||
-                        bonusList.Contains(r["守選抜ボーナス2"] as string) ||
-                        bonusList.Contains(r["守選抜ボーナス3"] as string));
-            }
-
-
-            var upTextList = new[]{
-                new{ Text= TxtPopSearchOwnCardCostUp, Column="コスト"},
-                new{ Text= TxtPopSearchOwnCardAtkUp, Column="攻援"},
-                new{ Text= TxtPopSearchOwnCardDefUp, Column="守援"},
-            };
-
-            foreach (var t in upTextList)
-            {
-                if (!string.IsNullOrEmpty(t.Text.Text))
-                {
-                    int num = 0;
-                    if (int.TryParse(t.Text.Text, out num))
-                    {
-                        search = search.Where(r => Convert.ToInt32(r[t.Column]) >= num);
-                    }
-                }
-            }
-            var downTextList = new[]{
-                new{ Text= TxtPopSearchOwnCardCostDown, Column="コスト"},
-                new{ Text= TxtPopSearchOwnCardAtkDown, Column="攻援"},
-                new{ Text= TxtPopSearchOwnCardDefDown, Column="守援"},
-            };
-
-            foreach (var t in downTextList)
-            {
-                if (!string.IsNullOrEmpty(t.Text.Text))
-                {
-                    int num = 0;
-                    if (int.TryParse(t.Text.Text, out num))
-                    {
-                        search = search.Where(r => Convert.ToInt32(r[t.Column]) <= num);
-                    }
-                }
-            }
-
-            if (!string.IsNullOrEmpty(CmbPopSearchOwnCardAttr.SelectedValue as string))
-            {
-                search = search.Where(r => r["属性"] as string == CmbPopSearchOwnCardAttr.SelectedValue as string);
-            }
-
-            DgCards.ItemsSource = search.OrderBy(r=>r["表示順"]).AsDataView();
-        }
-
-        private void LstPopSearchOwnCardBonusAtk_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (isEvent)
-            {
-                //検索条件の重複を防ぐため名称検索をクリアする
-                TxtSearchOwnCard.Text = string.Empty;
-
-                //守援ボーナス選択解除
-                isEvent = false;
-                LstPopSearchOwnCardBonusDef.SelectedItem = null;
-                isEvent = true;
-
-                SearchOwnCard();
-            }
-        }
-
-        private void LstPopSearchOwnCardBonusDef_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (isEvent)
-            {
-                //検索条件の重複を防ぐため名称検索をクリアする
-                TxtSearchOwnCard.Text = string.Empty;
-
-                //攻援ボーナス選択解除
-                isEvent = false;
-                LstPopSearchOwnCardBonusAtk.SelectedItem = null;
-                isEvent = true;
-
-                SearchOwnCard();
-            }
-        }
-
-        private void BtnPopSearchOwnCardClearAll_Click(object sender, RoutedEventArgs e)
-        {
-            SeachOwnCardClearAll();
-        }
-
-        private void BtnPopSearchOwnCardClearBonusAtk_Click(object sender, RoutedEventArgs e)
-        {
-            LstPopSearchOwnCardBonusAtk.SelectedItem = null;
-        }
-
-        private void BtnPopSearchOwnCardClearBonusDef_Click(object sender, RoutedEventArgs e)
-        {
-            LstPopSearchOwnCardBonusDef.SelectedItem = null;
-        }
-
-        private void CmbPopSearchOwnCardAttr_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (isEvent)
-            {
-                //検索条件の重複を防ぐため名称検索をクリアする
-                TxtSearchOwnCard.Text = string.Empty;
-
-                SearchOwnCard();
-            }
-        }
-        #endregion
-
         #region DataGrid表示切替
         /// <summary>
         /// DataGrid表示切替ボタン表示
@@ -8126,6 +8546,16 @@ namespace GirlFriendDeck
             return null;
         }
         #endregion
+
+        private void TxtIndicationSearchOwnCard_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnIndicationCardDel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
     }
 }

@@ -112,10 +112,46 @@ namespace GirlFriendCommon
             }
         }
     }
+
+    /// <summary>
+    /// レア
+    /// </summary>
+    public enum Rare
+    {
+        N = 1,
+        HN = 2,
+        R = 3,
+        HR = 4,
+        SR = 5,
+        SSR = 6,
+        LG = 7,
+    }
     #endregion
 
     static class Card
     {
+        #region 最大Lv
+        /// <summary>
+        /// レア毎の最大Lv取得
+        /// </summary>
+        /// <param name="rare"></param>
+        /// <returns></returns>
+        public static int GetMaxLv(Rare rare)
+        {
+            switch (rare)
+            {
+                case Rare.N: return 20;
+                case Rare.HN: return 30;
+                case Rare.R: return 40;
+                case Rare.HR: return 50;
+                case Rare.SR: return 60;
+                case Rare.SSR: return 70;
+                case Rare.LG: return 80;
+            }
+            return 1;
+        }
+        #endregion
+
         #region スキル
         public static List<SkillInfo> GetSkills()
         {
@@ -177,6 +213,39 @@ namespace GirlFriendCommon
                     dest[column.ColumnName] = source[column];
                 }
             }
+        }
+        #endregion
+
+        #region コントロール
+        public static void SetComboBox<T>(ComboBox comboBox)
+        {
+            var enumStr = Enum.GetNames(typeof(T));
+            var enumVal = Enum.GetValues(typeof(T));
+            Dictionary<T, string> dic = new Dictionary<T, string>();
+            for (int i = 0; i < enumStr.Length; i++)
+            {
+                dic.Add((T)enumVal.GetValue(i), enumStr[i]);
+            }
+            comboBox.SelectedValuePath = "Key";
+            comboBox.DisplayMemberPath = "Value";
+            comboBox.ItemsSource = dic;
+        }
+
+        public static void SetComboBoxString<T>(ComboBox comboBox, bool isEmpty = false)
+        {
+            var enumStr = Enum.GetNames(typeof(T));
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            if (isEmpty)
+            {
+                dic.Add("", "");
+            }
+            for (int i = 0; i < enumStr.Length; i++)
+            {
+                dic.Add(enumStr[i], enumStr[i]);
+            }
+            comboBox.SelectedValuePath = "Key";
+            comboBox.DisplayMemberPath = "Value";
+            comboBox.ItemsSource = dic;
         }
         #endregion
     }

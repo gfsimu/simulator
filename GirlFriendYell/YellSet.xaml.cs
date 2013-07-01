@@ -200,7 +200,7 @@ namespace GirlFriendYell
         /// <param name="rate"></param>
         private void SetLvLabel()
         {
-            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int maxLv = Card.GetMaxLv(targetInfo.Rare);
             //エール前Lv
             LblLvBefore.Content = targetInfo.Lv.ToString() + " (" + targetInfo.Progress.ToString() + "%)";
             //エール後Lv
@@ -239,7 +239,7 @@ namespace GirlFriendYell
             {
                 LblNeedExpAfter.Content = string.Empty;
             }
-            int needExp = YellUtility.GetTotalExp(YellUtility.GetMaxLv(targetInfo.Rare), 0);
+            int needExp = YellUtility.GetTotalExp(Card.GetMaxLv(targetInfo.Rare), 0);
 
             LblRemainExpAfter.Content = needExp- targetInfoAfter.TotalExp;
 

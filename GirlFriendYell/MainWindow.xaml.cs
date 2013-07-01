@@ -117,11 +117,11 @@ namespace GirlFriendYell
             CmbFreeAttr.ItemsSource = attrList;
             CmbFreeAttr.SelectedValue = Attr.Sweet;
 
-            YellUtility.SetComboBox<Rare>(CmbBaseRare);
-            YellUtility.SetComboBox<Rare>(CmbFreeRare);
-            YellUtility.SetComboBoxString<Rare>(CmbSearchFreeRare,true);
-            YellUtility.SetComboBoxString<Attr>(CmbSearchFreeAttr,true);
-            YellUtility.SetComboBoxString<Attr>(CmbPopSearchOwnCardAttr, true);
+            Utility.SetComboBox<Rare>(CmbBaseRare);
+            Utility.SetComboBox<Rare>(CmbFreeRare);
+            Utility.SetComboBoxString<Rare>(CmbSearchFreeRare,true);
+            Utility.SetComboBoxString<Attr>(CmbSearchFreeAttr,true);
+            Utility.SetComboBoxString<Attr>(CmbPopSearchOwnCardAttr, true);
 
             CmbCardGirlSkill.DisplayMemberPath = "Name";
             CmbCardGirlSkill.SelectedValuePath = "Name";
@@ -561,7 +561,7 @@ namespace GirlFriendYell
         private void ReCalcAll()
         {
             //元総経験値
-            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int maxLv = Card.GetMaxLv(targetInfo.Rare);
             int progress = targetInfo.Progress;
             //最大レベルまで達していた場合は成長を０にして計算する
             if (maxLv == targetInfo.Lv) progress = 0;
@@ -593,7 +593,7 @@ namespace GirlFriendYell
                 ((TabYellMember.Items[i] as TabItem).Content as YellSet).CalcYell();
             }
 
-            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int maxLv = Card.GetMaxLv(targetInfo.Rare);
             int resultProgress = targetInfoResult.Progress;
             if (maxLv == targetInfoResult.Lv) resultProgress = 0;
             targetInfoResult.TotalExp = YellUtility.GetTotalExp(targetInfoResult.Lv, resultProgress);
@@ -623,7 +623,7 @@ namespace GirlFriendYell
                 RctBaseLv.Fill = this.FindResource("IcoStay") as Brush;
             }
 
-            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int maxLv = Card.GetMaxLv(targetInfo.Rare);
             int lvAfter = targetInfoResult.Lv;
             if (lvAfter > maxLv) lvAfter = maxLv;
             RctBarLv.Width = 60 * ((double)lvAfter / (double)maxLv);
@@ -1128,7 +1128,7 @@ namespace GirlFriendYell
                 TBtnPopBaseTargetCurrent.IsChecked = false;
 
                 //ターゲット情報
-                int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+                int maxLv = Card.GetMaxLv(targetInfo.Rare);
                 TxtPopBaseTargetTargetLv.Text = maxLv.ToString();
 
                 //Silder                
@@ -1161,7 +1161,7 @@ namespace GirlFriendYell
             LblPopBaseTargetCurrentExp.Content = targetInfoResult.TotalExp;
 
             //ターゲット情報
-            int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+            int maxLv = Card.GetMaxLv(targetInfo.Rare);
             int targetLv;
             if (!int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
             {
@@ -1286,7 +1286,7 @@ namespace GirlFriendYell
                 if (int.TryParse(TxtPopBaseTargetTargetLv.Text, out targetLv))
                 {
                     if (targetLv == 0) targetLv = 1;
-                    int maxLv = YellUtility.GetMaxLv(targetInfo.Rare);
+                    int maxLv = Card.GetMaxLv(targetInfo.Rare);
                     if (targetLv > maxLv) targetLv = maxLv;
 
                     int targetExp = YellUtility.GetTotalExp(targetLv, 0);
@@ -1795,7 +1795,7 @@ namespace GirlFriendYell
                         int progress = 0;
                         if (!cardRow.Is成長Null())
                         {
-                            int maxLv = YellUtility.GetMaxLv((Rare)Enum.Parse(typeof(Rare), cardRow.レア));
+                            int maxLv = Card.GetMaxLv((Rare)Enum.Parse(typeof(Rare), cardRow.レア));
                             //最大レベル出なければ成長を取得する
                             if (maxLv != cardRow.Lv)
                             {
@@ -1883,7 +1883,7 @@ namespace GirlFriendYell
         {
             int progress;
             Rare rare = (Rare)Enum.Parse(typeof(Rare), row.レア);
-            int maxLv = YellUtility.GetMaxLv(rare);
+            int maxLv = Card.GetMaxLv(rare);
             if (row.Lv >= maxLv)
             {
                 //最大レベル以上の場合は成長を１００

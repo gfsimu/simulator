@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GirlFriendCommon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +15,6 @@ namespace GirlFriendYell
         Sweet,
         Cool,
         Pop,
-    }
-
-    public enum Rare
-    {
-        N=1,
-        HN=2,
-        R=3,
-        HR=4,
-        SR=5,
-        SSR=6,
-        LG=7,
     }
 
     public class TargetInfo
@@ -86,61 +76,9 @@ namespace GirlFriendYell
 
     public class YellUtility
     {
-        #region コントロール
-        public static void SetComboBox<T>(ComboBox comboBox)
-        {
-            var enumStr = Enum.GetNames(typeof(T));
-            var enumVal = Enum.GetValues(typeof(T));
-            Dictionary<T, string> dic = new Dictionary<T, string>();
-            for (int i = 0; i < enumStr.Length; i++)
-            {
-                dic.Add((T)enumVal.GetValue(i), enumStr[i]);
-            }
-            comboBox.SelectedValuePath = "Key";
-            comboBox.DisplayMemberPath = "Value";
-            comboBox.ItemsSource = dic;
-        }
-
-        public static void SetComboBoxString<T>(ComboBox comboBox, bool isEmpty=false)
-        {
-            var enumStr = Enum.GetNames(typeof(T));
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            if (isEmpty)
-            {
-                dic.Add("", "");
-            }
-            for (int i = 0; i < enumStr.Length; i++)
-            {
-                dic.Add(enumStr[i], enumStr[i]);
-            }
-            comboBox.SelectedValuePath = "Key";
-            comboBox.DisplayMemberPath = "Value";
-            comboBox.ItemsSource = dic;
-        }
-        #endregion
-
         #region 計算
         public static DsYellInfo Info{set;get;}
 
-        /// <summary>
-        /// レア毎の最大Lv取得
-        /// </summary>
-        /// <param name="rare"></param>
-        /// <returns></returns>
-        public static int GetMaxLv(Rare rare)
-        {
-            switch (rare)
-            {
-                case Rare.N: return 20;
-                case Rare.HN: return 30;
-                case Rare.R: return 40;
-                case Rare.HR: return 50;
-                case Rare.SR: return 60;
-                case Rare.SSR: return 70;
-                case Rare.LG: return 80;
-            }
-            return 1;
-        }
 
         /// <summary>
         /// LvUP計算
@@ -157,7 +95,7 @@ namespace GirlFriendYell
             int tmpLv = baseInfo.Lv;
 
             progress = 0;
-            int maxLv = GetMaxLv(baseInfo.Rare);
+            int maxLv = Card.GetMaxLv(baseInfo.Rare);
             //最大レベルまで達した場合
             if (maxLv <= tmpLv)
             {
@@ -242,7 +180,7 @@ namespace GirlFriendYell
         /// <returns></returns>
         public static int GetNextExp(Rare rare,int lv)
         {
-            int maxLv = GetMaxLv(rare);
+            int maxLv = Card.GetMaxLv(rare);
             //最大レベルまで到達していた場合
             if (maxLv == lv) return 0;
             return Info.LvExp.FirstOrDefault(r => r.Lv == lv).Exp;
